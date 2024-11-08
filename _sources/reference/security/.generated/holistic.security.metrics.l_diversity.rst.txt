@@ -1,0 +1,6 @@
+﻿holistic.security.metrics.l\_diversity
+======================================
+
+.. currentmodule:: holistic.security.metrics
+
+.. autofunction:: l_diversity

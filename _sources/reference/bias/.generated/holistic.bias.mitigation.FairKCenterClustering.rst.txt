@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.FairKCenterClustering
+==============================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: FairKCenterClustering

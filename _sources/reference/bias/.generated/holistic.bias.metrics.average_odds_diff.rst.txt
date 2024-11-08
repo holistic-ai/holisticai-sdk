@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.average\_odds\_diff
+=========================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: average_odds_diff

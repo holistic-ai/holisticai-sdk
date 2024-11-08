@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.success\_rate\_curve
+========================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: success_rate_curve

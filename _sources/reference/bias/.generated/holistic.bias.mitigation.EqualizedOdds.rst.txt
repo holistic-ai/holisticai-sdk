@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.EqualizedOdds
+======================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: EqualizedOdds

@@ -1,0 +1,6 @@
+﻿holistic.datasets.load\_dataset
+===============================
+
+.. currentmodule:: holistic.datasets
+
+.. autofunction:: load_dataset

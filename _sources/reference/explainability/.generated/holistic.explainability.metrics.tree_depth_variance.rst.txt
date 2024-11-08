@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.tree\_depth\_variance
+=====================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: tree_depth_variance

@@ -1,0 +1,6 @@
+﻿holistic.security.metrics.data\_minimization\_score
+===================================================
+
+.. currentmodule:: holistic.security.metrics
+
+.. autofunction:: data_minimization_score

@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.MetaFairClassifier
+===========================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: MetaFairClassifier

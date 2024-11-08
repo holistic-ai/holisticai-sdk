@@ -1,0 +1,6 @@
+﻿holistic.security.metrics.attribute\_attack\_score
+==================================================
+
+.. currentmodule:: holistic.security.metrics
+
+.. autofunction:: attribute_attack_score

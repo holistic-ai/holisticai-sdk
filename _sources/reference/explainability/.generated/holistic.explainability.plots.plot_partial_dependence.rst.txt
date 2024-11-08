@@ -1,0 +1,6 @@
+﻿holistic.explainability.plots.plot\_partial\_dependence
+=======================================================
+
+.. currentmodule:: holistic.explainability.plots
+
+.. autofunction:: plot_partial_dependence

@@ -1,0 +1,6 @@
+﻿holistic.datasets.DataLoader
+============================
+
+.. currentmodule:: holistic.datasets
+
+.. autoclass:: DataLoader

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.accuracy\_diff
+====================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: accuracy_diff

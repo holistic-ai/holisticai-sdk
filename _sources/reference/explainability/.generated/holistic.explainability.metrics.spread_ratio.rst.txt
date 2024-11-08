@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.spread\_ratio
+=============================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: spread_ratio

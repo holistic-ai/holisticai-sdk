@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.cohen\_d
+==============================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: cohen_d

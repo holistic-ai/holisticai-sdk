@@ -1,0 +1,2294 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fair Classification in US Census Data &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/tutorials/bias/mitigating_bias/binary_classification/examples/example_census_data';</script>
+    <link rel="icon" href="../../../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Fair Classification in US Census Data</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Fair-Classification-in-US-Census-Data">
+<h1>Fair Classification in US Census Data<a class="headerlink" href="#Fair-Classification-in-US-Census-Data" title="Link to this heading">#</a></h1>
+<section id="Problem-statement">
+<h2>Problem statement<a class="headerlink" href="#Problem-statement" title="Link to this heading">#</a></h2>
+<p>The US Census Bureau has published data on various social and economic factors for individuals living in the United States. This dataset includes demographic information such as age, education level, and work class, as well as sensitive attributes like race and sex. The goal of this case study is to explore the dataset, understand the relationships between different features and the target variable, and evaluate the fairness of the dataset with respect to the protected attributes. Specifically,
+we will investigate the fairness in terms of race (White, Black) and sex (Male, Female).</p>
+<p>The goal of this case study is to predict whether an individual earns more than $50,000 per year based on the features in the dataset. We will evaluate the fairness of the model predictions using the demographic parity and equal opportunity metrics and apply bias mitigation techniques to improve the fairness of the model. Finally, we compare the performance and fairness of the original and bias-mitigated models to understand the trade-offs between accuracy and fairness in this context.</p>
+</section>
+<section id="Exploratory-data-analysis">
+<h2>Exploratory data analysis<a class="headerlink" href="#Exploratory-data-analysis" title="Link to this heading">#</a></h2>
+<p>In this case study, we will begin with an exploratory data analysis of the US Census dataset. Our goal is to understand the distributions of various features, investigate their relationships with the target variable (whether an individual earns more than $50,000 per year), and assess the fairness of the dataset concerning protected attributes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">load_dataset</span></code> function is responsible for loading the dataset and returning the features and the target variable. The dataset comprises 45,222 samples and 82 features. The dataset allows us to explore two types of protected attributes: race and sex.</p>
+<ul class="simple">
+<li><p><strong>Race</strong>: when the protected attribute is set to race, Group A consists of individuals identified as White, and Group B consists of individuals identified as Black.</p></li>
+<li><p><strong>Sex</strong>: When the protected attribute is set to sex, Group A comprises Male individuals, and Group B comprises Female individuals.</p></li>
+</ul>
+<p>The target variable indicates whether an individual’s annual income exceeds $50,000. Specifically:</p>
+<ul class="simple">
+<li><p>A value of <strong>1</strong> indicates that the individual earns more than $50,000 per year.</p></li>
+<li><p>A value of <strong>0</strong> indicates that the individual earns at most $50,000 per year.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load the dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;adult&#39;</span><span class="p">,</span> <span class="n">protected_attribute</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f6feff !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #d6faff !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #80deea !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 45222</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f6feff !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #d6faff !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #80deea !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [DatasetDict]
+            </div>
+            <div class="generic-object-body">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f6feff !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #d6faff !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #80deea !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> train [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 36177</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f6feff !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #d6faff !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #80deea !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> test [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 9045</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get table of data</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>workclass_Federal-gov</th>
+      <th>workclass_Local-gov</th>
+      <th>workclass_Never-worked</th>
+      <th>workclass_Private</th>
+      <th>workclass_Self-emp-inc</th>
+      <th>...</th>
+      <th>native-country_Portugal</th>
+      <th>native-country_Puerto-Rico</th>
+      <th>native-country_Scotland</th>
+      <th>native-country_South</th>
+      <th>native-country_Taiwan</th>
+      <th>native-country_Thailand</th>
+      <th>native-country_Trinadad&amp;Tobago</th>
+      <th>native-country_United-States</th>
+      <th>native-country_Vietnam</th>
+      <th>native-country_Yugoslavia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25.0</td>
+      <td>226802.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>38.0</td>
+      <td>89814.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28.0</td>
+      <td>336951.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>44.0</td>
+      <td>160323.0</td>
+      <td>7688.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>34.0</td>
+      <td>198693.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>45217</th>
+      <td>27.0</td>
+      <td>257302.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>38.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45218</th>
+      <td>40.0</td>
+      <td>154374.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45219</th>
+      <td>58.0</td>
+      <td>151910.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45220</th>
+      <td>22.0</td>
+      <td>201490.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45221</th>
+      <td>52.0</td>
+      <td>287927.0</td>
+      <td>15024.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>45222 rows × 97 columns</p>
+</div></div>
+</div>
+<section id="Evaluating-unbalanced-classes">
+<h3>Evaluating unbalanced classes<a class="headerlink" href="#Evaluating-unbalanced-classes" title="Link to this heading">#</a></h3>
+<p>To understand the distribution of the sensitive attribute, we will plot the proportion of different groups in the dataset. Considering sex as the protected attribute, we can observe the breakdown of individuals in the dataset. Specifically, the proportion of each groups will help us understand the representation and potential biases in the dataset.</p>
+<p>In this analysis, we note that 32% of the individuals in the dataset are Female, while 68% are Male. This disparity in representation is crucial as it can affect the fairness and accuracy of any predictive models built using this data. By visualizing these proportions, we gain a clearer picture of the demographic composition of the dataset and can better identify any imbalances that may need to be addressed.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">group_pie_plot</span>
+
+<span class="c1"># Plot the distribution of the sensitive attribute</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="kc">True</span><span class="p">:</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span><span class="s1">&#39;Female&#39;</span><span class="p">})</span>
+<span class="n">group_pie_plot</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Group A Proportions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: &gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_10_1.png" src="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_10_1.png" />
+</div>
+</div>
+</section>
+<section id="Relationship-between-features-and-target-variable">
+<h3>Relationship between features and target variable<a class="headerlink" href="#Relationship-between-features-and-target-variable" title="Link to this heading">#</a></h3>
+<p>In this section, we will investigate the relationship between various features and the target variable (income level). Specifically, we will explore how different features are correlated with the target variable and identify any patterns or trends that may be present in the data.</p>
+<p>We will use a correlation matrix to visualize the relationships between different features and the target variable. This matrix will help us identify which features are most strongly correlated with the target variable and provide insights into which features are most predictive of an individual’s income level. Using the <code class="docutils literal notranslate"><span class="pre">correlation_matrix_plot</span></code> function, we can define the top-k features that are most correlated with the target variable. Foi simplicity, we will consider the top-10 features.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f6feff !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #d6faff !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #80deea !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 45222</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets.plots</span> <span class="kn">import</span> <span class="n">correlation_matrix_plot</span>
+
+<span class="n">correlation_matrix_plot</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">target_feature</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Correlation matrix&#39;}&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_14_1.png" src="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_14_1.png" />
+</div>
+</div>
+<p>We observe that marital status is the most strongly correlated feature with the target variable, followed by relationship and education level. Some a priori assumption could be made about the relationship between these features and income level. For example, it is reasonable to assume that individuals who are married or in a relationship may have higher incomes due to shared living expenses and dual incomes. Similarly, individuals with higher education levels may have higher-paying jobs and,
+therefore, higher incomes.</p>
+<p>Age is also strongly correlated with the target variable, which is consistent with the common belief that older individuals tend to have higher incomes due to more work experience and career advancement. Finally, hours per week worked is another important feature that is positively correlated with income level, as individuals who work more hours per week are likely to earn higher incomes.</p>
+<p>But capital gain and capital loss are also in the top-10 features. These features are related to financial investments and can provide additional insights into an individual’s income level. For example, individuals with higher capital gains may have additional sources of income, such as investments or real estate, that contribute to their overall income level. Similarly, individuals with capital losses may have incurred financial losses that impact their income level.</p>
+<p>Next, we will explore the relationship between the protected attributes and the target variable to understand if there are any disparities in correlation between different groups and the target variable.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets.plots</span> <span class="kn">import</span> <span class="n">correlation_matrix_plot</span>
+
+<span class="n">correlation_matrix_plot</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">fixed_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">target_feature</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Correlation matrix&#39;}&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_16_1.png" src="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_16_1.png" />
+</div>
+</div>
+<p>Considering the group A as Male, we can observe that the top-10 are the same as the general top-10 features. So, we can expect that predictions for this group and the general population will be similar.</p>
+<p>Next, we will consider the correlations between the features by group B and the target variable.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets.plots</span> <span class="kn">import</span> <span class="n">correlation_matrix_plot</span>
+
+<span class="n">correlation_matrix_plot</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">fixed_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">],</span> <span class="n">target_feature</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Correlation matrix&#39;}&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_18_1.png" src="../../../../../../_images/gallery_tutorials_bias_mitigating_bias_binary_classification_examples_example_census_data_18_1.png" />
+</div>
+</div>
+<p>Consider group B (Female) we observe that be married is the most correlated feature with the target variable. This correlation is more strong than the general population. We can generalize that married status have more weight in the prediction for this group if we consider that some models look for this strong relationships and patterns to make predictions.</p>
+</section>
+</section>
+<section id="Fairness-evaluation">
+<h2>Fairness evaluation<a class="headerlink" href="#Fairness-evaluation" title="Link to this heading">#</a></h2>
+<p>We observe that there are disparities in the correlation between features and the target variable across different groups. These disparities can result in biased predictions and unfair outcomes for individuals within the dataset. To evaluate and address the fairness of the classification predictions, we will follow a structured pipeline with the following steps:</p>
+<p><strong>Measure Bias in Predictions</strong>: We will train machine learning models and employ a set of bias metrics to assess whether the predictions are biased with respect to the protected attributes.</p>
+<p><strong>Bias Mitigation</strong>: If bias is detected in the predictions, we will apply bias mitigation techniques to enhance the fairness of the model.</p>
+<p><strong>Comparison</strong>: Finally, we will compare the performance and fairness of the original and bias-mitigated models. This comparison will help us understand the trade-offs between accuracy and fairness in this context.</p>
+<p>By following these steps, we aim to ensure that our predictive models are both accurate and fair, minimizing any potential biases related to protected attributes.</p>
+<section id="Set-up-the-dataset-and-protected-attributes">
+<h3>Set up the dataset and protected attributes<a class="headerlink" href="#Set-up-the-dataset-and-protected-attributes" title="Link to this heading">#</a></h3>
+<p>The experiment consider <em>sex</em> as the protected attribute. But the experiment can be easily replicated by changing the protected attribute for <em>race</em>.</p>
+<p>Holisticai library that are available several preprocessing, inprocessing, and postprocessing bias mitigation strategies . For this study case, we applied: Correlation Remover (preprocessing), Prejudice Remover (inprocessing), and Machine Learning Debiasing (postprocessing). We use <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> class to combine the bias mitigation strategy with the classification model in a more straightforward way.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some imports</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">classification_bias_metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">holistic.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation</span> <span class="kn">import</span> <span class="n">PrejudiceRemover</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation</span> <span class="kn">import</span> <span class="n">Reweighing</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the dataset with sex attribute as the protected attribute</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;adult&#39;</span><span class="p">,</span> <span class="n">protected_attribute</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+<span class="n">train_test</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># get the train and test data</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">train_test</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">train_test</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
+
+<span class="c1"># check the number of samples in each group</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train data shape:&#39;</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test data shape:&#39;</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Train data shape: (36177, 97)
+Test data shape: (9045, 97)
+</pre></div></div>
+</div>
+</section>
+<section id="Measure-bias-in-predictions-(without-bias-mitigation)">
+<h3>Measure bias in predictions (without bias mitigation)<a class="headerlink" href="#Measure-bias-in-predictions-(without-bias-mitigation)" title="Link to this heading">#</a></h3>
+<p>In this step, we will train machine learning models to predict whether an individual earns more than $50,000 per year based on the features in the dataset. We use a Random Forest Classifier model for this task. The bias metrics used are based both in equality of opportunity and equality of outcomes.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Standardize data and fit model</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="c1"># Predict on test data</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Evaluate bias metrics</span>
+<span class="n">baseline</span> <span class="o">=</span> <span class="n">classification_bias_metrics</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compute accuracy</span>
+<span class="n">baseline_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Bias-Mitigation">
+<h3>Bias Mitigation<a class="headerlink" href="#Bias-Mitigation" title="Link to this heading">#</a></h3>
+<section id="Pre-processing">
+<h4>Pre-processing<a class="headerlink" href="#Pre-processing" title="Link to this heading">#</a></h4>
+<p>For pre-processing, we will use the Correlation Remover algorithm to remove correlations between the sensitive attribute and the features. CorrelationRemover applies a linear transformation to the non-sensitive feature columns in order to remove their correlation with the sensitive feature columns while retaining as much information as possible (as measured by the least-squares error).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define preprocessing model</span>
+<span class="n">mitigator</span> <span class="o">=</span> <span class="n">Reweighing</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Define pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;scalar&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;bm_preprocessing&quot;</span><span class="p">,</span> <span class="n">mitigator</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;estimator&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">),])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">bm__group_a</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">bm__group_b</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">])</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">bm__group_a</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">bm__group_b</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">])</span>
+
+<span class="c1"># Evaluate bias metrics for pipeline model</span>
+<span class="n">metrics_preprocessing</span> <span class="o">=</span> <span class="n">classification_bias_metrics</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">],</span> <span class="n">y_pred_pipeline</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compute accuracy for preprocessing model</span>
+<span class="n">accuracy_preprocessing</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">y_pred_pipeline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="In-processing">
+<h4>In-processing<a class="headerlink" href="#In-processing" title="Link to this heading">#</a></h4>
+<p>For in-processing, we will use the Prejudice Remover algorithm to reduce bias in the predictions. Prejudice remover is an in-processing technique that adds a discrimination-aware regularization term to the learning objective function.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="n">mitigator</span> <span class="o">=</span> <span class="n">PrejudiceRemover</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">print_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">transform_estimator</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Define pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;scalar&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;bm_inprocessing&#39;</span><span class="p">,</span> <span class="n">mitigator</span><span class="p">)])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">bm__group_a</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">bm__group_b</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">])</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">bm__group_a</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">bm__group_b</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">])</span>
+
+<span class="c1"># Evaluate bias metrics for pipeline model</span>
+<span class="n">metrics_inprocessing</span> <span class="o">=</span> <span class="n">classification_bias_metrics</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">],</span> <span class="n">y_pred_pipeline</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compute accuracy for inprocessing model</span>
+<span class="n">accuracy_inprocessing</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">y_pred_pipeline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[elapsed time: 00:00:01 | iter:5/100 | loss:13018.0391]
+[elapsed time: 00:00:06 | Best Loss : 13018.0391]
+</pre></div></div>
+</div>
+</section>
+<section id="Post-processing">
+<h4>Post-processing<a class="headerlink" href="#Post-processing" title="Link to this heading">#</a></h4>
+<p>For post-processing, we will use the Machine Learning Debiasing algorithm to mitigate bias in the predictions. MLDebiaser postprocessing debias predictions with reference to the sensitive class in each demographic group. This procedure takes as input a vector y and solves the optimization problem subject to the statistical parity constraint. This bias mitigation can be used for classification (binary and multiclass).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation</span> <span class="kn">import</span> <span class="n">MLDebiaser</span>
+
+<span class="c1"># Define postprocessing model</span>
+<span class="n">mitigator</span> <span class="o">=</span> <span class="n">MLDebiaser</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Define pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;scalar&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;estimator&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;bm_posprocessing&quot;</span><span class="p">,</span> <span class="n">mitigator</span><span class="p">)])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">bm__group_a</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">bm__group_b</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">])</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">bm__group_a</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">bm__group_b</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">])</span>
+
+<span class="c1"># Evaluate bias metrics for pipeline model</span>
+<span class="n">metrics_postprocessing</span> <span class="o">=</span> <span class="n">classification_bias_metrics</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">],</span> <span class="n">y_pred_pipeline</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compute accuracy for postprocessing model</span>
+<span class="n">accuracy_postprocessing</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">y_pred_pipeline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[elapsed time: 00:00:00 | iter:2/2]
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Comparison-of-bias-metrics-and-accuracy">
+<h3>Comparison of bias metrics and accuracy<a class="headerlink" href="#Comparison-of-bias-metrics-and-accuracy" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparison table of bias metrics</span>
+
+<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Baseline&#39;</span><span class="p">,</span> <span class="s1">&#39;Preprocessing Mitigator&#39;</span><span class="p">,</span> <span class="s1">&#39;Inprocessing Mitigator&#39;</span><span class="p">,</span> <span class="s1">&#39;Postprocessing Mitigator&#39;</span><span class="p">,</span> <span class="s1">&#39;Reference&#39;</span><span class="p">]</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">baseline</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">metrics_preprocessing</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">metrics_inprocessing</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">metrics_postprocessing</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">keys</span>
+
+<span class="k">def</span> <span class="nf">highlight_closest</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;Reference&#39;</span><span class="p">]</span>
+    <span class="n">differences</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">reference</span><span class="p">))</span>
+    <span class="n">closest</span> <span class="o">=</span> <span class="n">differences</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;background-color: mediumseagreen&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">closest</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+
+<span class="n">comparison_highlighted</span> <span class="o">=</span> <span class="n">comparison</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">highlight_closest</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">comparison_highlighted</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+#T_5c98c_row0_col3, #T_5c98c_row1_col3, #T_5c98c_row2_col3, #T_5c98c_row3_col3, #T_5c98c_row4_col3, #T_5c98c_row5_col2, #T_5c98c_row6_col3, #T_5c98c_row7_col2, #T_5c98c_row8_col3 {
+  background-color: mediumseagreen;
+}
+</style>
+<table id="T_5c98c">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_5c98c_level0_col0" class="col_heading level0 col0" >Baseline</th>
+      <th id="T_5c98c_level0_col1" class="col_heading level0 col1" >Preprocessing Mitigator</th>
+      <th id="T_5c98c_level0_col2" class="col_heading level0 col2" >Inprocessing Mitigator</th>
+      <th id="T_5c98c_level0_col3" class="col_heading level0 col3" >Postprocessing Mitigator</th>
+      <th id="T_5c98c_level0_col4" class="col_heading level0 col4" >Reference</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >Metric</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_5c98c_level0_row0" class="row_heading level0 row0" >Statistical Parity</th>
+      <td id="T_5c98c_row0_col0" class="data row0 col0" >0.173873</td>
+      <td id="T_5c98c_row0_col1" class="data row0 col1" >0.177722</td>
+      <td id="T_5c98c_row0_col2" class="data row0 col2" >0.123365</td>
+      <td id="T_5c98c_row0_col3" class="data row0 col3" >0.065855</td>
+      <td id="T_5c98c_row0_col4" class="data row0 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row1" class="row_heading level0 row1" >Disparate Impact</th>
+      <td id="T_5c98c_row1_col0" class="data row1 col0" >2.954733</td>
+      <td id="T_5c98c_row1_col1" class="data row1 col1" >3.045207</td>
+      <td id="T_5c98c_row1_col2" class="data row1 col2" >2.226515</td>
+      <td id="T_5c98c_row1_col3" class="data row1 col3" >1.388095</td>
+      <td id="T_5c98c_row1_col4" class="data row1 col4" >1</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row2" class="row_heading level0 row2" >Four Fifths Rule</th>
+      <td id="T_5c98c_row2_col0" class="data row2 col0" >0.338440</td>
+      <td id="T_5c98c_row2_col1" class="data row2 col1" >0.328385</td>
+      <td id="T_5c98c_row2_col2" class="data row2 col2" >0.449132</td>
+      <td id="T_5c98c_row2_col3" class="data row2 col3" >0.720412</td>
+      <td id="T_5c98c_row2_col4" class="data row2 col4" >1</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row3" class="row_heading level0 row3" >Cohen D</th>
+      <td id="T_5c98c_row3_col0" class="data row3 col0" >0.438358</td>
+      <td id="T_5c98c_row3_col1" class="data row3 col1" >0.448023</td>
+      <td id="T_5c98c_row3_col2" class="data row3 col2" >0.321904</td>
+      <td id="T_5c98c_row3_col3" class="data row3 col3" >0.160955</td>
+      <td id="T_5c98c_row3_col4" class="data row3 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row4" class="row_heading level0 row4" >2SD Rule</th>
+      <td id="T_5c98c_row4_col0" class="data row4 col0" >19.100792</td>
+      <td id="T_5c98c_row4_col1" class="data row4 col1" >19.504410</td>
+      <td id="T_5c98c_row4_col2" class="data row4 col2" >14.158636</td>
+      <td id="T_5c98c_row4_col3" class="data row4 col3" >7.138974</td>
+      <td id="T_5c98c_row4_col4" class="data row4 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row5" class="row_heading level0 row5" >Equality of Opportunity Difference</th>
+      <td id="T_5c98c_row5_col0" class="data row5 col0" >0.072457</td>
+      <td id="T_5c98c_row5_col1" class="data row5 col1" >0.093067</td>
+      <td id="T_5c98c_row5_col2" class="data row5 col2" >-0.001545</td>
+      <td id="T_5c98c_row5_col3" class="data row5 col3" >-0.161857</td>
+      <td id="T_5c98c_row5_col4" class="data row5 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row6" class="row_heading level0 row6" >False Positive Rate Difference</th>
+      <td id="T_5c98c_row6_col0" class="data row6 col0" >0.072322</td>
+      <td id="T_5c98c_row6_col1" class="data row6 col1" >0.076573</td>
+      <td id="T_5c98c_row6_col2" class="data row6 col2" >0.036702</td>
+      <td id="T_5c98c_row6_col3" class="data row6 col3" >-0.012968</td>
+      <td id="T_5c98c_row6_col4" class="data row6 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row7" class="row_heading level0 row7" >Average Odds Difference</th>
+      <td id="T_5c98c_row7_col0" class="data row7 col0" >0.072390</td>
+      <td id="T_5c98c_row7_col1" class="data row7 col1" >0.084820</td>
+      <td id="T_5c98c_row7_col2" class="data row7 col2" >0.017578</td>
+      <td id="T_5c98c_row7_col3" class="data row7 col3" >-0.087413</td>
+      <td id="T_5c98c_row7_col4" class="data row7 col4" >0</td>
+    </tr>
+    <tr>
+      <th id="T_5c98c_level0_row8" class="row_heading level0 row8" >Accuracy Difference</th>
+      <td id="T_5c98c_row8_col0" class="data row8 col0" >-0.107176</td>
+      <td id="T_5c98c_row8_col1" class="data row8 col1" >-0.108788</td>
+      <td id="T_5c98c_row8_col2" class="data row8 col2" >-0.103027</td>
+      <td id="T_5c98c_row8_col3" class="data row8 col3" >-0.070983</td>
+      <td id="T_5c98c_row8_col4" class="data row8 col4" >0</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a comparison table of accuracy</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Baseline&#39;</span><span class="p">:</span> <span class="n">baseline_accuracy</span><span class="p">,</span>
+    <span class="s1">&#39;Preprocessing Mitigator&#39;</span><span class="p">:</span> <span class="n">accuracy_preprocessing</span><span class="p">,</span>
+    <span class="s1">&#39;Inprocessing Mitigator&#39;</span><span class="p">:</span> <span class="n">accuracy_inprocessing</span><span class="p">,</span>
+    <span class="s1">&#39;Postprocessing Mitigator&#39;</span><span class="p">:</span> <span class="n">accuracy_postprocessing</span>
+<span class="p">}</span>
+
+<span class="n">acc_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">])</span>
+<span class="n">acc_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">acc_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Diff. Baseline (%)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">round</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">acc_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">][</span><span class="s1">&#39;Baseline&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">acc_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Baseline</th>
+      <th>Preprocessing Mitigator</th>
+      <th>Inprocessing Mitigator</th>
+      <th>Postprocessing Mitigator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Accuracy</th>
+      <td>0.8519</td>
+      <td>0.8467</td>
+      <td>0.8423</td>
+      <td>0.838</td>
+    </tr>
+    <tr>
+      <th>Diff. Baseline (%)</th>
+      <td>0.0000</td>
+      <td>-0.5200</td>
+      <td>-0.9600</td>
+      <td>-1.390</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The final comparison table show that the bias mitigation strategies have improved the fairness of the model predictions. The fairness metrics for the bias-mitigated models are significantly closer to the reference value of each metric, indicating that the bias mitigation techniques have successfully reduced bias in the predictions. And we can see that the accuracy of the bias-mitigated models is slightly lower than the original model, but the trade-off between accuracy and fairness is acceptable
+in this context.</p>
+</section>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>This case study examined the fairness of machine learning classification models on US Census data, aiming to predict whether individuals earn more than $50,000 per year based on demographic and socio-economic features. Our analysis highlighted biases related to sex, with initial models showing disparities in income predictions. Through the application of three bias mitigation techniques (Correlation Remove, Prejudice Remover, and MLDebiaser), we were able to improve bias metrics. However, these
+improvements often came with slight reductions in overall model accuracy, demonstrating the trade-off between bias and accuracy.</p>
+<p>The findings emphasize the necessity of addressing fairness in machine learning models, particularly in applications with social implications. While it is feasible to enhance fairness without greatly compromising accuracy, practitioners must carefully consider these trade-offs and continuously monitor deployed models to ensure ethical outcomes. Future research should focus on advanced bias mitigation methods and their broader applicability, as well as the long-term impacts of fairness
+interventions in predictive modeling.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.CorrelationRemover
+===========================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: CorrelationRemover

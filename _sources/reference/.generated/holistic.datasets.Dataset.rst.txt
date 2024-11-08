@@ -1,0 +1,6 @@
+﻿holistic.datasets.Dataset
+=========================
+
+.. currentmodule:: holistic.datasets
+
+.. autoclass:: Dataset

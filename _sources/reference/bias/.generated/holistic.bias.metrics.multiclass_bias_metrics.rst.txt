@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.multiclass\_bias\_metrics
+===============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: multiclass_bias_metrics

@@ -1,0 +1,1742 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.bias.metrics._recommender &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/bias/metrics/_recommender';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.bias.metrics._recommender</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.bias.metrics._recommender</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Base imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># utils</span>
+<span class="kn">from</span> <span class="nn">holistic.utils</span> <span class="kn">import</span> <span class="n">mat_to_binary</span><span class="p">,</span> <span class="n">normalize_tensor</span>
+
+<span class="c1"># Recommender Efficacy Metrics</span>
+<span class="kn">from</span> <span class="nn">holistic.utils._recommender_tools</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">avg_f1</span><span class="p">,</span>
+    <span class="n">avg_precision</span><span class="p">,</span>
+    <span class="n">avg_recall</span><span class="p">,</span>
+    <span class="n">entropy</span><span class="p">,</span>
+    <span class="n">recommender_mae</span><span class="p">,</span>
+    <span class="n">recommender_rmse</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">holistic.utils._validation</span> <span class="kn">import</span> <span class="n">_recommender_checks</span>
+
+<span class="c1"># sklearn imports</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+
+
+<div class="viewcode-block" id="aggregate_diversity">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.aggregate_diversity.html#holistic.bias.metrics.aggregate_diversity">[docs]</a>
+<span class="k">def</span> <span class="nf">aggregate_diversity</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Aggregate Diversity</span>
+
+<span class="sd">    Given a matrix of scores, this function computes the recommended items for\</span>
+<span class="sd">    each user, selecting either the highest-scored items or those above an input\</span>
+<span class="sd">    threshold. It then returns the aggregate diversity: the proportion of recommended\</span>
+<span class="sd">    items out of all possible items.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. We wish for a high proportion of items\</span>
+<span class="sd">    to be shown to avoid the &#39;rich get richer effect&#39;.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items recommended to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Aggregate Diversity</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{|Items\; shown|}{|Items|}`</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `H Abdollahpouri and M Mansoury and R Burke and B Mobasher and E Malthouse (2021).</span>
+<span class="sd">            User-centered Evaluation of Popularity Bias in Recommender Systems, ACM.</span>
+<span class="sd">            &lt;https://doi.org/10.1145%2F3450613.3456821&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import aggregate_diversity</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; aggregate_diversity(mat_pred, top=None, thresh=0.8, normalize=True)</span>
+<span class="sd">    0.75</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize scores</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="c1"># Make matrix binary</span>
+    <span class="n">binary_mat_pred</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+
+    <span class="c1"># Count items by summing over users</span>
+    <span class="n">item_count</span> <span class="o">=</span> <span class="n">binary_mat_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Proportion of all items shown</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">item_count</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">item_count</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="gini_index">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.gini_index.html#holistic.bias.metrics.gini_index">[docs]</a>
+<span class="k">def</span> <span class="nf">gini_index</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GINI index</span>
+
+<span class="sd">    Measures the inequality across the frequency distribution\</span>
+<span class="sd">    of the recommended items.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    An algorithm that recommends each item the same number of\</span>
+<span class="sd">    times (uniform distribution) will have a Gini index of 0\</span>
+<span class="sd">    and the one with extreme inequality will have a Gini of 1.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        GINI</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `M Mansoury, H Abdollahpouri, M Pechenizkiy, B Mobasher, R Burke (2020).</span>
+<span class="sd">            FairMatch: A Graph-based Approach for Improving Aggregate Diversity in Recommender Systems,</span>
+<span class="sd">            &lt;https://doi.org/10.48550/arXiv.2005.01148&gt;`</span>
+<span class="sd">    .. [2] `Farzad Eskandanian, Bamshad Mobasher (2020).</span>
+<span class="sd">            Using Stable Matching to Optimize the Balance between Accuracy and Diversity in Recommendation</span>
+<span class="sd">            &lt;https://doi.org/10.48550/arXiv.2006.03715&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import gini_index</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; gini_index(mat_pred, top=2, thresh=None, normalize=False)</span>
+<span class="sd">    0.1333333333333333</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input check and coerce</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize score matrix</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="c1"># Make matrix binary</span>
+    <span class="n">binary_mat_pred</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+
+    <span class="c1"># compute frequencies and sort them</span>
+    <span class="n">item_nums</span> <span class="o">=</span> <span class="n">binary_mat_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">item_freqs</span> <span class="o">=</span> <span class="n">item_nums</span> <span class="o">/</span> <span class="n">item_nums</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">item_freqs_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">item_freqs</span><span class="p">)</span>
+
+    <span class="c1"># compute gini sum</span>
+    <span class="n">num_items</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_items</span><span class="p">)</span> <span class="o">-</span> <span class="n">num_items</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">item_freqs_s</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_items</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="exposure_entropy">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.exposure_entropy.html#holistic.bias.metrics.exposure_entropy">[docs]</a>
+<span class="k">def</span> <span class="nf">exposure_entropy</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Exposure Entropy</span>
+
+<span class="sd">    This function measures the entropy of the item exposure distribution.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A low entropy (close to 0) indicates high certainty as to which item\</span>
+<span class="sd">    will be shown. Higher entropies therefore ensure a more\</span>
+<span class="sd">    homogeneous distribution. Scale is relative to number of items.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Exposure Entropy</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`-\sum_{k}{ p_k} \ln(p_k)`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import exposure_entropy</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; exposure_entropy(mat_pred, top=None, thresh=0.3, normalize=True)</span>
+<span class="sd">    1.3762266043445464</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize score matrix</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="c1"># Get the item exposures</span>
+    <span class="n">binary_mat_pred</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+    <span class="n">item_exposures</span> <span class="o">=</span> <span class="n">binary_mat_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">item_exposure_dist</span> <span class="o">=</span> <span class="n">item_exposures</span> <span class="o">/</span> <span class="n">item_exposures</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Return entropy</span>
+    <span class="k">return</span> <span class="n">entropy</span><span class="p">(</span><span class="n">item_exposure_dist</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="avg_recommendation_popularity">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.avg_recommendation_popularity.html#holistic.bias.metrics.avg_recommendation_popularity">[docs]</a>
+<span class="k">def</span> <span class="nf">avg_recommendation_popularity</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Average Recommendation Popularity</span>
+
+<span class="sd">    This function computes the average recommendation popularity\</span>
+<span class="sd">    of items over users. We define the recommendation popularity\</span>
+<span class="sd">    as the average amount of times an item is recommended.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A low value is desidered and suggests that items have been\</span>
+<span class="sd">    recommended equally across the population.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Average Recommendation Popularity</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `M Mansoury, H Abdollahpouri, M Pechenizkiy, B Mobasher, R Burke, E Malthouse (2020).</span>
+<span class="sd">            User-centered Evaluation of Popularity Bias in Recommender Systems,</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2103.06364.pdf&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_recommendation_popularity</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; avg_recommendation_popularity(mat_pred, top=None, thresh=0.5, normalize=False)</span>
+<span class="sd">    5.037037037037036</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize score matrix</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="c1"># Make matrices binary</span>
+    <span class="n">binary_mat_pred</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+    <span class="n">item_count</span> <span class="o">=</span> <span class="n">binary_mat_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">binary_mat_pred</span> <span class="o">*</span> <span class="n">item_count</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">binary_mat_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="mad_score">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.mad_score.html#holistic.bias.metrics.mad_score">[docs]</a>
+<span class="k">def</span> <span class="nf">mad_score</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mean Absolute Deviation</span>
+
+<span class="sd">    Difference in average score for group_a and group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A large value of MAD indicates differential treatment of\</span>
+<span class="sd">    group a and group b. A positive value indicates that\</span>
+<span class="sd">    group a received higher scores on average, while\</span>
+<span class="sd">    a negative value indicates higher ratings for group b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        MAD Score</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\texttt{avg_group_a - avg_group_b}`</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Ziwei Zhu, Xia Hu, and James Caverlee (2018).</span>
+<span class="sd">            Fairness-Aware Tensor-Based Recommendation,</span>
+<span class="sd">            &lt;https://dl.acm.org/doi/pdf/10.1145/3269206.3271795&gt;`</span>
+<span class="sd">    .. [2] `Y Deldjoo, V W Anelli, H Zamani, A Bellogin, TDi, T D Noia (2021).</span>
+<span class="sd">            A Flexible Framework for Evaluating User and Item Fairness in Recommender Systems,</span>
+<span class="sd">            &lt;https://link.springer.com/article/10.1007/s11257-020-09285-1&gt;`</span>
+<span class="sd">    .. [3] `Y Deldjooa, A Bellogin, T D Noiaa (2021).</span>
+<span class="sd">            Explaining recommender systems fairness and accuracy through the lens of data characteristics,</span>
+<span class="sd">            &lt;https://www.sciencedirect.com/science/article/pii/S0306457321001503&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import mad_score</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                            [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                            [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                            [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                            [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                            [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                            [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                            [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                            [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                            [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; mad_score(group_a, group_b, mat_pred, normalize=False)</span>
+<span class="sd">    0.00833333333333336</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="n">group_a</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="n">group_b</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="c1"># Split by group</span>
+    <span class="n">mat_pred_a</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">mat_pred_b</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Get averages</span>
+    <span class="n">avg_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">mat_pred_a</span><span class="p">)</span>
+    <span class="n">avg_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">mat_pred_b</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">avg_a</span> <span class="o">-</span> <span class="n">avg_b</span></div>
+
+
+
+<div class="viewcode-block" id="exposure_l1">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.exposure_l1.html#holistic.bias.metrics.exposure_l1">[docs]</a>
+<span class="k">def</span> <span class="nf">exposure_l1</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exposure Total Variation</span>
+
+<span class="sd">    This function computes the total variation norm between the group_a\</span>
+<span class="sd">    exposure distribution to the group_b exposure distribution.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A total variation divergence of 0 is desired, which occurs when the distributions\</span>
+<span class="sd">    are equal. The maximum value is 1 indicating the distributions are\</span>
+<span class="sd">    very far apart.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    top (optional) : int</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh (optional) : float</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize (optional) : bool</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Exposure Total Variation</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `T Giannakas, P Sermpezis, A Giovanidis, T Spyropoulos, G Arvanitakis (2021).</span>
+<span class="sd">            Fairness in Network-Friendly Recommendations,</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2104.00959.pdf&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import exposure_l1</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                            [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                            [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                            [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                            [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                            [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                            [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                            [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                            [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                            [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; exposure_l1(group_a, group_b, mat_pred, top=1, thresh=None, normalize=False)</span>
+<span class="sd">    0.25</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="n">group_a</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="n">group_b</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize score matrix</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="n">binary_mat_pred</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+
+    <span class="c1"># Split by group</span>
+    <span class="n">mat_pred_a</span> <span class="o">=</span> <span class="n">binary_mat_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">mat_pred_b</span> <span class="o">=</span> <span class="n">binary_mat_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Get the item exposure distribution for group_a</span>
+    <span class="n">item_count_a</span> <span class="o">=</span> <span class="n">mat_pred_a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">item_dist_a</span> <span class="o">=</span> <span class="n">item_count_a</span> <span class="o">/</span> <span class="n">item_count_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Get the item exposure distribution for group_b</span>
+    <span class="n">item_count_b</span> <span class="o">=</span> <span class="n">mat_pred_b</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">item_dist_b</span> <span class="o">=</span> <span class="n">item_count_b</span> <span class="o">/</span> <span class="n">item_count_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Compute Total variation distance</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">item_dist_a</span><span class="p">,</span> <span class="n">item_dist_b</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">item_dist_a</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="exposure_kl">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.exposure_kl.html#holistic.bias.metrics.exposure_kl">[docs]</a>
+<span class="k">def</span> <span class="nf">exposure_kl</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exposure KL Divergence</span>
+
+<span class="sd">    This function computes the KL divergence from the group_a\</span>
+<span class="sd">    exposure distribution to the group_b exposure distribution.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A KL divergence of 0 is desired, which occurs when the distributions\</span>
+<span class="sd">    are equal. Higher values of the KL divergence indicate difference\</span>
+<span class="sd">    in exposure distributions of group a and group b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Exposure KL Divergence</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `A Dash, A Chakraborty, S Ghosh, A Mukherjee, K P. Gummadi (2021).</span>
+<span class="sd">            When the Umpire is also a Player: Bias in Private Label Product</span>
+<span class="sd">            Recommendations on E-commerce Marketplaces,</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2102.00141.pdf &gt;`</span>
+<span class="sd">    .. [2] `T Giannakas, P Sermpezis, A Giovanidis, T Spyropoulos, G Arvanitakis (2021).</span>
+<span class="sd">            Fairness in Network-Friendly Recommendations,</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2102.00141.pdf &gt;`</span>
+
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import exposure_kl</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                            [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                            [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                            [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                            [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                            [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                            [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                            [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                            [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                            [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; exposure_kl(group_a, group_b, mat_pred, top=1, thresh=None, normalize=False)</span>
+<span class="sd">    0.23217831296817806</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="n">group_a</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="n">group_b</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># normalize score matrix</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">mat_pred</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">)</span>
+
+    <span class="c1"># Split by group</span>
+    <span class="n">mat_pred_a</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">mat_pred_b</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Get the item exposure distribution for group_a</span>
+    <span class="n">binary_mat_pred_a</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred_a</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+    <span class="n">item_count_a</span> <span class="o">=</span> <span class="n">binary_mat_pred_a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">item_dist_a</span> <span class="o">=</span> <span class="n">item_count_a</span> <span class="o">/</span> <span class="n">item_count_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Get the item exposure distribution for group_b</span>
+    <span class="n">binary_mat_pred_b</span> <span class="o">=</span> <span class="n">mat_to_binary</span><span class="p">(</span><span class="n">mat_pred_b</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">)</span>
+    <span class="n">item_count_b</span> <span class="o">=</span> <span class="n">binary_mat_pred_b</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">item_dist_b</span> <span class="o">=</span> <span class="n">item_count_b</span> <span class="o">/</span> <span class="n">item_count_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Compute KL divergence between dists</span>
+    <span class="k">return</span> <span class="n">entropy</span><span class="p">(</span><span class="n">item_dist_a</span><span class="p">,</span> <span class="n">item_dist_b</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_recommender_metric_ratio</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Metric ratio for recommender systems</span>
+
+<span class="sd">    This function computes the ratio of a given metric on minority and majority group.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    metric : function</span>
+<span class="sd">        Metric to compute</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score\</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Ratio of metrics : Metric(min)/Metric(maj)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># input checks and coerce</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="n">_recommender_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="o">=</span><span class="n">group_a</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="o">=</span><span class="n">group_b</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="o">=</span><span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="o">=</span><span class="n">mat_true</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="n">thresh</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># if normalize</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">tens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">))</span>
+        <span class="n">norm_tens</span> <span class="o">=</span> <span class="n">normalize_tensor</span><span class="p">(</span><span class="n">tens</span><span class="p">)</span>
+        <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span> <span class="o">=</span> <span class="n">norm_tens</span>
+
+    <span class="c1"># Split by group</span>
+    <span class="n">mat_pred_a</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">mat_pred_b</span> <span class="o">=</span> <span class="n">mat_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">mat_true_a</span> <span class="o">=</span> <span class="n">mat_true</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">mat_true_b</span> <span class="o">=</span> <span class="n">mat_true</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># compute metrics</span>
+    <span class="k">if</span> <span class="n">top</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">thresh</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">metric_a</span> <span class="o">=</span> <span class="n">metric</span><span class="p">(</span><span class="n">mat_pred_a</span><span class="p">,</span> <span class="n">mat_true_a</span><span class="p">)</span>
+        <span class="n">metric_b</span> <span class="o">=</span> <span class="n">metric</span><span class="p">(</span><span class="n">mat_pred_b</span><span class="p">,</span> <span class="n">mat_true_b</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># metrics that have top and thresh as input</span>
+        <span class="n">metric_a</span> <span class="o">=</span> <span class="n">metric</span><span class="p">(</span><span class="n">mat_pred_a</span><span class="p">,</span> <span class="n">mat_true_a</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">)</span>
+        <span class="n">metric_b</span> <span class="o">=</span> <span class="n">metric</span><span class="p">(</span><span class="n">mat_pred_b</span><span class="p">,</span> <span class="n">mat_true_b</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">)</span>
+
+    <span class="c1"># ratio</span>
+    <span class="k">return</span> <span class="n">metric_a</span> <span class="o">/</span> <span class="n">metric_b</span>
+
+
+<div class="viewcode-block" id="avg_precision_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.avg_precision_ratio.html#holistic.bias.metrics.avg_precision_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">avg_precision_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Average precision ratio</span>
+
+<span class="sd">    This function computes the ratio of average precision (over users)\</span>
+<span class="sd">    on minority and majority group.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values show bias against minority group.\</span>
+<span class="sd">    Higher values show bias against majority group.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender\</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score\</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Ratio of average precisions</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{\texttt{AVg_precision_min}}{\texttt{AVg_precision_maj}}`</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Yunqi Li, Hanxiong Chen, Zuohui Fu, Yingqiang Ge, Yongfeng Zhang (2021).</span>
+<span class="sd">            User-oriented Fairness in Recommendation.</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2104.10671.pdf&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_precision_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; mat_true = np.array([[0.7, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.9, 0.9, 0.1, 0.2],</span>
+<span class="sd">                          [0.3, 0.8, 0.2, 0.6],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.6, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.1, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.1, 0.1, 0.8]])</span>
+<span class="sd">    &gt;&gt;&gt; avg_precision_ratio(</span>
+<span class="sd">    ...     group_a, group_b, mat_pred, mat_true, top=None, thresh=0.2, normalize=False</span>
+<span class="sd">    ... )</span>
+<span class="sd">    1.161290322580645</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_recommender_metric_ratio</span><span class="p">(</span><span class="n">avg_precision</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="avg_recall_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.avg_recall_ratio.html#holistic.bias.metrics.avg_recall_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">avg_recall_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Average recall ratio</span>
+
+<span class="sd">    This function computes the ratio of average recall (over users)</span>
+<span class="sd">    on minority and majority group.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Ratio of average recalls</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{\texttt{AVg_recall_min}}{\texttt{AVg_recall_maj}}`</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Yunqi Li, Hanxiong Chen, Zuohui Fu, Yingqiang Ge, Yongfeng Zhang (2021).</span>
+<span class="sd">            User-oriented Fairness in Recommendation.</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2104.10671.pdf&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_recall_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; mat_true = np.array([[0.7, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.9, 0.9, 0.1, 0.2],</span>
+<span class="sd">                          [0.3, 0.8, 0.2, 0.6],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.6, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.1, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.1, 0.1, 0.8]])</span>
+<span class="sd">    &gt;&gt;&gt; avg_recall_ratio(</span>
+<span class="sd">    ...     group_a, group_b, mat_pred, mat_true, top=2, thresh=0.5, normalize=False</span>
+<span class="sd">    ... )</span>
+<span class="sd">    1.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_recommender_metric_ratio</span><span class="p">(</span><span class="n">avg_recall</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="avg_f1_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.avg_f1_ratio.html#holistic.bias.metrics.avg_f1_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">avg_f1_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Average f1 ratio</span>
+
+<span class="sd">    This function computes the ratio of average f1 (over users)</span>
+<span class="sd">    on minority and majority group.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values show bias against minority group.</span>
+<span class="sd">    Higher values show bias against majority group.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which</span>
+<span class="sd">        a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Ratio of average f1</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{\texttt{AVg_f1_min}}{\texttt{AVg_f1_maj}}`</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Yunqi Li, Hanxiong Chen, Zuohui Fu, Yingqiang Ge, Yongfeng Zhang (2021).</span>
+<span class="sd">            User-oriented Fairness in Recommendation.</span>
+<span class="sd">            &lt;https://arxiv.org/pdf/2104.10671.pdf&gt;`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_f1_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; mat_true = np.array([[0.7, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.9, 0.9, 0.1, 0.2],</span>
+<span class="sd">                          [0.3, 0.8, 0.2, 0.6],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.6, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.1, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.1, 0.1, 0.8]])</span>
+<span class="sd">    &gt;&gt;&gt; avg_f1_ratio(</span>
+<span class="sd">    ...     group_a, group_b, mat_pred, mat_true, top=None, thresh=0.5, normalize=False</span>
+<span class="sd">    ... )</span>
+<span class="sd">    0.9285714285714286</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">_recommender_metric_ratio</span><span class="p">(</span><span class="n">avg_f1</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="recommender_rmse_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.recommender_rmse_ratio.html#holistic.bias.metrics.recommender_rmse_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">recommender_rmse_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recommender RMSE ratio</span>
+
+<span class="sd">    This function computes the ratio of rmse between</span>
+<span class="sd">    predictions and scores for group_a and group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values show bias against group_a.</span>
+<span class="sd">    Higher values show bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Recommender RMSE ratio</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{\texttt{AVg_rmse_min}}{\texttt{AVg_rmse_maj}}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import recommender_rmse_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; mat_true = np.array([[0.7, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.9, 0.9, 0.1, 0.2],</span>
+<span class="sd">                          [0.3, 0.8, 0.2, 0.6],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.6, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.1, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.1, 0.1, 0.8]])</span>
+<span class="sd">    &gt;&gt;&gt; recommender_rmse_ratio(group_a, group_b, mat_pred, mat_true)</span>
+<span class="sd">    1.149630441384884</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_recommender_metric_ratio</span><span class="p">(</span>
+        <span class="n">recommender_rmse</span><span class="p">,</span>
+        <span class="n">group_a</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="recommender_mae_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.recommender_mae_ratio.html#holistic.bias.metrics.recommender_mae_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">recommender_mae_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recommender MAE ratio</span>
+
+<span class="sd">    This function computes the ratio of mae between</span>
+<span class="sd">    predictions and scores for group_a and group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values show bias against group_a.</span>
+<span class="sd">    Higher values show bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Recommender MAE ratio</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{\texttt{AVg_mae_min}}{\texttt{AVg_mae_maj}}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import recommender_mae_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; mat_pred = np.array([[0.9, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.7, 0.9, 0.1, 0.7],</span>
+<span class="sd">                          [0.3, 0.2, 0.3, 0.3],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.8, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.9, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.7, 0.1, 0.2]])</span>
+<span class="sd">    &gt;&gt;&gt; mat_true = np.array([[0.7, 0.8, 0.4, 0.2],</span>
+<span class="sd">                          [0.9, 0.9, 0.1, 0.2],</span>
+<span class="sd">                          [0.3, 0.8, 0.2, 0.6],</span>
+<span class="sd">                          [0.2, 0.1, 0.7, 0.8],</span>
+<span class="sd">                          [0.6, 0.7, 0.9, 0.1],</span>
+<span class="sd">                          [1. , 0.9, 0.3, 0.6],</span>
+<span class="sd">                          [0.8, 0.1, 0.1, 0.1],</span>
+<span class="sd">                          [0.2, 0.3, 0.1, 0.5],</span>
+<span class="sd">                          [0.1, 0.2, 0.7, 0.7],</span>
+<span class="sd">                          [0.2, 0.1, 0.1, 0.8]])</span>
+<span class="sd">    &gt;&gt;&gt; recommender_mae_ratio(group_a, group_b, mat_pred, mat_true)</span>
+<span class="sd">    1.2954545454545452</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_recommender_metric_ratio</span><span class="p">(</span>
+        <span class="n">recommender_mae</span><span class="p">,</span>
+        <span class="n">group_a</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="p">,</span>
+        <span class="n">mat_pred</span><span class="p">,</span>
+        <span class="n">mat_true</span><span class="p">,</span>
+        <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="n">normalize</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="recommender_bias_metrics">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.recommender_bias_metrics.html#holistic.bias.metrics.recommender_bias_metrics">[docs]</a>
+<span class="k">def</span> <span class="nf">recommender_bias_metrics</span><span class="p">(</span>
+    <span class="n">group_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mat_pred</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mat_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;equal_outcome&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recommender bias metrics batch computation</span>
+
+<span class="sd">    This function computes all the relevant recommender bias metrics,</span>
+<span class="sd">    and displays them as a pandas dataframe.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector.</span>
+<span class="sd">    mat_pred : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A recommender</span>
+<span class="sd">        score (binary or soft pred) for each user,item interaction.</span>
+<span class="sd">    mat_true : matrix-like</span>
+<span class="sd">        Matrix with shape (num_users, num_items). A target score</span>
+<span class="sd">        (binary or soft pred) for each user,item pair.</span>
+<span class="sd">    top : int, optional</span>
+<span class="sd">        If not None, the number of items that are shown to each user.</span>
+<span class="sd">    thresh : float, optional</span>
+<span class="sd">        Threshold indicating value at which</span>
+<span class="sd">        a given item is shown to user (if top is None).</span>
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        If True, normalises the data matrix to [0,1] range.</span>
+<span class="sd">    metric_type : str, optional</span>
+<span class="sd">        Specifies which metrics we compute: &#39;all&#39;, &#39;item_based&#39;, &#39;equal_outcome&#39; or &#39;equal_opportunity&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas DataFrame</span>
+<span class="sd">        Metrics | Values | Reference</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">item_perform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Aggregate Diversity&quot;</span><span class="p">:</span> <span class="n">aggregate_diversity</span><span class="p">,</span>
+        <span class="s2">&quot;GINI index&quot;</span><span class="p">:</span> <span class="n">gini_index</span><span class="p">,</span>
+        <span class="s2">&quot;Exposure Distribution Entropy&quot;</span><span class="p">:</span> <span class="n">exposure_entropy</span><span class="p">,</span>
+        <span class="s2">&quot;Average Recommendation Popularity&quot;</span><span class="p">:</span> <span class="n">avg_recommendation_popularity</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">group_perform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Mean Absolute Deviation&quot;</span><span class="p">:</span> <span class="n">mad_score</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">group2_perform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Exposure Total Variation&quot;</span><span class="p">:</span> <span class="n">exposure_l1</span><span class="p">,</span>
+        <span class="s2">&quot;Exposure KL Divergence&quot;</span><span class="p">:</span> <span class="n">exposure_kl</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">group_true_perform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Average Precision Ratio&quot;</span><span class="p">:</span> <span class="n">avg_precision_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;Average Recall Ratio&quot;</span><span class="p">:</span> <span class="n">avg_recall_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;Average F1 Ratio&quot;</span><span class="p">:</span> <span class="n">avg_f1_ratio</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">group_true_reg_perform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Recommender RMSE Ratio&quot;</span><span class="p">:</span> <span class="n">recommender_rmse_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;Recommender MAE Ratio&quot;</span><span class="p">:</span> <span class="n">recommender_mae_ratio</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">ref_vals</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Aggregate Diversity&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;GINI index&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Exposure Distribution Entropy&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Average Recommendation Popularity&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mean Absolute Deviation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Exposure Total Variation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Exposure KL Divergence&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Average Precision Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Average Recall Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Average F1 Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Recommender RMSE Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Recommender MAE Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">item_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">opp_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">item_metrics</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">item_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">group_a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">out_metrics</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">group_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="n">out_metrics</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">group2_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+    <span class="k">if</span> <span class="n">mat_true</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">opp_metrics</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="n">pf</span><span class="p">,</span>
+                <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span>
+                <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">],</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">group_true_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="n">opp_metrics</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat_pred</span><span class="p">,</span> <span class="n">mat_true</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">group_true_reg_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="n">item_metrics</span> <span class="o">+</span> <span class="n">out_metrics</span> <span class="o">+</span> <span class="n">opp_metrics</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;item_based&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">item_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;equal_outcome&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">out_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;equal_opportunity&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">opp_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;metric_type is not one of : all, item_based, equal_outcome, equal_opportunity&quot;</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

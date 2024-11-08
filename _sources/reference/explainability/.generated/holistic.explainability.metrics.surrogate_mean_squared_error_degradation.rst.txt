@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.surrogate\_mean\_squared\_error\_degradation
+============================================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: surrogate_mean_squared_error_degradation

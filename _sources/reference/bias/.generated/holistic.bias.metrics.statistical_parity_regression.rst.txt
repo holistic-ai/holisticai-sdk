@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.statistical\_parity\_regression
+=====================================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: statistical_parity_regression

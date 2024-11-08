@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.surrogate\_features\_stability
+==============================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: surrogate_features_stability

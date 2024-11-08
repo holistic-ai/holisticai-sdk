@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.multiclass\_average\_odds
+===============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: multiclass_average_odds

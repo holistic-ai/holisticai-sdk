@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.disparate\_impact\_regression
+===================================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: disparate_impact_regression

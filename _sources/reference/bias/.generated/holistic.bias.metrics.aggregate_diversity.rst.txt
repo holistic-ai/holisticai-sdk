@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.aggregate\_diversity
+==========================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: aggregate_diversity

@@ -1,0 +1,6 @@
+﻿holistic.datasets.load\_adult
+=============================
+
+.. currentmodule:: holistic.datasets
+
+.. autofunction:: load_adult

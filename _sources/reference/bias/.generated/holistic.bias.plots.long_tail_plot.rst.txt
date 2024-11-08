@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.long\_tail\_plot
+====================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: long_tail_plot

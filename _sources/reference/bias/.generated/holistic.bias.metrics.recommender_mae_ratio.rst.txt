@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.recommender\_mae\_ratio
+=============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: recommender_mae_ratio

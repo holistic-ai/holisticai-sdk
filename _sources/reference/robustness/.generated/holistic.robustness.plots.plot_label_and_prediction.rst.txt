@@ -1,0 +1,6 @@
+﻿holistic.robustness.plots.plot\_label\_and\_prediction
+======================================================
+
+.. currentmodule:: holistic.robustness.plots
+
+.. autofunction:: plot_label_and_prediction

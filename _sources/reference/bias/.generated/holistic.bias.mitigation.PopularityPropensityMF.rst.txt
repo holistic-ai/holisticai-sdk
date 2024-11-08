@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.PopularityPropensityMF
+===============================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: PopularityPropensityMF

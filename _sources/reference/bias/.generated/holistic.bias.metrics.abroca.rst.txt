@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.abroca
+============================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: abroca

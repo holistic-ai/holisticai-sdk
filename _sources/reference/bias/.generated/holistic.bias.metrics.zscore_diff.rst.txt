@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.zscore\_diff
+==================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: zscore_diff

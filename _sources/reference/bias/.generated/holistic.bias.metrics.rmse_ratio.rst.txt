@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.rmse\_ratio
+=================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: rmse_ratio

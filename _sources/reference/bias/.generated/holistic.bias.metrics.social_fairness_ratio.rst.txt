@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.social\_fairness\_ratio
+=============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: social_fairness_ratio

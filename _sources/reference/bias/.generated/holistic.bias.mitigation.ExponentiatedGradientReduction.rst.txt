@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.ExponentiatedGradientReduction
+=======================================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: ExponentiatedGradientReduction

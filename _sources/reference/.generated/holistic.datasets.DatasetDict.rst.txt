@@ -1,0 +1,6 @@
+﻿holistic.datasets.DatasetDict
+=============================
+
+.. currentmodule:: holistic.datasets
+
+.. autoclass:: DatasetDict

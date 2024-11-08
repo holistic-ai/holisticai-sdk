@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.recall\_matrix
+====================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: recall_matrix

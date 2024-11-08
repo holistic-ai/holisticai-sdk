@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.FairletClusteringPreprocessing
+=======================================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: FairletClusteringPreprocessing

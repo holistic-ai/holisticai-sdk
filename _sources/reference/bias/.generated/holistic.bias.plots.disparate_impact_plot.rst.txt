@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.disparate\_impact\_plot
+===========================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: disparate_impact_plot

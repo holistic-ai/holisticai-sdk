@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.RejectOptionClassification
+===================================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: RejectOptionClassification

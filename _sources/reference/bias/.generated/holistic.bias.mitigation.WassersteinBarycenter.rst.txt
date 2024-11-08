@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.WassersteinBarycenter
+==============================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: WassersteinBarycenter

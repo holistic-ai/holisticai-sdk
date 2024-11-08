@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.gini\_index
+=================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: gini_index

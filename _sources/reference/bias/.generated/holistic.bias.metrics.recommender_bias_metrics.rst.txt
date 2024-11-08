@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.recommender\_bias\_metrics
+================================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: recommender_bias_metrics

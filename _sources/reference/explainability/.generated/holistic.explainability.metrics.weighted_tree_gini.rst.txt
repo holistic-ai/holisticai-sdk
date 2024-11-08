@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.weighted\_tree\_gini
+====================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: weighted_tree_gini

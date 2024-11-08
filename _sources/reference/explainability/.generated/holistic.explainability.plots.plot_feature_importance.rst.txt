@@ -1,0 +1,6 @@
+﻿holistic.explainability.plots.plot\_feature\_importance
+=======================================================
+
+.. currentmodule:: holistic.explainability.plots
+
+.. autofunction:: plot_feature_importance

@@ -1,0 +1,2161 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Measuring Bias in recommender systems &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/tutorials/bias/measuring_bias/measuring_bias_recommender';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><strong>Measuring Bias in recommender systems</strong></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Measuring-Bias-in-recommender-systems">
+<h1><strong>Measuring Bias in recommender systems</strong><a class="headerlink" href="#Measuring-Bias-in-recommender-systems" title="Link to this heading">#</a></h1>
+<p>This is an introduction to fairness in recommender systems. A recommender system aims to recommend the best item according to the user preference. In this tutorial, we will focus on the task of correctly predicting users’ music preference.</p>
+<p>A recommender system can be biased in multiple ways. For example, we may be concerned that the artists in our database will not get equal representation (item fairness). Alternative, our main concern may be that different groups of users (e.g. male/female users) will get different music recommendations (user fairness). In the following, we will show how to explore the data for fairness, and measure these various types of fairness using the holisticai library.</p>
+<section id="Importing-the-data">
+<h2>Importing the data<a class="headerlink" href="#Importing-the-data" title="Link to this heading">#</a></h2>
+<p>First of all, we need to import the required packages to perform our bias analysis and mitigation. You will need to have the <code class="docutils literal notranslate"><span class="pre">holisticai</span></code> package installed on your system, remember that you can install it by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>holisticai<span class="o">[</span>all<span class="o">]</span>
+</pre></div>
+</div>
+<p>We will start by importing the example dataset, which we host on our library. The <a class="reference external" href="https://www.kaggle.com/datasets/ravichaubey1506/lastfm">dataset</a> contains a set of artists that were downloaded by users. It includes personal information about the user, specifically sex and country of origin. A user can download more than one artist. We will use the column “score”, which contains only 1s for counting the interactions.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;lastfm&#39;</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: rgba(242, 248, 253, 0.9) !important; /* Light blue with 70% opacity */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: rgba(152, 171, 202, 0.4) !important; /* Darker blue with 60% opacity */
+}
+
+.generic-object-header.blue:hover {
+    background-color: rgba(139, 177, 192, 0.8) !important; /* Darker blue on hover with 60% opacity */
+}
+
+.attribute-list.blue:hover {
+    background-color: rgba(178, 223, 219, 0.8) !important; /* Attribute hover background with 60% opacity */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 0px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 2px 5px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 8px 20px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 15000</div><div class="attribute-list blue"><strong>Features</strong>: data_pivot , p_attr</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">p_attr</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;data_pivot&#39;</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;p_attr&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>...and you will know us by the trail of dead</th>
+      <th>2pac</th>
+      <th>3 doors down</th>
+      <th>30 seconds to mars</th>
+      <th>311</th>
+      <th>36 crazyfists</th>
+      <th>44</th>
+      <th>50 cent</th>
+      <th>65daysofstatic</th>
+      <th>Edith piaf</th>
+      <th>...</th>
+      <th>weezer</th>
+      <th>wilco</th>
+      <th>within temptation</th>
+      <th>wolfgang amadeus mozart</th>
+      <th>wu-tang clan</th>
+      <th>yann tiersen</th>
+      <th>yeah yeah yeahs</th>
+      <th>yellowcard</th>
+      <th>yo la tengo</th>
+      <th>zero 7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14995</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14996</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14997</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14998</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14999</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>15000 rows × 1004 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Plotting-and-Data-Exploration">
+<h2>Plotting and Data Exploration<a class="headerlink" href="#Plotting-and-Data-Exploration" title="Link to this heading">#</a></h2>
+<p>We will now move to data exploration, using some of the functions for plotting available in our library.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import plotters</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">group_pie_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">long_tail_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">exposure_diff_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">exposure_ratio_plot</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Number of Unique Users : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Number of Unique Artists : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of Unique Users : 15000
+Number of Unique Artists : 1004
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># male vs female representation in data</span>
+<span class="n">group_pie_plot</span><span class="p">(</span><span class="n">p_attr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: &gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_12_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_12_1.png" />
+</div>
+</div>
+<p>After an initial exploration of the users demographic, we can explore fairness-related plots. The <code class="docutils literal notranslate"><span class="pre">long_tail_plot</span></code> shows the descendent frequency of the items. In this example, the artists’ popularity seems falls <a class="reference external" href="https://en.wikipedia.org/wiki/Zipf%27s_law">exponentially</a> at a pretty fast rate. This can indicate an issue in terms of items fairness (i.e. if we want all artists to be recommended equally).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the long tail plot shows the distribution of item counts</span>
+<span class="n">long_tail_plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Long Tail Plot&#39;}, xlabel=&#39;Items (sorted by popularity)&#39;, ylabel=&#39;Item Count&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_14_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_14_1.png" />
+</div>
+</div>
+<p>If we are interested in users’ fairness instead, we may want to compare how often the same artists are presented to different groups of users. Here, we will focus on the comparison between male and female users. Specifically, we calculate the proportion of male users (out of all male users) who have downloaded each artist. We then compare this value to the corresponding proportion of female users.</p>
+<p>The holisticai function <code class="docutils literal notranslate"><span class="pre">exposure_diff_plot</span></code> displays the difference in exposure for each item, while <code class="docutils literal notranslate"><span class="pre">exposure_ratio_plot</span></code> measures the ratio in exposure.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sorted exposure differences</span>
+<span class="n">group_a</span> <span class="o">=</span> <span class="n">p_attr</span>
+<span class="n">group_b</span> <span class="o">=</span> <span class="o">~</span><span class="n">p_attr</span>
+<span class="n">exposure_diff_plot</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Exposure Difference Plot&#39;}, xlabel=&#39;Items (sorted by exposure difference)&#39;, ylabel=&#39;$Exposure_a - Exposure_b$&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_16_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_16_1.png" />
+</div>
+</div>
+<p>The differences in exposures seem to be overall quite small. However, since the number of items is quite large, the exposures are small to start with. In these cases, the exposure ratio may be a more informative choice.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sorted exposure ratios</span>
+<span class="n">exposure_ratio_plot</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Exposure Ratio Plot&#39;}, xlabel=&#39;Items (sorted by exposure ratio)&#39;, ylabel=&#39;$Exposure_a/Exposure_b$&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_18_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_18_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exposure_ratio_plot</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Exposure Ratio Plot&#39;}, xlabel=&#39;Items (sorted by exposure ratio)&#39;, ylabel=&#39;$Exposure_a/Exposure_b$&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_19_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_19_1.png" />
+</div>
+</div>
+<p>The above plots show that there are artists that are more than 5 times more popular amongst the female subgroup than male, and artists that are more than 20 times more popular amongst male rather than female users.</p>
+</section>
+<section id="Train-a-Model">
+<h2>Train a Model<a class="headerlink" href="#Train-a-Model" title="Link to this heading">#</a></h2>
+<p>There are many ways to recommend artists to users. We will use item based collaborative filtering since it is the simplest and most intuitive approach. For each artist, we work out a list of most similar artists. Then we recommend artists to users by looking at which artists they like, and choosing the most similar ones.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_to_artist</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">artist_to_index</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))))</span>
+<span class="n">user_gender_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">p_attr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">data_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import linear_kernel</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">linear_kernel</span>
+
+<span class="c1"># Compute the cosine similarity between items matrix</span>
+<span class="n">cosine_sim</span> <span class="o">=</span> <span class="n">linear_kernel</span><span class="p">(</span><span class="n">data_matrix</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">data_matrix</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">cosine_sim</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(1004, 1004)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Helper functions for display</span>
+<span class="k">def</span> <span class="nf">display_items</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">index_to_artist</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">]</span>
+
+<span class="c1"># Items liked by a given user</span>
+<span class="k">def</span> <span class="nf">items_liked_by_user</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">[</span><span class="n">u</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">display_items</span><span class="p">(</span><span class="n">items_liked_by_user</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;mogwai&#39;,
+ &#39;my bloody valentine&#39;,
+ &#39;sonic youth&#39;,
+ &#39;stereolab&#39;,
+ &#39;the fall&#39;,
+ &#39;the kinks&#39;,
+ &#39;the radio dept.&#39;,
+ &#39;the velvet underground&#39;]
+</pre></div></div>
+</div>
+<p>So user 9 happens to be a fan of Mogwai, nice.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">items_similar_to_item</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">similarity_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">arr</span><span class="p">)[</span><span class="o">-</span><span class="n">k</span><span class="p">:]</span>
+
+<span class="c1"># Items similar to Mogwai</span>
+<span class="n">display_items</span><span class="p">(</span><span class="n">items_similar_to_item</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">,</span> <span class="n">artist_to_index</span><span class="p">[</span><span class="s1">&#39;mogwai&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;the beatles&#39;,
+ &#39;sonic youth&#39;,
+ &#39;muse&#39;,
+ &#39;portishead&#39;,
+ &#39;boards of canada&#39;,
+ &#39;coldplay&#39;,
+ &#39;death cab for cutie&#39;,
+ &#39;explosions in the sky&#39;,
+ &#39;sigur ros&#39;,
+ &#39;radiohead&#39;]
+</pre></div></div>
+</div>
+<p>Ok so we want to train a model, we will take a simple approach. For each user we look at their liked items, then we create a list of similar items and choose the most frequent ones.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommended_items</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">liked</span> <span class="o">=</span> <span class="n">items_liked_by_user</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">[</span><span class="n">liked</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">liked</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">arr</span><span class="p">)[</span><span class="o">-</span><span class="n">k</span><span class="p">:]</span>
+
+
+<span class="n">display_items</span><span class="p">(</span><span class="n">recommended_items</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">cosine_sim</span><span class="p">,</span> <span class="mi">590</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;the offspring&#39;,
+ &#39;green day&#39;,
+ &#39;rammstein&#39;,
+ &#39;foo fighters&#39;,
+ &#39;the killers&#39;,
+ &#39;led zeppelin&#39;,
+ &#39;muse&#39;,
+ &#39;radiohead&#39;,
+ &#39;coldplay&#39;,
+ &#39;red hot chili peppers&#39;]
+</pre></div></div>
+</div>
+<p>Quantitative evaluation is possible, but we choose to evaluate our model qualitatively. Let’s look at some examples to see if it makes sense.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Items similar to 2 Pac</span>
+<span class="n">display_items</span><span class="p">(</span><span class="n">items_similar_to_item</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">,</span> <span class="n">artist_to_index</span><span class="p">[</span><span class="s1">&#39;2pac&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;t.i.&#39;,
+ &#39;the game&#39;,
+ &#39;dr. dre&#39;,
+ &#39;50 cent&#39;,
+ &#39;notorious b.i.g.&#39;,
+ &#39;snoop dogg&#39;,
+ &#39;jay-z&#39;,
+ &#39;nas&#39;,
+ &#39;eminem&#39;,
+ &#39;kanye west&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Items similar to the beatles</span>
+<span class="n">display_items</span><span class="p">(</span><span class="n">items_similar_to_item</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">,</span> <span class="n">artist_to_index</span><span class="p">[</span><span class="s1">&#39;the beatles&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;nirvana&#39;,
+ &#39;the rolling stones&#39;,
+ &#39;queen&#39;,
+ &#39;david bowie&#39;,
+ &#39;led zeppelin&#39;,
+ &#39;red hot chili peppers&#39;,
+ &#39;bob dylan&#39;,
+ &#39;pink floyd&#39;,
+ &#39;coldplay&#39;,
+ &#39;radiohead&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Items similar to madonna</span>
+<span class="n">display_items</span><span class="p">(</span><span class="n">items_similar_to_item</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">,</span> <span class="n">artist_to_index</span><span class="p">[</span><span class="s1">&#39;madonna&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;nelly furtado&#39;,
+ &#39;moby&#39;,
+ &#39;depeche mode&#39;,
+ &#39;michael jackson&#39;,
+ &#39;amy winehouse&#39;,
+ &#39;rihanna&#39;,
+ &#39;kylie minogue&#39;,
+ &#39;the beatles&#39;,
+ &#39;britney spears&#39;,
+ &#39;coldplay&#39;]
+</pre></div></div>
+</div>
+<p>These all make sense to a human evaluator</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recommendations</span> <span class="o">=</span> <span class="p">[</span><span class="n">display_items</span><span class="p">(</span><span class="n">recommended_items</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">cosine_sim</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+<span class="n">recomendation_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">recommendations</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+
+<span class="n">recomendation_df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>system of a down</td>
+      <td>led zeppelin</td>
+      <td>foo fighters</td>
+      <td>pink floyd</td>
+      <td>nirvana</td>
+      <td>metallica</td>
+      <td>muse</td>
+      <td>radiohead</td>
+      <td>coldplay</td>
+      <td>the beatles</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>modest mouse</td>
+      <td>sufjan stevens</td>
+      <td>muse</td>
+      <td>pink floyd</td>
+      <td>death cab for cutie</td>
+      <td>beck</td>
+      <td>bjork</td>
+      <td>sigur ros</td>
+      <td>coldplay</td>
+      <td>the beatles</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>the white stripes</td>
+      <td>david bowie</td>
+      <td>daft punk</td>
+      <td>death cab for cutie</td>
+      <td>nirvana</td>
+      <td>the killers</td>
+      <td>red hot chili peppers</td>
+      <td>coldplay</td>
+      <td>the beatles</td>
+      <td>radiohead</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>queen</td>
+      <td>linkin park</td>
+      <td>nirvana</td>
+      <td>in flames</td>
+      <td>rammstein</td>
+      <td>led zeppelin</td>
+      <td>the beatles</td>
+      <td>pink floyd</td>
+      <td>red hot chili peppers</td>
+      <td>system of a down</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>linkin park</td>
+      <td>foo fighters</td>
+      <td>system of a down</td>
+      <td>led zeppelin</td>
+      <td>the killers</td>
+      <td>nirvana</td>
+      <td>red hot chili peppers</td>
+      <td>the beatles</td>
+      <td>coldplay</td>
+      <td>radiohead</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14995</th>
+      <td>evanescence</td>
+      <td>daft punk</td>
+      <td>radiohead</td>
+      <td>metallica</td>
+      <td>system of a down</td>
+      <td>muse</td>
+      <td>moby</td>
+      <td>the killers</td>
+      <td>red hot chili peppers</td>
+      <td>coldplay</td>
+    </tr>
+    <tr>
+      <th>14996</th>
+      <td>rammstein</td>
+      <td>in flames</td>
+      <td>coldplay</td>
+      <td>pink floyd</td>
+      <td>muse</td>
+      <td>radiohead</td>
+      <td>nirvana</td>
+      <td>system of a down</td>
+      <td>the beatles</td>
+      <td>metallica</td>
+    </tr>
+    <tr>
+      <th>14997</th>
+      <td>the rolling stones</td>
+      <td>nirvana</td>
+      <td>depeche mode</td>
+      <td>muse</td>
+      <td>pink floyd</td>
+      <td>red hot chili peppers</td>
+      <td>the killers</td>
+      <td>radiohead</td>
+      <td>the beatles</td>
+      <td>coldplay</td>
+    </tr>
+    <tr>
+      <th>14998</th>
+      <td>the beatles</td>
+      <td>nelly furtado</td>
+      <td>muse</td>
+      <td>avril lavigne</td>
+      <td>lady gaga</td>
+      <td>the killers</td>
+      <td>linkin park</td>
+      <td>rihanna</td>
+      <td>britney spears</td>
+      <td>coldplay</td>
+    </tr>
+    <tr>
+      <th>14999</th>
+      <td>modest mouse</td>
+      <td>nirvana</td>
+      <td>the rolling stones</td>
+      <td>the killers</td>
+      <td>the cure</td>
+      <td>beck</td>
+      <td>muse</td>
+      <td>pink floyd</td>
+      <td>death cab for cutie</td>
+      <td>coldplay</td>
+    </tr>
+  </tbody>
+</table>
+<p>15000 rows × 10 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">explode</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">num_items</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_items</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[</span><span class="n">arr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">new_recs</span> <span class="o">=</span> <span class="p">[</span><span class="n">explode</span><span class="p">(</span><span class="n">recommended_items</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">cosine_sim</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+<span class="n">new_df_pivot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">new_recs</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">new_df_pivot</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>...and you will know us by the trail of dead</th>
+      <th>2pac</th>
+      <th>3 doors down</th>
+      <th>30 seconds to mars</th>
+      <th>311</th>
+      <th>36 crazyfists</th>
+      <th>44</th>
+      <th>50 cent</th>
+      <th>65daysofstatic</th>
+      <th>Edith piaf</th>
+      <th>...</th>
+      <th>weezer</th>
+      <th>wilco</th>
+      <th>within temptation</th>
+      <th>wolfgang amadeus mozart</th>
+      <th>wu-tang clan</th>
+      <th>yann tiersen</th>
+      <th>yeah yeah yeahs</th>
+      <th>yellowcard</th>
+      <th>yo la tengo</th>
+      <th>zero 7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14995</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14996</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14997</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14998</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14999</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>15000 rows × 1004 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Evaluate-Bias-of-Model">
+<h2>Evaluate Bias of Model<a class="headerlink" href="#Evaluate-Bias-of-Model" title="Link to this heading">#</a></h2>
+<p>We will now show how we can calculate various metrics of fairness for recommender systems. In this example, we will cover both metrics for item fairness and for user fairness (equality of outcome).</p>
+<section id="Item-Fairness">
+<h3>Item Fairness<a class="headerlink" href="#Item-Fairness" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">new_df_pivot</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the long tail plot shows the distribution of item counts</span>
+<span class="n">long_tail_plot</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Long Tail Plot&#39;}, xlabel=&#39;Items (sorted by popularity)&#39;, ylabel=&#39;Item Count&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_42_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_recommender_42_1.png" />
+</div>
+</div>
+<p>The item bias has been increased very considerably by using collaborative filtering. This is easily seen by the shape of the above distribution.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">aggregate_diversity</span>
+<span class="n">aggregate_diversity</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.4163346613545817)
+</pre></div></div>
+</div>
+<p>The above metric shows 40% of all artists are shown to at least one user.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">gini_index</span>
+<span class="n">gini_index</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.9643764307078764)
+</pre></div></div>
+</div>
+<p>The Gini Index is often used in the context of recommender systems as a measure of how unequal the distribution of exposure is over artists. A value of 0 would indicate perfect fairness, a flat distribution. A value of 1 would be maximally unequal. In this case the GINI Index is 0.96, indicating a VERY considerable amount of difference in exposures overall between different artists.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">recommender_bias_metrics</span>
+<span class="n">recommender_bias_metrics</span><span class="p">(</span><span class="n">mat_pred</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;item_based&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Value</th>
+      <th>Reference</th>
+    </tr>
+    <tr>
+      <th>Metric</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aggregate Diversity</th>
+      <td>0.416335</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>GINI index</th>
+      <td>0.964376</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Exposure Distribution Entropy</th>
+      <td>3.811466</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>Average Recommendation Popularity</th>
+      <td>5725.218920</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Above we have batch plotted all item_based metrics for recommender bias task. For instance observe the Average Recommendation Popularity is 5716, meaning that on average a user will be recommended an artist that has 5716 total interactions.</p>
+</section>
+</section>
+<section id="User-fairness---Equality-of-Outcome">
+<h2>User fairness - Equality of Outcome<a class="headerlink" href="#User-fairness---Equality-of-Outcome" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">exposure_l1</span>
+<span class="n">exposure_l1</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.11132677015676723)
+</pre></div></div>
+</div>
+<p>Above we compute the total variation distance between the exposure distribution of males and females. The minimum value for this metric is 0 indicating the two subgroups are exposed to the artists in exactly the same way, the maximum value is 1 indicating a maximal separation in exposures between the two groups. In this case the value of 0.11 shows there is a difference between the recommendations to males and females, but not a drastic one.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

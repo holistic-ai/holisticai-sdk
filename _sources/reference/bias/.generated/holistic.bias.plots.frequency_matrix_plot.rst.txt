@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.frequency\_matrix\_plot
+===========================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: frequency_matrix_plot

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.statistical\_parity\_auc
+==============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: statistical_parity_auc

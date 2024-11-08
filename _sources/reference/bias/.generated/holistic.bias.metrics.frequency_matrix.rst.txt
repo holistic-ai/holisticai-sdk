@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.frequency\_matrix
+=======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: frequency_matrix

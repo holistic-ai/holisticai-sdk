@@ -1,0 +1,1184 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bias mitigation with debiasing exposure, disparate impact remover and Fair top K &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/postprocessing';</script>
+    <link rel="icon" href="../../../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><strong>Bias mitigation with debiasing exposure, disparate impact remover and Fair top K</strong></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Bias-mitigation-with-debiasing-exposure,-disparate-impact-remover-and-Fair-top-K">
+<h1><strong>Bias mitigation with debiasing exposure, disparate impact remover and Fair top K</strong><a class="headerlink" href="#Bias-mitigation-with-debiasing-exposure,-disparate-impact-remover-and-Fair-top-K" title="Link to this heading">#</a></h1>
+<p>This demo will show how to implement the post-processing methods “debiasing exposure”, “disparate impact remover” and “Fair top K” to enhance the fairness of a recommender system’s output.</p>
+<ul class="simple">
+<li><p>Debiasing Exposure</p></li>
+<li><p>Disparate Impact Remover</p></li>
+<li><p>Fair Top K</p></li>
+</ul>
+<p>First, install the <code class="docutils literal notranslate"><span class="pre">holisticai</span></code> package if you haven’t already:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>holisticai<span class="o">[</span>all<span class="o">]</span>
+</pre></div>
+</div>
+<p>Then, import the necessary libraries.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Base Imports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">holistic.datasets.synthetic.recruitment</span> <span class="kn">import</span> <span class="n">generate_rankings</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation.postprocessing.debiasing_exposure.algorithm_utils</span> <span class="kn">import</span> <span class="n">exposure_metric</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation.postprocessing</span> <span class="kn">import</span> <span class="n">DebiasingExposure</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The dataset that we will use is a synthetic ranking dataset generated following the procedure described by Yang and Stoyanovich in their <a class="reference external" href="https://arxiv.org/abs/1610.08559">research</a>. This algorithm creates a ranked output of protected and unprotected candidates with a certain probability.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Synthetic data</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">top_n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">rankings</span> <span class="o">=</span> <span class="n">generate_rankings</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">top_n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">return_p_attr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">baseline</span> <span class="o">=</span> <span class="n">exposure_metric</span><span class="p">(</span><span class="n">rankings</span><span class="p">,</span> <span class="n">group_col</span><span class="o">=</span><span class="s1">&#39;protected&#39;</span><span class="p">,</span> <span class="n">query_col</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+<span class="n">baseline</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>exposure_ratio</th>
+      <td>37027.714945</td>
+    </tr>
+    <tr>
+      <th>exposure difference</th>
+      <td>0.047272</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="Bias-mitigation">
+<h2><strong>Bias mitigation</strong><a class="headerlink" href="#Bias-mitigation" title="Link to this heading">#</a></h2>
+<section id="Method:-Debiasing-exposure">
+<h3><strong>Method: Debiasing exposure</strong><a class="headerlink" href="#Method:-Debiasing-exposure" title="Link to this heading">#</a></h3>
+<p>Apply the debiasing exposure mitigator algorithm.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the DebiasingExposure class</span>
+<span class="n">dtr</span> <span class="o">=</span> <span class="n">DebiasingExposure</span><span class="p">(</span><span class="n">group_col</span><span class="o">=</span><span class="s2">&quot;protected&quot;</span><span class="p">,</span>
+                        <span class="n">query_col</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span>
+                        <span class="n">doc_col</span> <span class="o">=</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span>
+                        <span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;protected&#39;</span><span class="p">],</span>
+                        <span class="n">score_col</span> <span class="o">=</span> <span class="s1">&#39;score&#39;</span><span class="p">,</span>
+                        <span class="n">gamma</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                        <span class="n">number_of_iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                        <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># train the model</span>
+<span class="n">dtr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;holisticai.bias.mitigation.postprocessing.debiasing_exposure.transformer.DebiasingExposure at 0x7f559cea5c10&gt;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re_rankings</span> <span class="o">=</span> <span class="n">dtr</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Observe the fairness metrics before and after applying the algorithm (lower is better).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_deb_exp</span> <span class="o">=</span> <span class="n">exposure_metric</span><span class="p">(</span><span class="n">re_rankings</span><span class="p">,</span> <span class="n">group_col</span><span class="o">=</span><span class="s1">&#39;protected&#39;</span><span class="p">,</span> <span class="n">query_col</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+<span class="n">df_deb_exp</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>exposure_ratio</th>
+      <td>0.755373</td>
+    </tr>
+    <tr>
+      <th>exposure difference</th>
+      <td>0.002431</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">baseline</span><span class="p">,</span> <span class="n">df_deb_exp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">result</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Baseline&#39;</span><span class="p">,</span><span class="s1">&#39;Mitigator&#39;</span><span class="p">]</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Baseline</th>
+      <th>Mitigator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>exposure_ratio</th>
+      <td>37027.714945</td>
+      <td>0.755373</td>
+    </tr>
+    <tr>
+      <th>exposure difference</th>
+      <td>0.047272</td>
+      <td>0.002431</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Method:-Disparate-impact-remover">
+<h3><strong>Method: Disparate impact remover</strong><a class="headerlink" href="#Method:-Disparate-impact-remover" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.mitigation</span> <span class="kn">import</span> <span class="n">DisparateImpactRemoverRS</span>
+
+<span class="nb">dir</span> <span class="o">=</span> <span class="n">DisparateImpactRemoverRS</span><span class="p">(</span><span class="n">query_col</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">group_col</span><span class="o">=</span><span class="s1">&#39;protected&#39;</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">repair_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">re_rankings</span> <span class="o">=</span> <span class="nb">dir</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
+
+<span class="n">df_dis_imp</span> <span class="o">=</span> <span class="n">exposure_metric</span><span class="p">(</span><span class="n">re_rankings</span><span class="p">,</span> <span class="n">group_col</span><span class="o">=</span><span class="s1">&#39;protected&#39;</span><span class="p">,</span> <span class="n">query_col</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">score_col</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+<span class="n">df_dis_imp</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>exposure_ratio</th>
+      <td>1.003761</td>
+    </tr>
+    <tr>
+      <th>exposure difference</th>
+      <td>0.001925</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">baseline</span><span class="p">,</span> <span class="n">df_dis_imp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">result</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Baseline&#39;</span><span class="p">,</span><span class="s1">&#39;Mitigator&#39;</span><span class="p">]</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Baseline</th>
+      <th>Mitigator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>exposure_ratio</th>
+      <td>37027.714945</td>
+      <td>1.003761</td>
+    </tr>
+    <tr>
+      <th>exposure difference</th>
+      <td>0.047272</td>
+      <td>0.001925</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Method:-Fair-Top-K">
+<h3><strong>Method: Fair Top-K</strong><a class="headerlink" href="#Method:-Fair-Top-K" title="Link to this heading">#</a></h3>
+<p>Now, we will implement the Fair Top-K algorithm, this method works differently from the previous ones. Given a list of items, it will reorganize the list to ensure that the top-K items are fairer.</p>
+<p>Let’s create a unfair list to apply the Fair Top-K algorithm.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_unfair_example</span><span class="p">(</span><span class="n">ranking</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Setting an unfair ranking where protected group examples are only the last n results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ranking</span> <span class="o">=</span> <span class="n">ranking</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">ranking</span><span class="p">[</span><span class="s1">&#39;protected&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">ranking</span><span class="p">[</span><span class="s1">&#39;protected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="p">:]</span><span class="o">=</span><span class="kc">True</span>
+    <span class="k">return</span> <span class="n">ranking</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ranking</span> <span class="o">=</span> <span class="n">generate_rankings</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="n">unfair_ranking</span> <span class="o">=</span> <span class="n">create_unfair_example</span><span class="p">(</span><span class="n">ranking</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.mitigation.postprocessing.fair_topk.transformer</span> <span class="kn">import</span> <span class="n">FairTopK</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bias Mitigation Post-processing</span>
+<span class="n">top_n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="n">FairTopK</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="n">top_n</span><span class="p">,</span>
+              <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+              <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+              <span class="n">query_col</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span>
+              <span class="n">doc_col</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span>
+              <span class="n">score_col</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span>
+              <span class="n">group_col</span><span class="o">=</span><span class="s1">&#39;protected&#39;</span><span class="p">)</span>
+
+<span class="n">re_ranking</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">unfair_ranking</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s observe how the original and unfair ranking was modified:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_results</span><span class="p">(</span><span class="n">old</span> <span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+    <span class="n">old</span> <span class="o">=</span> <span class="n">old</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">old</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([[</span><span class="s1">&#39;Old Rank&#39;</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">old</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+    <span class="n">new</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([[</span><span class="s1">&#39;New Rank&#39;</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">new</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">old</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">new</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">compare_results</span><span class="p">(</span><span class="n">unfair_ranking</span> <span class="p">,</span> <span class="n">re_ranking</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="4" halign="left">Old Rank</th>
+      <th colspan="4" halign="left">New Rank</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>score</th>
+      <th>protected</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>score</th>
+      <th>protected</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>20</td>
+      <td>20</td>
+      <td>False</td>
+      <td>0</td>
+      <td>20</td>
+      <td>20</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>19</td>
+      <td>19</td>
+      <td>False</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>18</td>
+      <td>18</td>
+      <td>False</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>17</td>
+      <td>17</td>
+      <td>False</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>16</td>
+      <td>16</td>
+      <td>False</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>15</td>
+      <td>15</td>
+      <td>False</td>
+      <td>0</td>
+      <td>19</td>
+      <td>19</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>14</td>
+      <td>14</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>13</td>
+      <td>13</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>12</td>
+      <td>12</td>
+      <td>False</td>
+      <td>0</td>
+      <td>18</td>
+      <td>18</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>11</td>
+      <td>11</td>
+      <td>False</td>
+      <td>0</td>
+      <td>17</td>
+      <td>17</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0</td>
+      <td>10</td>
+      <td>10</td>
+      <td>False</td>
+      <td>0</td>
+      <td>16</td>
+      <td>16</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0</td>
+      <td>9</td>
+      <td>9</td>
+      <td>False</td>
+      <td>0</td>
+      <td>15</td>
+      <td>15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>False</td>
+      <td>0</td>
+      <td>14</td>
+      <td>14</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0</td>
+      <td>7</td>
+      <td>7</td>
+      <td>False</td>
+      <td>0</td>
+      <td>13</td>
+      <td>13</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>True</td>
+      <td>0</td>
+      <td>12</td>
+      <td>12</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>True</td>
+      <td>0</td>
+      <td>11</td>
+      <td>11</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>True</td>
+      <td>0</td>
+      <td>10</td>
+      <td>10</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>True</td>
+      <td>0</td>
+      <td>9</td>
+      <td>9</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>0</td>
+      <td>7</td>
+      <td>7</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>holistic.bias.metrics &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/bias/metrics';</script>
+    <link rel="icon" href="../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">holistic.bias.metrics</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-holistic.bias.metrics">
+<span id="holistic-bias-metrics"></span><h1><a class="reference internal" href="#module-holistic.bias.metrics" title="holistic.bias.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">holistic.bias.metrics</span></code></a><a class="headerlink" href="#module-holistic.bias.metrics" title="Link to this heading">#</a></h1>
+<p>The <a class="reference internal" href="#module-holistic.bias.metrics" title="holistic.bias.metrics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">holistic.bias.metrics</span></code></a> module includes classification, regression, multiclass, recommender and clustering bias metrics</p>
+<p><strong>Binary Classification</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.abroca.html#holistic.bias.metrics.abroca" title="holistic.bias.metrics.abroca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abroca</span></code></a></p></td>
+<td><p>ABROCA (area between roc curves)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.accuracy_diff.html#holistic.bias.metrics.accuracy_diff" title="holistic.bias.metrics.accuracy_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accuracy_diff</span></code></a></p></td>
+<td><p>Accuracy Difference</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.average_odds_diff.html#holistic.bias.metrics.average_odds_diff" title="holistic.bias.metrics.average_odds_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_odds_diff</span></code></a></p></td>
+<td><p>Average Odds Difference</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.classification_bias_metrics.html#holistic.bias.metrics.classification_bias_metrics" title="holistic.bias.metrics.classification_bias_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classification_bias_metrics</span></code></a></p></td>
+<td><p>Classification bias metrics batch computation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.cohen_d.html#holistic.bias.metrics.cohen_d" title="holistic.bias.metrics.cohen_d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cohen_d</span></code></a></p></td>
+<td><p>Cohen D</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.disparate_impact.html#holistic.bias.metrics.disparate_impact" title="holistic.bias.metrics.disparate_impact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disparate_impact</span></code></a></p></td>
+<td><p>Disparate Impact.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.equal_opportunity_diff.html#holistic.bias.metrics.equal_opportunity_diff" title="holistic.bias.metrics.equal_opportunity_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equal_opportunity_diff</span></code></a></p></td>
+<td><p>Equality of opportunity difference</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.false_negative_rate_diff.html#holistic.bias.metrics.false_negative_rate_diff" title="holistic.bias.metrics.false_negative_rate_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">false_negative_rate_diff</span></code></a></p></td>
+<td><p>False negative Rate difference</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.false_positive_rate_diff.html#holistic.bias.metrics.false_positive_rate_diff" title="holistic.bias.metrics.false_positive_rate_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">false_positive_rate_diff</span></code></a></p></td>
+<td><p>False positive rate difference</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.four_fifths.html#holistic.bias.metrics.four_fifths" title="holistic.bias.metrics.four_fifths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">four_fifths</span></code></a></p></td>
+<td><p>Four Fifths</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.statistical_parity.html#holistic.bias.metrics.statistical_parity" title="holistic.bias.metrics.statistical_parity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">statistical_parity</span></code></a></p></td>
+<td><p>Statistical parity.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.true_negative_rate_diff.html#holistic.bias.metrics.true_negative_rate_diff" title="holistic.bias.metrics.true_negative_rate_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">true_negative_rate_diff</span></code></a></p></td>
+<td><p>True negative Rate difference</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.z_test_diff.html#holistic.bias.metrics.z_test_diff" title="holistic.bias.metrics.z_test_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">z_test_diff</span></code></a></p></td>
+<td><p>Z Test (Difference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.z_test_ratio.html#holistic.bias.metrics.z_test_ratio" title="holistic.bias.metrics.z_test_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">z_test_ratio</span></code></a></p></td>
+<td><p>Z Test (Ratio)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Multiclass Classification</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.accuracy_matrix.html#holistic.bias.metrics.accuracy_matrix" title="holistic.bias.metrics.accuracy_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accuracy_matrix</span></code></a></p></td>
+<td><p>Multiclass Accuracy Matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.confusion_matrix.html#holistic.bias.metrics.confusion_matrix" title="holistic.bias.metrics.confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confusion_matrix</span></code></a></p></td>
+<td><p>Confusion Matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.confusion_tensor.html#holistic.bias.metrics.confusion_tensor" title="holistic.bias.metrics.confusion_tensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confusion_tensor</span></code></a></p></td>
+<td><p>Confusion Tensor</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.frequency_matrix.html#holistic.bias.metrics.frequency_matrix" title="holistic.bias.metrics.frequency_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_matrix</span></code></a></p></td>
+<td><p>Frequency Matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.multiclass_average_odds.html#holistic.bias.metrics.multiclass_average_odds" title="holistic.bias.metrics.multiclass_average_odds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_average_odds</span></code></a></p></td>
+<td><p>Multiclass Average Odds</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.multiclass_bias_metrics.html#holistic.bias.metrics.multiclass_bias_metrics" title="holistic.bias.metrics.multiclass_bias_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_bias_metrics</span></code></a></p></td>
+<td><p>Multiclass bias metrics batch computation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.multiclass_equality_of_opp.html#holistic.bias.metrics.multiclass_equality_of_opp" title="holistic.bias.metrics.multiclass_equality_of_opp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_equality_of_opp</span></code></a></p></td>
+<td><p>Multiclass Equality of Opportunity</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.multiclass_statistical_parity.html#holistic.bias.metrics.multiclass_statistical_parity" title="holistic.bias.metrics.multiclass_statistical_parity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_statistical_parity</span></code></a></p></td>
+<td><p>Multiclass statistical parity</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.multiclass_true_rates.html#holistic.bias.metrics.multiclass_true_rates" title="holistic.bias.metrics.multiclass_true_rates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiclass_true_rates</span></code></a></p></td>
+<td><p>Multiclass True Rates</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.precision_matrix.html#holistic.bias.metrics.precision_matrix" title="holistic.bias.metrics.precision_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">precision_matrix</span></code></a></p></td>
+<td><p>Multiclass Precision Matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.recall_matrix.html#holistic.bias.metrics.recall_matrix" title="holistic.bias.metrics.recall_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recall_matrix</span></code></a></p></td>
+<td><p>Multiclass Recall Matrix</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Regression</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.avg_score_diff.html#holistic.bias.metrics.avg_score_diff" title="holistic.bias.metrics.avg_score_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avg_score_diff</span></code></a></p></td>
+<td><p>Average Score Difference</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.correlation_diff.html#holistic.bias.metrics.correlation_diff" title="holistic.bias.metrics.correlation_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation_diff</span></code></a></p></td>
+<td><p>Correlation difference</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.disparate_impact_regression.html#holistic.bias.metrics.disparate_impact_regression" title="holistic.bias.metrics.disparate_impact_regression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disparate_impact_regression</span></code></a></p></td>
+<td><p>Disparate Impact quantile (Regression version)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.mae_ratio.html#holistic.bias.metrics.mae_ratio" title="holistic.bias.metrics.mae_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mae_ratio</span></code></a></p></td>
+<td><p>MAE ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.max_statistical_parity.html#holistic.bias.metrics.max_statistical_parity" title="holistic.bias.metrics.max_statistical_parity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_statistical_parity</span></code></a></p></td>
+<td><p>Max absolute statistical parity</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.no_disparate_impact_level.html#holistic.bias.metrics.no_disparate_impact_level" title="holistic.bias.metrics.no_disparate_impact_level"><code class="xref py py-obj docutils literal notranslate"><span class="pre">no_disparate_impact_level</span></code></a></p></td>
+<td><p>No disparate impact level</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.regression_bias_metrics.html#holistic.bias.metrics.regression_bias_metrics" title="holistic.bias.metrics.regression_bias_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regression_bias_metrics</span></code></a></p></td>
+<td><p>Regression bias metrics batch computation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.rmse_ratio.html#holistic.bias.metrics.rmse_ratio" title="holistic.bias.metrics.rmse_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmse_ratio</span></code></a></p></td>
+<td><p>RMSE ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.statistical_parity_auc.html#holistic.bias.metrics.statistical_parity_auc" title="holistic.bias.metrics.statistical_parity_auc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">statistical_parity_auc</span></code></a></p></td>
+<td><p>Statistical parity (AUC)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.statistical_parity_regression.html#holistic.bias.metrics.statistical_parity_regression" title="holistic.bias.metrics.statistical_parity_regression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">statistical_parity_regression</span></code></a></p></td>
+<td><p>Statistical Parity quantile (Regression version)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.zscore_diff.html#holistic.bias.metrics.zscore_diff" title="holistic.bias.metrics.zscore_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zscore_diff</span></code></a></p></td>
+<td><p>ZScore Difference</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Clustering</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.cluster_balance.html#holistic.bias.metrics.cluster_balance" title="holistic.bias.metrics.cluster_balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cluster_balance</span></code></a></p></td>
+<td><p>Cluster Balance</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.cluster_dist_entropy.html#holistic.bias.metrics.cluster_dist_entropy" title="holistic.bias.metrics.cluster_dist_entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cluster_dist_entropy</span></code></a></p></td>
+<td><p>Minority Cluster Distribution Entropy</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.cluster_dist_kl.html#holistic.bias.metrics.cluster_dist_kl" title="holistic.bias.metrics.cluster_dist_kl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cluster_dist_kl</span></code></a></p></td>
+<td><p>Cluster Distribution KL</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.cluster_dist_l1.html#holistic.bias.metrics.cluster_dist_l1" title="holistic.bias.metrics.cluster_dist_l1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cluster_dist_l1</span></code></a></p></td>
+<td><p>Cluster Distribution Total Variation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.clustering_bias_metrics.html#holistic.bias.metrics.clustering_bias_metrics" title="holistic.bias.metrics.clustering_bias_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clustering_bias_metrics</span></code></a></p></td>
+<td><p>Clustering bias metrics batch computation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.min_cluster_ratio.html#holistic.bias.metrics.min_cluster_ratio" title="holistic.bias.metrics.min_cluster_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_cluster_ratio</span></code></a></p></td>
+<td><p>Minimum Cluster Ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.silhouette_diff.html#holistic.bias.metrics.silhouette_diff" title="holistic.bias.metrics.silhouette_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">silhouette_diff</span></code></a></p></td>
+<td><p>Silhouette Difference</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.social_fairness_ratio.html#holistic.bias.metrics.social_fairness_ratio" title="holistic.bias.metrics.social_fairness_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">social_fairness_ratio</span></code></a></p></td>
+<td><p>Social Fairness Ratio</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Recommender</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.aggregate_diversity.html#holistic.bias.metrics.aggregate_diversity" title="holistic.bias.metrics.aggregate_diversity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aggregate_diversity</span></code></a></p></td>
+<td><p>Aggregate Diversity</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.avg_f1_ratio.html#holistic.bias.metrics.avg_f1_ratio" title="holistic.bias.metrics.avg_f1_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avg_f1_ratio</span></code></a></p></td>
+<td><p>Average f1 ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.avg_precision_ratio.html#holistic.bias.metrics.avg_precision_ratio" title="holistic.bias.metrics.avg_precision_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avg_precision_ratio</span></code></a></p></td>
+<td><p>Average precision ratio</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.avg_recall_ratio.html#holistic.bias.metrics.avg_recall_ratio" title="holistic.bias.metrics.avg_recall_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avg_recall_ratio</span></code></a></p></td>
+<td><p>Average recall ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.avg_recommendation_popularity.html#holistic.bias.metrics.avg_recommendation_popularity" title="holistic.bias.metrics.avg_recommendation_popularity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avg_recommendation_popularity</span></code></a></p></td>
+<td><p>Average Recommendation Popularity</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.exposure_entropy.html#holistic.bias.metrics.exposure_entropy" title="holistic.bias.metrics.exposure_entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exposure_entropy</span></code></a></p></td>
+<td><p>Exposure Entropy</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.exposure_kl.html#holistic.bias.metrics.exposure_kl" title="holistic.bias.metrics.exposure_kl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exposure_kl</span></code></a></p></td>
+<td><p>Exposure KL Divergence</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.exposure_l1.html#holistic.bias.metrics.exposure_l1" title="holistic.bias.metrics.exposure_l1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exposure_l1</span></code></a></p></td>
+<td><p>Exposure Total Variation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.gini_index.html#holistic.bias.metrics.gini_index" title="holistic.bias.metrics.gini_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gini_index</span></code></a></p></td>
+<td><p>GINI index</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.mad_score.html#holistic.bias.metrics.mad_score" title="holistic.bias.metrics.mad_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mad_score</span></code></a></p></td>
+<td><p>Mean Absolute Deviation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.recommender_bias_metrics.html#holistic.bias.metrics.recommender_bias_metrics" title="holistic.bias.metrics.recommender_bias_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recommender_bias_metrics</span></code></a></p></td>
+<td><p>Recommender bias metrics batch computation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.recommender_mae_ratio.html#holistic.bias.metrics.recommender_mae_ratio" title="holistic.bias.metrics.recommender_mae_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recommender_mae_ratio</span></code></a></p></td>
+<td><p>Recommender MAE ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.metrics.recommender_rmse_ratio.html#holistic.bias.metrics.recommender_rmse_ratio" title="holistic.bias.metrics.recommender_rmse_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recommender_rmse_ratio</span></code></a></p></td>
+<td><p>Recommender RMSE ratio</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

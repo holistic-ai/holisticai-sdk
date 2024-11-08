@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.bias\_metrics\_report
+=========================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: bias_metrics_report

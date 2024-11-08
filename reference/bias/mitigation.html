@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>holistic.bias.mitigation &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/bias/mitigation';</script>
+    <link rel="icon" href="../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">holistic.bias.mitigation</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-holistic.bias.mitigation">
+<span id="holistic-bias-mitigation"></span><h1><a class="reference internal" href="#module-holistic.bias.mitigation" title="holistic.bias.mitigation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">holistic.bias.mitigation</span></code></a><a class="headerlink" href="#module-holistic.bias.mitigation" title="Link to this heading">#</a></h1>
+<p>The <a class="reference internal" href="#module-holistic.bias.mitigation" title="holistic.bias.mitigation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">holistic.bias.mitigation</span></code></a> module includes preprocessing, inprocessing and postprocessing bias mitigation algorithms.</p>
+<p><strong>Pre-processing</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.Reweighing.html#holistic.bias.mitigation.Reweighing" title="holistic.bias.mitigation.Reweighing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reweighing</span></code></a></p></td>
+<td><p>Reweighing preprocessing <a href="#id19"><span class="problematic" id="id1">[1]_</span></a> weights the examples in each group-label combination to ensure fairness before    classification.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.LearningFairRepresentation.html#holistic.bias.mitigation.LearningFairRepresentation" title="holistic.bias.mitigation.LearningFairRepresentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LearningFairRepresentation</span></code></a></p></td>
+<td><p>Learning fair representations <a href="#id20"><span class="problematic" id="id2">[1]_</span></a> finds a latent representation which encodes the data well    while obfuscates information about protected attributes [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.CorrelationRemover.html#holistic.bias.mitigation.CorrelationRemover" title="holistic.bias.mitigation.CorrelationRemover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CorrelationRemover</span></code></a></p></td>
+<td><p>CorrelationRemover applies a linear transformation to the non-sensitive feature columns    in order to remove their correlation with the sensitive feature columns while retaining    as much information as possible (as measured by the least-squares error).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairletClusteringPreprocessing.html#holistic.bias.mitigation.FairletClusteringPreprocessing" title="holistic.bias.mitigation.FairletClusteringPreprocessing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairletClusteringPreprocessing</span></code></a></p></td>
+<td><p>Fairlet decomposition <a href="#id21"><span class="problematic" id="id3">[1]_</span></a> is a pre-processing approach that computes    fair micro-clusters where fairness is guaranteed.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>In-processing</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.ExponentiatedGradientReduction.html#holistic.bias.mitigation.ExponentiatedGradientReduction" title="holistic.bias.mitigation.ExponentiatedGradientReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExponentiatedGradientReduction</span></code></a></p></td>
+<td><p>Exponentiated gradient reduction</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.GridSearchReduction.html#holistic.bias.mitigation.GridSearchReduction" title="holistic.bias.mitigation.GridSearchReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridSearchReduction</span></code></a></p></td>
+<td><p>Grid Search Reduction technique can be used for fair classification or fair regression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.MetaFairClassifier.html#holistic.bias.mitigation.MetaFairClassifier" title="holistic.bias.mitigation.MetaFairClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetaFairClassifier</span></code></a></p></td>
+<td><p>The meta algorithm <a href="#id22"><span class="problematic" id="id4">[1]_</span></a> takes the fairness metric as part of the input    and returns a classifier optimized w.r.t.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.PrejudiceRemover.html#holistic.bias.mitigation.PrejudiceRemover" title="holistic.bias.mitigation.PrejudiceRemover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PrejudiceRemover</span></code></a></p></td>
+<td><p>Prejudice Remover</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairKCenterClustering.html#holistic.bias.mitigation.FairKCenterClustering" title="holistic.bias.mitigation.FairKCenterClustering"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairKCenterClustering</span></code></a></p></td>
+<td><p>Fair K-Center Clustering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairKMedianClustering.html#holistic.bias.mitigation.FairKMedianClustering" title="holistic.bias.mitigation.FairKMedianClustering"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairKMedianClustering</span></code></a></p></td>
+<td><p>Fair K-Median Clustering</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairletClustering.html#holistic.bias.mitigation.FairletClustering" title="holistic.bias.mitigation.FairletClustering"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairletClustering</span></code></a></p></td>
+<td><p>Fairlet Clustering <a href="#id23"><span class="problematic" id="id5">[1]_</span></a> inprocessing bias mitigation works in two steps:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.VariationalFairClustering.html#holistic.bias.mitigation.VariationalFairClustering" title="holistic.bias.mitigation.VariationalFairClustering"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VariationalFairClustering</span></code></a></p></td>
+<td><p>Variational Fair Clustering <a href="#id24"><span class="problematic" id="id6">[1]_</span></a> helps you to find clusters with specified proportions    of different demographic groups pertaining to a sensitive attribute of the dataset    (group_a and group_b) for any well-known clustering method such as K-means, K-median    or Spectral clustering (Normalized cut).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairScoreClassifier.html#holistic.bias.mitigation.FairScoreClassifier" title="holistic.bias.mitigation.FairScoreClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairScoreClassifier</span></code></a></p></td>
+<td><p>Fair Score Classifier <a href="#id25"><span class="problematic" id="id7">[1]_</span></a> generates a classification model that integrates fairness constraints for multiclass classification.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.BlindSpotAwareMF.html#holistic.bias.mitigation.BlindSpotAwareMF" title="holistic.bias.mitigation.BlindSpotAwareMF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BlindSpotAwareMF</span></code></a></p></td>
+<td><p>Blind Spot Aware Matrix Factorization</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.PopularityPropensityMF.html#holistic.bias.mitigation.PopularityPropensityMF" title="holistic.bias.mitigation.PopularityPropensityMF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PopularityPropensityMF</span></code></a></p></td>
+<td><p>Popularity Propensity Matrix Factorization <a href="#id26"><span class="problematic" id="id8">[1]_</span></a> address selection biases in recommender systems     by using causal inference techniques to provide unbiased performance estimators     and improve prediction accuracy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairRec.html#holistic.bias.mitigation.FairRec" title="holistic.bias.mitigation.FairRec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairRec</span></code></a></p></td>
+<td><p>Fair Recommendation System (FairRec) <a href="#id27"><span class="problematic" id="id9">[1]_</span></a>, exhibes the desired two-sided fairness by    mapping the fair recommendation problem to a fair allocation problem; moreover,    it is agnostic to the specifics of the data-driven model (that estimates the    product-customer relevance scores) which makes it more scalable and easy to adapt <a href="#id28"><span class="problematic" id="id10">[1]_</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.AdversarialDebiasing.html#holistic.bias.mitigation.AdversarialDebiasing" title="holistic.bias.mitigation.AdversarialDebiasing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdversarialDebiasing</span></code></a></p></td>
+<td><p>Adversarial Debiasing</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.DebiasingLearningMF.html#holistic.bias.mitigation.DebiasingLearningMF" title="holistic.bias.mitigation.DebiasingLearningMF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DebiasingLearningMF</span></code></a></p></td>
+<td><p>Debiasing Learning Matrix Factorization</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Post-processing</strong></p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.CalibratedEqualizedOdds.html#holistic.bias.mitigation.CalibratedEqualizedOdds" title="holistic.bias.mitigation.CalibratedEqualizedOdds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CalibratedEqualizedOdds</span></code></a></p></td>
+<td><p>Calibrated equalized odds postprocessing optimizes over calibrated classifier score outputs to find probabilities with which to change output labels with an equalized odds objective.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.EqualizedOdds.html#holistic.bias.mitigation.EqualizedOdds" title="holistic.bias.mitigation.EqualizedOdds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EqualizedOdds</span></code></a></p></td>
+<td><p>Equalized odds postprocessing use linear programming to find the probability with which change    favorable labels (y=1) to unfavorable labels (y=0) in the output estimator to optimize equalized odds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.RejectOptionClassification.html#holistic.bias.mitigation.RejectOptionClassification" title="holistic.bias.mitigation.RejectOptionClassification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RejectOptionClassification</span></code></a></p></td>
+<td><p>Reject option classification gives favorable outcomes (y=1) to unpriviliged groups and unfavorable outcomes (y=0) to    priviliged groups in a confidence band around the decision boundary with the highest uncertainty.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.LPDebiaserBinary.html#holistic.bias.mitigation.LPDebiaserBinary" title="holistic.bias.mitigation.LPDebiaserBinary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LPDebiaserBinary</span></code></a></p></td>
+<td><p>Linear Programmin Debiaser <a href="#id29"><span class="problematic" id="id11">[1]_</span></a> is a postprocessing algorithms designed to debias pretrained classifiers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.LPDebiaserMulticlass.html#holistic.bias.mitigation.LPDebiaserMulticlass" title="holistic.bias.mitigation.LPDebiaserMulticlass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LPDebiaserMulticlass</span></code></a></p></td>
+<td><p>Linear Programming Debiaser <a href="#id30"><span class="problematic" id="id12">[1]_</span></a> is a postprocessing algorithms designed to debias pretrained classifiers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.MLDebiaser.html#holistic.bias.mitigation.MLDebiaser" title="holistic.bias.mitigation.MLDebiaser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLDebiaser</span></code></a></p></td>
+<td><p>MLDebiaser postprocessing <a href="#id31"><span class="problematic" id="id13">[1]_</span></a> debias predictions w.r.t.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.PluginEstimationAndCalibration.html#holistic.bias.mitigation.PluginEstimationAndCalibration" title="holistic.bias.mitigation.PluginEstimationAndCalibration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PluginEstimationAndCalibration</span></code></a></p></td>
+<td><p>Plugin Estimation and Calibration postprocessing <a href="#id32"><span class="problematic" id="id14">[1]_</span></a> optimizes over calibrated regressor outputs via a    smooth optimization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.WassersteinBarycenter.html#holistic.bias.mitigation.WassersteinBarycenter" title="holistic.bias.mitigation.WassersteinBarycenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WassersteinBarycenter</span></code></a></p></td>
+<td><p>Fair Regression with Wasserstein Barycenters learning a real-valued function that    satisfies the Demographic Parity constraint <a href="#id33"><span class="problematic" id="id15">[1]_</span></a> .</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.DebiasingExposure.html#holistic.bias.mitigation.DebiasingExposure" title="holistic.bias.mitigation.DebiasingExposure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DebiasingExposure</span></code></a></p></td>
+<td><p>Disparate Exposure Learning to Rank (DELTR) <a href="#id34"><span class="problematic" id="id16">[1]_</span></a> incorporates a measure of performance and a measure    of disparate exposure into its loss function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.FairTopK.html#holistic.bias.mitigation.FairTopK" title="holistic.bias.mitigation.FairTopK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FairTopK</span></code></a></p></td>
+<td><p>Fair Top K bias mitigation <a href="#id35"><span class="problematic" id="id17">[1]_</span></a> can be used for Recommender Systems.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href=".generated/holistic.bias.mitigation.MCMF.html#holistic.bias.mitigation.MCMF" title="holistic.bias.mitigation.MCMF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MCMF</span></code></a></p></td>
+<td><p>Minimal Cluster Modification for Fairnes (MCMF) <a href="#id36"><span class="problematic" id="id18">[1]_</span></a> is focused on the minimal change it so that the clustering is still    of good quality and fairer.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

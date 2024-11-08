@@ -1,0 +1,6 @@
+﻿holistic.robustness.attackers.RidgeGDPoisoner
+=============================================
+
+.. currentmodule:: holistic.robustness.attackers
+
+.. autoclass:: RidgeGDPoisoner

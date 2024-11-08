@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.avg\_precision\_ratio
+===========================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: avg_precision_ratio

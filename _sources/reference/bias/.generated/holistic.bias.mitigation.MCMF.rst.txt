@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.MCMF
+=============================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: MCMF

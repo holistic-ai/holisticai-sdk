@@ -1,0 +1,1180 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.robustness.plots._dataset_shift &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/robustness/plots/_dataset_shift';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.robustness.plots._dataset_shift</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.robustness.plots._dataset_shift</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module description:</span>
+<span class="sd">-------------------</span>
+<span class="sd">- This module contains functions to plot the dataset shift analysis results.</span>
+
+<span class="sd">This module provides a collection of plot functions for 2D datasets, focusing</span>
+<span class="sd">on displaying model predictions, neighborhood analysis, and accuracy</span>
+<span class="sd">degradation profiles. The functions are designed to help users understand how</span>
+<span class="sd">models behave under different scenarios, such as changes in data, prediction</span>
+<span class="sd">performance, and neighborhood-based analysis. Through intuitive scatter plots</span>
+<span class="sd">and additional visual aids, users can assess model predictions, compare actual</span>
+<span class="sd">vs. predicted values, and analyze model robustness under varying conditions.</span>
+
+<span class="sd">Functions included:</span>
+<span class="sd">-------------------</span>
+<span class="sd">- plot_2d: Generates a 2D scatter plot for a dataset, with options to highlight</span>
+<span class="sd">  or exclusively display a subset of points. It supports both general</span>
+<span class="sd">  visualizations and focused views of specific data points.</span>
+
+<span class="sd">- plot_label_and_prediction: Creates a scatter plot that shows both actual</span>
+<span class="sd">  labels and predicted labels for a dataset, with a vertical offset to visually</span>
+<span class="sd">  differentiate between the two. Ideal for visual comparison of prediction</span>
+<span class="sd">  accuracy.</span>
+
+<span class="sd">- plot_neighborhood: Visualizes the neighborhoods around specified points of</span>
+<span class="sd">  interest by plotting a convex hull, the nearest neighbors, and the accuracy</span>
+<span class="sd">  within those neighbors. It helps users understand how local groups of data</span>
+<span class="sd">  points contribute to overall model performance.</span>
+
+<span class="sd">- plot_adp_and_adf: Plots the accuracy degradation profile (ADP) by showing the</span>
+<span class="sd">  percentage of samples above a threshold versus the size factor of the</span>
+<span class="sd">  dataset. It highlights key points of degradation with color-coding and</span>
+<span class="sd">  vertical markers, providing insights into the model&#39;s robustness as data</span>
+<span class="sd">  availability decreases. Accuracy degradation factor (ADF) is also showed</span>
+<span class="sd">  as a circle at the first degradation point.</span>
+
+<span class="sd">This module offers a set of functions to explore the behavior and performance</span>
+<span class="sd">of machine learning models visually, facilitating a better understanding of</span>
+<span class="sd">model predictions and robustness across different data scenarios.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Importing required libraries</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">_validate_and_extract_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validates and extracts data from pandas DataFrame or NumPy arrays.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : pd.DataFrame or pd.Series or np.ndarray</span>
+<span class="sd">        The data to validate and convert to a NumPy array if necessary.</span>
+<span class="sd">        If it is a DataFrame or Series, it will be converted to a NumPy array.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_vals : np.ndarray</span>
+<span class="sd">        The data as a NumPy array.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    -------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If `data` is a pandas DataFrame and does not have exactly two columns.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If `data` is neither a pandas DataFrame nor a NumPy array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check if data is a pandas DataFrame</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Data should have exactly two columns.&quot;</span><span class="p">)</span>
+        <span class="n">data_vals</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># Convert DataFrame to NumPy array</span>
+    <span class="c1"># Check if data is a pandas Series</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+        <span class="n">data_vals</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="c1"># Check if data is a NumPy array</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">data_vals</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="c1"># Raise error if the data is not a DataFrame or NumPy array</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Data must be either a pandas DataFrame or a NumPy array.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_vals</span>
+
+
+<div class="viewcode-block" id="plot_2d">
+<a class="viewcode-back" href="../../../../reference/robustness/.generated/holistic.robustness.plots.plot_2d.html#holistic.robustness.plots.plot_2d">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">highlight_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_just_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">features_to_plot</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a 2D scatter plot of a dataset, with options to highlight or exclusively</span>
+<span class="sd">    show a subset of points.</span>
+
+<span class="sd">    This function generates a 2D scatter plot from the given dataset, where each</span>
+<span class="sd">    point represents a sample. Users can highlight specific points or display only</span>
+<span class="sd">    a subset of the data. Axis labels can be customized using feature names from the</span>
+<span class="sd">    `features_to_plot` argument.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : np.ndarray or pd.DataFrame</span>
+<span class="sd">        The feature matrix, where each row is a sample and each column represents</span>
+<span class="sd">        a feature. This can be either a NumPy array or a pandas DataFrame with two columns.</span>
+
+<span class="sd">    y : np.ndarray or pd.Series</span>
+<span class="sd">        The labels for each sample, represented as a one-dimensional NumPy array or</span>
+<span class="sd">        pandas Series.</span>
+
+<span class="sd">    highlight_group : list or np.ndarray, optional</span>
+<span class="sd">        The indices of the points to be highlighted (outlined in red) or exclusively</span>
+<span class="sd">        plotted. If None, no points are highlighted.</span>
+
+<span class="sd">    show_just_group : bool, optional</span>
+<span class="sd">        If True, only the points specified in `highlight_group` are plotted, and all</span>
+<span class="sd">        other points are hidden. If False, all points are plotted, but the highlighted</span>
+<span class="sd">        group is outlined.</span>
+
+<span class="sd">    features_to_plot : list, optional</span>
+<span class="sd">        A list of feature names (strings) to label the x and y axes of the plot. The</span>
+<span class="sd">        list should contain exactly two elements. If not provided, the function will</span>
+<span class="sd">        infer the names of `X` and `y` from the argument names.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        This function does not return any values. It displays the scatter plot.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; from matplotlib import pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; X = pd.DataFrame(</span>
+<span class="sd">    ...     {&quot;Feature1&quot;: np.random.rand(100), &quot;Feature2&quot;: np.random.rand(100)}</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; y = pd.Series(np.random.randint(0, 2, size=100))</span>
+<span class="sd">    &gt;&gt;&gt; highlight_group = [10, 20, 30, 40]</span>
+<span class="sd">    &gt;&gt;&gt; plot_2d(</span>
+<span class="sd">    ...     X,</span>
+<span class="sd">    ...     y,</span>
+<span class="sd">    ...     highlight_group=highlight_group,</span>
+<span class="sd">    ...     show_just_group=True,</span>
+<span class="sd">    ...     features_to_plot=[&quot;Feature1&quot;, &quot;Feature2&quot;],</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Scatter Plot of a 2D dataset:</span>
+
+<span class="sd">    .. image:: /_static/images/plot_2d_pure.png</span>
+<span class="sd">        :alt: Scatter Plot of a 2D dataset</span>
+
+
+<span class="sd">    Scatter Plot of a 2D dataset with a highlighted group:</span>
+
+<span class="sd">    .. image:: /_static/images/plot_2d_highlight_group.png</span>
+<span class="sd">        :alt: Scatter Plot of a 2D dataset with a highlighted group</span>
+
+
+<span class="sd">    Scatter Plot of a 2D dataset with a highlighted group and it&#39;s labels:</span>
+
+<span class="sd">    .. image:: /_static/images/plot_2d_show_just_group.png</span>
+<span class="sd">        :alt: Scatter Plot of a 2D dataset with a highlighted group and it&#39;s labels</span>
+
+
+<span class="sd">    Scatter Plot of a 2D dataset with y_test and y_pred together in the same graph while</span>
+<span class="sd">    caltulating the accuracy over the point and its&#39; selected neighbors.</span>
+
+<span class="sd">    .. image:: /_static/images/plot_2d_neighborhood.png</span>
+<span class="sd">        :alt: Scatter Plot of a 2D dataset with y_test and y_pred together with neighborhood accuracy calculation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">inspect</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span>
+    <span class="n">arg_info</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargvalues</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+    <span class="c1"># Get the name of the variables</span>
+    <span class="k">if</span> <span class="n">features_to_plot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X_name</span> <span class="o">=</span> <span class="n">features_to_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">y_name</span> <span class="o">=</span> <span class="n">features_to_plot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">arg_info</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">y_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">arg_info</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Validate and extract data</span>
+    <span class="n">X_vals</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">show_just_group</span> <span class="ow">and</span> <span class="n">highlight_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Plot only the samples at highlight_group</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">X_vals</span><span class="p">[</span><span class="n">highlight_group</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">X_vals</span><span class="p">[</span><span class="n">highlight_group</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="n">y_vals</span><span class="p">[</span><span class="n">highlight_group</span><span class="p">],</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Annotate the points with their indices</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">highlight_group</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">X_vals</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_vals</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Plot all samples</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_vals</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+        <span class="c1"># If highlight_group is provided, outline the selected points</span>
+        <span class="k">if</span> <span class="n">highlight_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">highlight_group</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;highlight_group must be either a list or a NumPy array.&quot;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                <span class="n">X_vals</span><span class="p">[</span><span class="n">highlight_group</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">X_vals</span><span class="p">[</span><span class="n">highlight_group</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">facecolors</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+                <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">X_name</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_name</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2D Dataset Scatter Plot&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="plot_label_and_prediction">
+<a class="viewcode-back" href="../../../../reference/robustness/.generated/holistic.robustness.plots.plot_label_and_prediction.html#holistic.robustness.plots.plot_label_and_prediction">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_label_and_prediction</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">vertical_offset</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">features_to_plot</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a 2D scatter plot of a dataset, displaying both the true labels (`y`) and the</span>
+<span class="sd">    predicted labels (`y_pred`) with a slight vertical offset for distinction.</span>
+
+<span class="sd">    This function generates a scatter plot where each point represents a sample from</span>
+<span class="sd">    the dataset. The true labels are shown in a darker shade, while the predicted labels</span>
+<span class="sd">    are displayed with a vertical offset to distinguish them. The axes can be labeled</span>
+<span class="sd">    using feature names provided by the user or inferred from the data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : np.ndarray or pd.DataFrame</span>
+<span class="sd">        The feature matrix where each row represents a sample and each column</span>
+<span class="sd">        represents a feature. This can be either a NumPy array or a pandas DataFrame.</span>
+
+<span class="sd">    y : np.ndarray or pd.Series</span>
+<span class="sd">        The true labels for each sample. This can be a one-dimensional NumPy array or</span>
+<span class="sd">        a pandas Series.</span>
+
+<span class="sd">    y_pred : np.ndarray or pd.Series</span>
+<span class="sd">        The predicted labels for each sample. This can be a one-dimensional NumPy array</span>
+<span class="sd">        or a pandas Series.</span>
+
+<span class="sd">    vertical_offset : float, optional (default=0.1)</span>
+<span class="sd">        The vertical offset applied to the predicted labels on the plot to distinguish</span>
+<span class="sd">        them from the true labels.</span>
+
+<span class="sd">    features_to_plot : list, optional</span>
+<span class="sd">        A list of feature names (strings) to label the x and y axes of the plot.</span>
+<span class="sd">        If not provided, the function will infer the names of `X` and `y` from the argument names.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        This function does not return any value. It displays the scatter plot</span>
+<span class="sd">        with true labels and predicted labels.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; from matplotlib import pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # Example dataset</span>
+<span class="sd">    &gt;&gt;&gt; X = pd.DataFrame(</span>
+<span class="sd">    ...     {&quot;Feature1&quot;: np.random.rand(100), &quot;Feature2&quot;: np.random.rand(100)}</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; y = pd.Series(np.random.randint(0, 2, size=100))</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = pd.Series(np.random.randint(0, 2, size=100))</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # Plot with labels and predictions</span>
+<span class="sd">    &gt;&gt;&gt; plot_label_and_prediction(</span>
+<span class="sd">    ...     X, y, y_pred, vertical_offset=0.1, features_to_plot=[&quot;Feature1&quot;, &quot;Feature2&quot;]</span>
+<span class="sd">    ... )</span>
+<span class="sd">    This will display a 2D scatter plot with both the true labels and the predicted</span>
+<span class="sd">    labels, where the predicted labels are slightly offset for clarity.</span>
+
+<span class="sd">    Scatter Plot of a 2D dataset with y_test and y_pred together in the same graph.</span>
+<span class="sd">    The predicted values (`y_pred`, shaded circles) are shifted vertically by a small</span>
+<span class="sd">    amount to allow better visualization. The plot highlights areas where the classifier</span>
+<span class="sd">    incorrectly predicted the true labels, evident by differing colors between `y_test`</span>
+<span class="sd">    and `y_pred`.</span>
+
+<span class="sd">    .. image:: /_static/images/plot_2d_label_and_prediction.png</span>
+<span class="sd">        :alt: Scatter Plot of a 2D dataset with y_test and y_pred together in the same graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">inspect</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span>
+    <span class="n">arg_info</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargvalues</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+    <span class="c1"># Get the name of the variables</span>
+    <span class="k">if</span> <span class="n">features_to_plot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X_name</span> <span class="o">=</span> <span class="n">features_to_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">y_name</span> <span class="o">=</span> <span class="n">features_to_plot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">arg_info</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">y_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">arg_info</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Validate and extract data</span>
+    <span class="n">X_vals</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y_pred_vals</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># Plotting the data</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">X_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">X_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">y_vals</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label (darker)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Plot y_pred with a vertical offset</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">X_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">X_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">vertical_offset</span><span class="p">,</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">y_pred_vals</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prediction (lighter)&quot;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">X_name</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_name</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2D Dataset: label and prediction&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="plot_neighborhood">
+<a class="viewcode-back" href="../../../../reference/robustness/.generated/holistic.robustness.plots.plot_neighborhood.html#holistic.robustness.plots.plot_neighborhood">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_neighborhood</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="p">,</span>
+    <span class="n">points_of_interest</span><span class="p">,</span>
+    <span class="n">vertical_offset</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">features_to_plot</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">indices_show</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a 2D scatter plot of the dataset, highlighting the neighborhood of specific</span>
+<span class="sd">    points of interest and calculating accuracy over the selected neighbors.</span>
+
+<span class="sd">    This function visualizes the neighborhood of selected points in a 2D dataset</span>
+<span class="sd">    using the k-nearest neighbors algorithm. The convex hull of the points and their</span>
+<span class="sd">    neighbors is plotted, and the accuracy of predictions within this neighborhood is</span>
+<span class="sd">    displayed. The plot shows both true labels and predicted labels with a slight</span>
+<span class="sd">    vertical offset for clarity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : np.ndarray or pd.DataFrame</span>
+<span class="sd">        The feature matrix where each row represents a sample and each column</span>
+<span class="sd">        represents a feature. It can be either a NumPy array or pandas DataFrame.</span>
+
+<span class="sd">    y : np.ndarray or pd.Series</span>
+<span class="sd">        The true labels for each sample. It can be either a NumPy array or pandas Series.</span>
+
+<span class="sd">    y_pred : np.ndarray or pd.Series</span>
+<span class="sd">        The predicted labels for each sample. It can be either a NumPy array or pandas Series.</span>
+
+<span class="sd">    n_neighbors : int</span>
+<span class="sd">        The number of nearest neighbors to consider when identifying the neighborhood</span>
+<span class="sd">        of each point of interest.</span>
+
+<span class="sd">    points_of_interest : list or np.ndarray</span>
+<span class="sd">        A list or array of indices corresponding to the points whose neighborhoods</span>
+<span class="sd">        will be highlighted.</span>
+
+<span class="sd">    vertical_offset : float, optional (default=0.1)</span>
+<span class="sd">        The vertical offset applied to the predicted labels on the plot to distinguish</span>
+<span class="sd">        them from the true labels.</span>
+
+<span class="sd">    features_to_plot : list, optional</span>
+<span class="sd">        A list of feature names (strings) to label the x and y axes of the plot.</span>
+<span class="sd">        If not provided, the function will infer the names of `X` and `y` from the</span>
+<span class="sd">        argument names.</span>
+
+<span class="sd">    ax : matplotlib.axes.Axes, optional</span>
+<span class="sd">        A matplotlib axes object. If not provided, a new figure and axes will be created.</span>
+
+<span class="sd">    indices_show : list or np.ndarray, required</span>
+<span class="sd">        The indices of the points to be shown on the plot. If a point from `points_of_interest`</span>
+<span class="sd">        is not included in `indices_show`, a ValueError is raised.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        This function does not return any value. It displays the scatter plot with neighborhoods.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; from matplotlib import pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; X = pd.DataFrame(</span>
+<span class="sd">    ...     {&quot;Feature1&quot;: np.random.rand(100), &quot;Feature2&quot;: np.random.rand(100)}</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; y = pd.Series(np.random.randint(0, 2, size=100))</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = pd.Series(np.random.randint(0, 2, size=100))</span>
+<span class="sd">    &gt;&gt;&gt; points_of_interest = [10, 50]</span>
+<span class="sd">    &gt;&gt;&gt; plot_neighborhood(</span>
+<span class="sd">    ...     X=X,</span>
+<span class="sd">    ...     y=y,</span>
+<span class="sd">    ...     y_pred=y_pred,</span>
+<span class="sd">    ...     n_neighbors=3,</span>
+<span class="sd">    ...     points_of_interest=points_of_interest,</span>
+<span class="sd">    ...     indices_show=np.arange(100),</span>
+<span class="sd">    ...     features_to_plot=[&quot;Feature1&quot;, &quot;Feature2&quot;],</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    The plot will display the convex hull around the neighborhoods of the points</span>
+<span class="sd">    of interest and annotate the accuracy of predictions over these neighbors.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If a point in `points_of_interest` is not present in `indices_show`.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The convex hull of each point&#39;s neighborhood is plotted as a red dashed line.</span>
+<span class="sd">    - The accuracy over the nearest neighbors is calculated and annotated next to</span>
+<span class="sd">      each point of interest.</span>
+<span class="sd">    - The function uses the k-nearest neighbors algorithm to find neighbors and</span>
+<span class="sd">      create neighborhoods.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">inspect</span>
+
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">ConvexHull</span>
+    <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+    <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span>
+    <span class="n">arg_info</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargvalues</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+    <span class="c1"># Get the name of the variables</span>
+    <span class="k">if</span> <span class="n">features_to_plot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X_name</span> <span class="o">=</span> <span class="n">features_to_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">y_name</span> <span class="o">=</span> <span class="n">features_to_plot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">arg_info</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">y_name</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">arg_info</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Neighborhood on X</span>
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Validate and extract data</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">_validate_and_extract_data</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Plotting the data</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot y_pred with a vertical offset</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">vertical_offset</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y_pred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">sample_index</span> <span class="ow">in</span> <span class="n">points_of_interest</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sample_index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indices_show</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The point </span><span class="si">{</span><span class="n">sample_index</span><span class="si">}</span><span class="s2"> is not a point in &#39;indices_show&#39;.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Find the position of sample_index in indices_show</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">indices_show</span> <span class="o">==</span> <span class="n">sample_index</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Find the n nearest neighbors of the sample</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]]])</span>
+
+        <span class="c1"># Extract the selected points (sample + neighbors)</span>
+        <span class="n">selected_points</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+        <span class="c1"># Create a convex hull around the selected points</span>
+        <span class="n">hull</span> <span class="o">=</span> <span class="n">ConvexHull</span><span class="p">(</span><span class="n">selected_points</span><span class="p">)</span>
+
+        <span class="c1"># Plot the convex hull as an outline</span>
+        <span class="k">for</span> <span class="n">simplex</span> <span class="ow">in</span> <span class="n">hull</span><span class="o">.</span><span class="n">simplices</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">selected_points</span><span class="p">[</span><span class="n">simplex</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">selected_points</span><span class="p">[</span><span class="n">simplex</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Annotate all points with their indices</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">indices_show</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Accuracy over the neighbors</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">indices</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1"># Add text near sample_index</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span>
+            <span class="sa">f</span><span class="s2">&quot;Acc = </span><span class="si">{</span><span class="n">acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Plot labels and title</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">X_name</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">y_name</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Convex Hull of Samples </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="w"> </span><span class="n">points_of_interest</span><span class="p">))</span><span class="si">}</span><span class="s2"> and its </span><span class="si">{</span><span class="n">n_neighbors</span><span class="si">}</span><span class="s2"> Nearest Neighbors.&quot;</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="plot_adp_and_adf">
+<a class="viewcode-back" href="../../../../reference/robustness/.generated/holistic.robustness.plots.plot_adp_and_adf.html#holistic.robustness.plots.plot_adp_and_adf">[docs]</a>
+<span class="k">def</span> <span class="nf">plot_adp_and_adf</span><span class="p">(</span><span class="n">results_df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the Accuracy Degradation Profile (ADP) in a 2D plot, showing the percentage</span>
+<span class="sd">    of samples above the threshold (ADP) on the vertical axis and dataset size (size_factor)</span>
+<span class="sd">    on the horizontal axis, with the x-axis reversed.</span>
+
+<span class="sd">    Points are colored green if the model&#39;s performance is acceptable (&quot;OK&quot;) and red</span>
+<span class="sd">    if there is significant accuracy degradation (&quot;acc degrad!&quot;). The first point where</span>
+<span class="sd">    performance degradation occurs is highlighted and circled (Accuracy Degradation Factor, ADF),</span>
+<span class="sd">    and a vertical dotted line is drawn at this point to mark the corresponding dataset size.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    results_df : pd.DataFrame</span>
+<span class="sd">        A DataFrame containing the following columns:</span>
+<span class="sd">        - &#39;size_factor&#39; (float): Fraction of the dataset used in the evaluation.</span>
+<span class="sd">        - &#39;ADP&#39; (float): The percentage of samples above the threshold for acceptable accuracy.</span>
+<span class="sd">        - &#39;decision&#39; (str): A string indicating whether the model&#39;s performance is acceptable</span>
+<span class="sd">          (&#39;OK&#39;) or shows significant accuracy degradation (&#39;acc degrad!&#39;).</span>
+<span class="sd">        - &#39;average_accuracy&#39; (float): The average accuracy across the samples.</span>
+<span class="sd">        - &#39;variance_accuracy&#39; (float): The variance of the accuracy across the samples.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        This function does not return any values. It generates and displays a scatter plot</span>
+<span class="sd">        with labeled points and a vertical line at the first accuracy degradation point.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; data = {</span>
+<span class="sd">    ...     &quot;size_factor&quot;: [0.95, 0.9, 0.85, 0.8, 0.75],</span>
+<span class="sd">    ...     &quot;ADP&quot;: [0.98, 0.97, 0.94, 0.87, 0.76],</span>
+<span class="sd">    ...     &quot;decision&quot;: [&quot;OK&quot;, &quot;OK&quot;, &quot;OK&quot;, &quot;acc degrad!&quot;, &quot;acc degrad!&quot;],</span>
+<span class="sd">    ...     &quot;average_accuracy&quot;: [0.97, 0.96, 0.93, 0.85, 0.74],</span>
+<span class="sd">    ...     &quot;variance_accuracy&quot;: [0.02, 0.03, 0.04, 0.05, 0.06],</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; results_df = pd.DataFrame(data)</span>
+<span class="sd">    &gt;&gt;&gt; plot_adp_and_adf(results_df)</span>
+
+<span class="sd">    This will display a scatter plot with &#39;size_factor&#39; on the x-axis (in reverse order)</span>
+<span class="sd">    and &#39;ADP&#39; on the y-axis. The first point where performance degrades (&#39;acc degrad!&#39;)</span>
+<span class="sd">    will be circled, and a vertical dotted line will be added to indicate the corresponding</span>
+<span class="sd">    size factor.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The blue line represents the average accuracy with shaded areas indicating the</span>
+<span class="sd">      variance. Green points indicate acceptable performance, while red points mark</span>
+<span class="sd">      instances of degradation.</span>
+<span class="sd">    - The first &#39;acc degrad!&#39; point is highlighted with a red circle and a vertical</span>
+<span class="sd">      dotted line to emphasize the Accuracy Degradation Factor (ADF).</span>
+<span class="sd">    - The x-axis is inverted to show the dataset size decreasing from left to right.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Extract relevant columns</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;size_factor&quot;</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;ADP&quot;</span><span class="p">]</span>
+    <span class="n">decision</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;decision&quot;</span><span class="p">]</span>
+    <span class="n">average_accuracy</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;average_accuracy&quot;</span><span class="p">]</span>
+    <span class="n">variance_accuracy</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;variance_accuracy&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Create figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">average_accuracy</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;average_accuracy&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">average_accuracy</span> <span class="o">-</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="n">variance_accuracy</span><span class="p">,</span>
+        <span class="n">average_accuracy</span> <span class="o">+</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="n">variance_accuracy</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Plot OK points (green)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">decision</span> <span class="o">==</span> <span class="s2">&quot;OK&quot;</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">decision</span> <span class="o">==</span> <span class="s2">&quot;OK&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ADP - OK&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot acc degrad! points (red)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">decision</span> <span class="o">==</span> <span class="s2">&quot;acc degrad!&quot;</span><span class="p">],</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">decision</span> <span class="o">==</span> <span class="s2">&quot;acc degrad!&quot;</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ADP - acc degrad!&quot;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Find the first &#39;acc degrad!&#39; point</span>
+    <span class="n">first_degradation</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;decision&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;acc degrad!&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Highlight the first &#39;acc degrad!&#39; point</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">first_degradation</span><span class="p">[</span><span class="s2">&quot;size_factor&quot;</span><span class="p">],</span>
+        <span class="n">first_degradation</span><span class="p">[</span><span class="s2">&quot;ADP&quot;</span><span class="p">],</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+        <span class="n">facecolors</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ADF&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Add vertical dotted line at the first degradation point</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">first_degradation</span><span class="p">[</span><span class="s2">&quot;size_factor&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Add the size factor text directly on the x-axis</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">first_degradation</span><span class="p">[</span><span class="s2">&quot;size_factor&quot;</span><span class="p">],</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.04</span><span class="p">,</span>  <span class="c1"># Just below the x-axis</span>
+        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first_degradation</span><span class="p">[</span><span class="s2">&quot;size_factor&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Label axes and title</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Size Factor&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Percentual&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Accuracy Degradation Profile (ADP) and Accuracy Degradation Factor (ADF)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Reverse the x-axis (from 0.95 to 0.05)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+
+    <span class="c1"># Show legend</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

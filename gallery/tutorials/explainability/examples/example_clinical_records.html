@@ -1,0 +1,2199 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Explainability in Machine Learning - Clinical Records Analysis &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/tutorials/explainability/examples/example_clinical_records';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Explainability in Machine Learning - Clinical Records Analysis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Explainability-in-Machine-Learning---Clinical-Records-Analysis">
+<h1>Explainability in Machine Learning - Clinical Records Analysis<a class="headerlink" href="#Explainability-in-Machine-Learning---Clinical-Records-Analysis" title="Link to this heading">#</a></h1>
+<section id="Problem-Statement">
+<h2>Problem Statement<a class="headerlink" href="#Problem-Statement" title="Link to this heading">#</a></h2>
+<p>Cardiovascular diseases (CVDs) remain a major health concern worldwide, causing the deaths of approximately 17 million people annually. Among these, heart failure (HF) is particularly notable, occurring when the heart cannot pump sufficient blood to meet the body’s needs. HF is often a consequence of conditions such as diabetes and high blood pressure. Clinically, heart failure is categorized into two types based on the ejection fraction: heart failure with reduced ejection fraction (HFrEF) and
+heart failure with preserved ejection fraction (HFpEF). Despite advances in medical research, predicting survival outcomes for heart failure patients and identifying critical predictive factors remains challenging.</p>
+<p>The explainability of machine learning models is crucial in healthcare, where the consequences of model misinterpretation can be severe. This case study evaluates the explainability of machine learning models in predicting the survival of heart failure patients. The dataset used in this study contains 299 patient records, each with 10 clinical features and a target variable indicating patient survival.</p>
+<p>In this case study, we evaluate explainability in clinical records of hearth failure. We use the dataset available in <a class="reference external" href="https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records">UCI Repository</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[120]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">mutual_info_classif</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[126]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">mutual_info_classif</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="c1"># Cargamos el dataset &quot;Adult&quot; de UCI</span>
+<span class="k">def</span> <span class="nf">load_adult_dataset</span><span class="p">():</span>
+    <span class="n">adult</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adult&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">target</span>
+
+    <span class="c1"># Imputamos los valores faltantes</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)</span>
+    <span class="n">data_imputed</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Convertimos las variables categóricas en números usando LabelEncoder</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data_imputed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;category&#39;</span><span class="p">:</span>
+            <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+            <span class="n">data_imputed</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_imputed</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">data_imputed</span><span class="p">,</span> <span class="n">target</span>
+
+<span class="c1"># Función para obtener rankings de características usando mutual information</span>
+<span class="k">def</span> <span class="nf">get_feature_rankings</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># Calculamos la importancia de cada característica usando mutual information</span>
+    <span class="n">mutual_info</span> <span class="o">=</span> <span class="n">mutual_info_classif</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Obtenemos el ranking de las características, ordenado de mayor a menor importancia</span>
+    <span class="n">rankings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">mutual_info</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Seleccionamos las &#39;n_features&#39; características más importantes</span>
+    <span class="n">top_features</span> <span class="o">=</span> <span class="n">rankings</span><span class="p">[:</span><span class="n">n_features</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">top_features</span><span class="p">,</span> <span class="n">mutual_info</span>
+
+<span class="c1"># Cargamos los datos</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_adult_dataset</span><span class="p">()</span>
+
+<span class="c1"># Obtenemos los rankings de características (las 5 más importantes)</span>
+<span class="n">rankings</span><span class="p">,</span> <span class="n">importance_scores</span> <span class="o">=</span> <span class="n">get_feature_rankings</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ranking de características más importantes:&quot;</span><span class="p">,</span> <span class="n">rankings</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Importancia de características:&quot;</span><span class="p">,</span> <span class="n">importance_scores</span><span class="p">[</span><span class="n">rankings</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ranking de características más importantes: [ 7  5 10  0  4]
+Importancia de características: [0.11516906 0.10973396 0.08276294 0.06691924 0.06579026]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[121]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar el dataset de Adult de UCI</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data&quot;</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;workclass&quot;</span><span class="p">,</span> <span class="s2">&quot;fnlwgt&quot;</span><span class="p">,</span> <span class="s2">&quot;education&quot;</span><span class="p">,</span> <span class="s2">&quot;education_num&quot;</span><span class="p">,</span> <span class="s2">&quot;marital_status&quot;</span><span class="p">,</span> <span class="s2">&quot;occupation&quot;</span><span class="p">,</span> <span class="s2">&quot;relationship&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;capital_gain&quot;</span><span class="p">,</span> <span class="s2">&quot;capital_loss&quot;</span><span class="p">,</span> <span class="s2">&quot;hours_per_week&quot;</span><span class="p">,</span> <span class="s2">&quot;native_country&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot; ?&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Limpiar datos</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Codificar las variables categóricas</span>
+<span class="n">label_encoders</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+    <span class="n">label_encoders</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[125]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">def</span> <span class="nf">inconsistency_rate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">feature_subset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula la tasa de inconsistencia para un subconjunto de características.</span>
+
+<span class="sd">    X: Dataset completo.</span>
+<span class="sd">    y: Etiquetas de clase.</span>
+<span class="sd">    feature_subset: Lista de índices o nombres de características que componen el subconjunto a evaluar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extraer solo las columnas correspondientes al subconjunto de características</span>
+    <span class="n">X_subset</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">feature_subset</span><span class="p">]</span>
+
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">unique_rows</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">inconsistency</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">unique_rows</span><span class="p">,</span> <span class="n">counts</span><span class="p">):</span>
+        <span class="c1"># Encuentra los índices donde X_subset coincide con la fila única</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">X_subset</span> <span class="o">==</span> <span class="n">row</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Calcula las clases correspondientes</span>
+        <span class="n">labels</span><span class="p">,</span> <span class="n">label_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Probabilidad de la combinación de características</span>
+        <span class="n">prob_row</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">n_samples</span>
+        <span class="c1"># Probabilidad de la clase más común</span>
+        <span class="n">prob_most_common_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">label_counts</span><span class="p">)</span> <span class="o">/</span> <span class="n">count</span>
+        <span class="c1"># Incrementa la inconsistencia basada en la fórmula</span>
+        <span class="n">inconsistency</span> <span class="o">+=</span> <span class="n">prob_row</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob_most_common_class</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">inconsistency</span>
+
+<span class="k">def</span> <span class="nf">conditional_entropy</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">feature_subset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula la entropía condicional para un subconjunto de características.</span>
+
+<span class="sd">    X: Dataset completo.</span>
+<span class="sd">    y: Etiquetas de clase.</span>
+<span class="sd">    feature_subset: Lista de índices o nombres de características que componen el subconjunto a evaluar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extraer solo las columnas correspondientes al subconjunto de características</span>
+    <span class="n">X_subset</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">feature_subset</span><span class="p">]</span>
+
+    <span class="n">entropy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">unique_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">unique_rows</span><span class="p">:</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">X_subset</span> <span class="o">==</span> <span class="n">row</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">labels</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="c1"># Calcular la entropía condicional</span>
+        <span class="n">entropy</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prob</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">prob</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">entropy</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[123]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quasi_linear_compatibility_order</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">measure1</span><span class="p">,</span> <span class="n">measure2</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">measure1</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">measure2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">m1</span> <span class="o">&lt;=</span> <span class="n">threshold</span> <span class="ow">and</span> <span class="n">m2</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Both measures are compatible&quot;</span>
+    <span class="k">elif</span> <span class="n">m1</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Measure 1 is more sensitive&quot;</span>
+    <span class="k">elif</span> <span class="n">m2</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Measure 2 is more sensitive&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;No significant difference&quot;</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[124]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separar características y la etiqueta (income)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Dividir en conjunto de entrenamiento y prueba</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Probar la métrica Quasi-Linear Compatibility Order</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">quasi_linear_compatibility_order</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">inconsistency_rate</span><span class="p">,</span> <span class="n">conditional_entropy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado de la métrica:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Resultado de la métrica: Both measures are compatible
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;/home/cristian/holisticai/src&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FeatureImportanceConsistency</span><span class="p">:</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Feature Importance Consistency&quot;</span>
+
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_importances_table</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">conditional_importances_tables</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">original_values</span> <span class="o">=</span> <span class="n">original_importances_table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">norm_original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">original_values</span><span class="p">)</span>
+        <span class="n">sims</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">fimp_table</span> <span class="ow">in</span> <span class="n">conditional_importances_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">fimp_table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">norm_resampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+            <span class="n">similarity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_values</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_original</span> <span class="o">*</span> <span class="n">norm_resampled</span><span class="p">)</span>
+            <span class="n">sims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FeaturePositionConsistency</span><span class="p">:</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Feature Position Consistency&quot;</span>
+
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_importances</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">):</span>
+        <span class="n">original_feature_names</span> <span class="o">=</span> <span class="n">original_importances</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">sims</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">fimp</span> <span class="ow">in</span> <span class="n">conditional_importances</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">cond_feature_names</span> <span class="o">=</span> <span class="n">fimp</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">match_order</span> <span class="o">=</span> <span class="n">original_feature_names</span> <span class="o">==</span> <span class="n">cond_feature_names</span>
+            <span class="n">sims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">match_order</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">feature_ranking_stability</span><span class="p">(</span><span class="n">original_importances</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">):</span>
+    <span class="n">top_original_feature_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">original_importances</span><span class="o">.</span><span class="n">top_alpha</span><span class="p">()</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">fimp</span> <span class="ow">in</span> <span class="n">conditional_importances</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">top_cond_feature_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">fimp</span><span class="o">.</span><span class="n">top_alpha</span><span class="p">()</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">top_original_feature_names</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">top_cond_feature_names</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_original_feature_names</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">top_cond_feature_names</span><span class="p">))</span>
+        <span class="n">sims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;clinical_records&#39;</span><span class="p">,</span> <span class="n">protected_attribute</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 299</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': '0', 'group_b': '1'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Data-analysis">
+<h2>Data analysis<a class="headerlink" href="#Data-analysis" title="Link to this heading">#</a></h2>
+<p>The dataset analyzed in this study consists of medical records of 299 heart failure patients collected from the Faisalabad Institute of Cardiology and Allied Hospital in Faisalabad, Pakistan, during April-December 2015. The cohort includes 105 women and 194 men, aged between 40 and 95 years, all of whom had left ventricular systolic dysfunction and previous heart failures classified as class III or IV by the New York Heart Association (NYHA).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of deaths:&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 299 entries, 0 to 298
+Data columns (total 15 columns):
+ #   Column                         Non-Null Count  Dtype
+---  ------                         --------------  -----
+ 0   (X, anaemia)                   299 non-null    int64
+ 1   (X, creatinine_phosphokinase)  299 non-null    int64
+ 2   (X, diabetes)                  299 non-null    int64
+ 3   (X, ejection_fraction)         299 non-null    int64
+ 4   (X, high_blood_pressure)       299 non-null    int64
+ 5   (X, platelets)                 299 non-null    float64
+ 6   (X, serum_creatinine)          299 non-null    float64
+ 7   (X, serum_sodium)              299 non-null    int64
+ 8   (X, smoking)                   299 non-null    int64
+ 9   (X, time)                      299 non-null    int64
+ 10  (y, y)                         299 non-null    int64
+ 11  (p_attrs, age)                 299 non-null    float64
+ 12  (p_attrs, sex)                 299 non-null    int64
+ 13  (group_a, group_a)             299 non-null    bool
+ 14  (group_b, group_b)             299 non-null    bool
+dtypes: bool(2), float64(3), int64(10)
+memory usage: 31.1 KB
+None
+Number of deaths: y
+0    203
+1     96
+Name: count, dtype: int64
+</pre></div></div>
+</div>
+<p>In table above, we observe that the dataset contains 10 features and 1 target variable. The features include both numerical and categorical variables. The target variable, <code class="docutils literal notranslate"><span class="pre">DEATH_EVENT</span></code>, is binary and indicates whether the patient died during the follow-up period (1) or survived (0). The dataset is imbalanced, with 203 patients surviving and 96 patients dying during the follow-up period.</p>
+<ul class="simple">
+<li><p><strong>Categorical features</strong></p>
+<ul>
+<li><p>anaemia: Presence of anemia (0 = no, 1 = yes)</p></li>
+<li><p>high_blood_pressure: Presence of hypertension (0 = no, 1 = yes)</p></li>
+<li><p>creatinine_phosphokinase (CPK): Level of the CPK enzyme in the blood (mcg/L)</p></li>
+<li><p>diabetes: Presence of diabetes (0 = no, 1 = yes)</p></li>
+<li><p>ejection_fraction: Percentage of blood leaving the heart at each contraction</p></li>
+<li><p>serum_sodium: Sodium level in the blood (mEq/L)</p></li>
+<li><p>smoking: Whether the patient is a smoker (0 = no, 1 = yes)</p></li>
+</ul>
+</li>
+<li><p><strong>Numerical features</strong></p>
+<ul>
+<li><p>serum_creatinine: Level of creatinine in the blood (mg/dL)</p></li>
+<li><p>platelets: Platelet count (kiloplatelets/mL)</p></li>
+<li><p>time: Follow-up period (days)</p></li>
+</ul>
+</li>
+<li><p><strong>Target variable</strong></p>
+<ul>
+<li><p>y: Whether the patient died during the follow-up period (0 = no, 1 = yes)</p></li>
+</ul>
+</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets.plots</span> <span class="kn">import</span> <span class="n">correlation_matrix_plot</span>
+
+<span class="n">correlation_matrix_plot</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">fixed_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">,</span> <span class="s1">&#39;group_b&#39;</span><span class="p">],</span> <span class="n">target_feature</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Correlation matrix&#39;}&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_16_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_16_1.png" />
+</div>
+</div>
+<p>The correlation matrix shows that the most correlated features with the target variable are <code class="docutils literal notranslate"><span class="pre">serum_creatinine</span></code>, <code class="docutils literal notranslate"><span class="pre">ejection_fraction</span></code>, and <code class="docutils literal notranslate"><span class="pre">time</span></code>. The “follow-up time” refers to the duration of time that patients are monitored after an initial event, diagnosis, treatment, or enrollment in a study. This period is crucial for assessing the long-term outcomes and effectiveness of treatments, as well as for observing the progression of the disease and any potential complications.</p>
+<p>So, we can expect that these features will have a significant impact on the prediction of the target variable.</p>
+</section>
+<section id="Explainability-Metrics">
+<h2>Explainability Metrics<a class="headerlink" href="#Explainability-Metrics" title="Link to this heading">#</a></h2>
+<section id="Model`s-predictions">
+<h3>Model`s predictions<a class="headerlink" href="#Model`s-predictions" title="Link to this heading">#</a></h3>
+<p>First, we will implment a Logistic Regression model to predict the target variable and compute the accuracy of the model. We will also evaluate the model’s performance using the confusion matrix, precision, recall, and F1 score.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+              precision    recall  f1-score   support
+
+           0       0.77      0.94      0.85        35
+           1       0.88      0.60      0.71        25
+
+    accuracy                           0.80        60
+   macro avg       0.82      0.77      0.78        60
+weighted avg       0.82      0.80      0.79        60
+
+</pre></div></div>
+</div>
+<p>We can observe that the model has an accuracy of 0.81, which is quite good. However, we can see that the model has a higher recall for the negative class (0) than for the positive class (1). This indicates that the model is better at predicting the survival of patients than predicting the death of patients.</p>
+<p>Let’s now measure the explainability of the model using different global and local explainability metrics.</p>
+</section>
+<section id="Permutation-feature-importance-metrics">
+<h3>Permutation feature importance metrics<a class="headerlink" href="#Permutation-feature-importance-metrics" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">models</span><span class="p">[</span><span class="s2">&quot;RandomForestClassifier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">models</span><span class="p">[</span><span class="s2">&quot;XGBClassifier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">models</span><span class="p">[</span><span class="s2">&quot;LogisticRegression&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">models</span><span class="p">[</span><span class="s2">&quot;MLPClassifier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.utils</span> <span class="kn">import</span> <span class="n">BinaryClassificationProxy</span>
+<span class="kn">from</span> <span class="nn">holistic.utils.feature_importances</span> <span class="kn">import</span> <span class="n">compute_permutation_importance</span>
+<span class="kn">from</span> <span class="nn">holistic.inspection</span> <span class="kn">import</span> <span class="n">compute_partial_dependence</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+    <span class="n">importances</span>  <span class="o">=</span> <span class="n">compute_permutation_importance</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">proxy</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ranked_importances</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">top_alpha</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+
+    <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;importances&#39;</span><span class="p">:</span> <span class="n">importances</span><span class="p">,</span>
+        <span class="s1">&#39;ranked_importances&#39;</span><span class="p">:</span> <span class="n">ranked_importances</span><span class="p">,</span>
+        <span class="s1">&#39;partial_dependencies&#39;</span><span class="p">:</span> <span class="n">compute_partial_dependence</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="n">ranked_importances</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">proxy</span><span class="o">=</span><span class="n">model</span><span class="p">),</span>
+        <span class="s1">&#39;conditional_importances&#39;</span><span class="p">:</span> <span class="n">compute_permutation_importance</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">proxy</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">importance_type</span><span class="o">=</span><span class="s1">&#39;conditional&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">xai_ease_score</span>
+
+<span class="n">metrics</span>  <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">posi_ctab</span> <span class="o">=</span> <span class="n">feature_position_stability</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;importances&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;conditional_importances&#39;</span><span class="p">])</span>
+    <span class="n">fimp_stab</span> <span class="o">=</span> <span class="n">feature_importance_stability</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;importances&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;conditional_importances&#39;</span><span class="p">])</span>
+    <span class="n">rank_stab</span> <span class="o">=</span> <span class="n">feature_ranking_stability</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;importances&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;conditional_importances&#39;</span><span class="p">])</span>
+    <span class="n">ease_score</span> <span class="o">=</span> <span class="n">xai_ease_score</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;partial_dependencies&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;ranked_importances&#39;</span><span class="p">])</span>
+    <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;posi_stab&#39;</span><span class="p">:</span> <span class="n">posi_stab</span><span class="p">,</span> <span class="s1">&#39;fimp_stab&#39;</span><span class="p">:</span> <span class="n">fimp_stab</span><span class="p">,</span> <span class="s1">&#39;rank_stab&#39;</span><span class="p">:</span> <span class="n">rank_stab</span><span class="p">,</span> <span class="s1">&#39;ease_score&#39;</span><span class="p">:</span><span class="n">ease_score</span><span class="p">})</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>posi_stab</th>
+      <th>fimp_stab</th>
+      <th>rank_stab</th>
+      <th>ease_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RandomForestClassifier</td>
+      <td>0.65</td>
+      <td>0.933795</td>
+      <td>0.675000</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>XGBClassifier</td>
+      <td>0.60</td>
+      <td>0.932400</td>
+      <td>0.750000</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>LogisticRegression</td>
+      <td>0.30</td>
+      <td>0.541709</td>
+      <td>0.291667</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>MLPClassifier</td>
+      <td>0.90</td>
+      <td>0.991556</td>
+      <td>1.000000</td>
+      <td>0.75</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;LogisticRegression&#39;</span><span class="p">][</span><span class="s1">&#39;importances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;LogisticRegression&#39;</span><span class="p">][</span><span class="s1">&#39;conditional_importances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;LogisticRegression&#39;</span><span class="p">][</span><span class="s1">&#39;conditional_importances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">])])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.25863997113997056)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">norm_original</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0    0.999628
+9    0.000000
+4    0.006675
+5    0.001669
+2    0.015019
+8    0.000000
+3    0.008344
+7    0.000000
+1    0.020026
+6    0.000000
+Name: Importance, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[119]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">norm_original</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[119]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1    0.507093
+9    0.000000
+8    0.000000
+7    0.000000
+2    0.507093
+6    0.000000
+3    0.169031
+5    0.000000
+0    0.676123
+4    0.000000
+Name: Importance, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[116]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feature_importance_stability</span><span class="p">(</span><span class="n">original_importances</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">):</span>
+    <span class="n">original_values</span> <span class="o">=</span> <span class="n">original_importances</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">norm_original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">original_values</span><span class="p">)</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">fimp</span> <span class="ow">in</span> <span class="n">conditional_importances</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">fimp</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Variable&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">norm_resampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">similarity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_values</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_original</span> <span class="o">*</span> <span class="n">norm_resampled</span><span class="p">)</span>
+        <span class="n">sims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.plots</span> <span class="kn">import</span> <span class="n">plot_feature_importance</span>
+
+<span class="c1">#plot_feature_importance(results[&#39;LogisticRegression&#39;][&#39;importances&#39;])</span>
+<span class="n">plot_feature_importance</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;LogisticRegression&#39;</span><span class="p">][</span><span class="s1">&#39;conditional_importances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Feature Importance&#39;}, xlabel=&#39;Importance&#39;, ylabel=&#39;Features&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_31_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_31_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">alpha_score</span>
+
+<span class="n">alpha_score</span><span class="p">(</span><span class="n">importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.1)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">xai_ease_score</span>
+
+<span class="n">xai_ease_score</span><span class="p">(</span><span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">position_parity</span>
+
+<span class="n">position_parity</span><span class="p">(</span><span class="n">conditional_importances</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">rank_alignment</span>
+
+<span class="n">rank_alignment</span><span class="p">(</span><span class="n">conditional_importances</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">spread_ratio</span>
+
+<span class="n">spread_ratio</span><span class="p">(</span><span class="n">importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.3460555192492099
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">spread_divergence</span>
+
+<span class="n">spread_divergence</span><span class="p">(</span><span class="n">importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.3155667220916136
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">classification_explainability_metrics</span>
+
+<span class="n">classification_explainability_metrics</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>reference</th>
+    </tr>
+    <tr>
+      <th>metric</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alpha Importance Score</th>
+      <td>0.100000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>XAI Ease Score</th>
+      <td>1.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Position Parity</th>
+      <td>0.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Rank Alignment</th>
+      <td>0.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Spread Ratio</th>
+      <td>0.346056</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Spread Divergence</th>
+      <td>0.315567</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The metrics used to evaluate the feature importance indicates that:</p>
+<ul class="simple">
+<li><p>Alpha importance score: fewer features have high importance values, suggesting a more even distribution of feature importance.</p></li>
+<li><p>XAI ease score: simple, linear relationship between the feature and the predicted outcome. These curves are easy to interpret.</p></li>
+<li><p>Position parity: high consistency in the order of feature importance between the overall and conditional feature importance, suggesting that the model behaves similarly across different groups.</p></li>
+<li><p>Rank alignment: a high overlap in the top-k feature importance rankings between the overall and conditional feature importance, suggesting that the model’s feature importance is consistent across different groups.</p></li>
+<li><p>Spread ratio: the distribution of feature importance is far from uniform, suggesting that the model relies on fewer, more significant features. This implies higher interpretability.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.plots</span> <span class="kn">import</span> <span class="n">plot_feature_importance</span>
+
+<span class="n">plot_feature_importance</span><span class="p">(</span><span class="n">importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Feature Importance&#39;}, xlabel=&#39;Importance&#39;, ylabel=&#39;Features&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_40_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_40_1.png" />
+</div>
+</div>
+<p>In this feature importance plot we can observe that the most important features are time and ejection fraction, which are partially consistent with the correlation matrix.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.plots</span> <span class="kn">import</span> <span class="n">plot_partial_dependence</span>
+
+<span class="c1"># class 1</span>
+<span class="n">class_index</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">class_idx</span><span class="o">=</span><span class="n">class_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_42_0.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_42_0.png" />
+</div>
+</div>
+<p>The partial dependence plot for target class 1 shows a negative relationship with feature <code class="docutils literal notranslate"><span class="pre">time</span></code>, indicating that as the follow-up time increases, the probability of death decreases. This is consistent with the correlation matrix, where <code class="docutils literal notranslate"><span class="pre">time</span></code> was negatively correlated with the target variable. Following, we can observe positive relationship the class 0 and the feature <code class="docutils literal notranslate"><span class="pre">time</span></code>, indicating that as the follow-up time increases, the probability of survival increases.</p>
+<p>The monotonic behaviour of the partial dependence plot suggests that the model is ease to interpret, as shown but the XAI ease score metric.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># class 0</span>
+<span class="n">class_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">class_idx</span><span class="o">=</span><span class="n">class_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_44_0.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_44_0.png" />
+</div>
+</div>
+</section>
+<section id="Surrogate-metrics">
+<h3>Surrogate metrics<a class="headerlink" href="#Surrogate-metrics" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.utils</span> <span class="kn">import</span> <span class="n">BinaryClassificationProxy</span>
+<span class="kn">from</span> <span class="nn">holistic.utils.feature_importances</span> <span class="kn">import</span> <span class="n">compute_surrogate_feature_importance</span>
+<span class="kn">from</span> <span class="nn">holistic.inspection</span> <span class="kn">import</span> <span class="n">compute_partial_dependence</span>
+
+<span class="n">proxy</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">importances</span>  <span class="o">=</span> <span class="n">compute_surrogate_feature_importance</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span> <span class="n">importance_type</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">)</span>
+
+<span class="n">ranked_importances</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">top_alpha</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">partial_dependencies</span> <span class="o">=</span> <span class="n">compute_partial_dependence</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="n">ranked_importances</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">)</span>
+
+<span class="n">conditional_importances</span>  <span class="o">=</span> <span class="n">compute_surrogate_feature_importance</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span> <span class="n">importance_type</span><span class="o">=</span><span class="s1">&#39;conditional&#39;</span><span class="p">)</span>
+
+<span class="n">y_surrogate</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">extra_attrs</span><span class="p">[</span><span class="s1">&#39;surrogate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">surrogate_accuracy_score</span>
+
+<span class="n">surrogate_accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_surrogate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.9166666666666666
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">classification_explainability_metrics</span>
+
+<span class="n">classification_explainability_metrics</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>reference</th>
+    </tr>
+    <tr>
+      <th>metric</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alpha Importance Score</th>
+      <td>0.100000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>XAI Ease Score</th>
+      <td>1.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Position Parity</th>
+      <td>0.500000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Rank Alignment</th>
+      <td>0.500000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Spread Ratio</th>
+      <td>0.196356</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Spread Divergence</th>
+      <td>0.230898</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Surrogate Accuracy Score</th>
+      <td>0.916667</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>For surrogate, the interpretation of metric scores is similar to the permutation feature importance. But, we can plot the surrogate model to visualize the relationship between the features and the predicted outcome.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.plots</span> <span class="kn">import</span> <span class="n">plot_surrogate</span>
+
+<span class="n">plot_surrogate</span><span class="p">(</span><span class="n">importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: &gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_50_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_50_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_feature_importance</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Feature Importance&#39;}, xlabel=&#39;Importance&#39;, ylabel=&#39;Features&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_51_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_51_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">class_idx</span><span class="o">=</span><span class="n">class_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_52_0.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_52_0.png" />
+</div>
+</div>
+</section>
+<section id="LIME-metrics">
+<h3>LIME metrics<a class="headerlink" href="#LIME-metrics" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.utils</span> <span class="kn">import</span> <span class="n">BinaryClassificationProxy</span>
+<span class="kn">from</span> <span class="nn">holistic.utils.feature_importances</span> <span class="kn">import</span> <span class="n">compute_lime_feature_importance</span>
+<span class="kn">from</span> <span class="nn">holistic.inspection</span> <span class="kn">import</span> <span class="n">compute_partial_dependence</span>
+
+<span class="n">proxy</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">local_importances</span> <span class="o">=</span> <span class="n">compute_lime_feature_importance</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">)</span>
+
+<span class="n">importances</span> <span class="o">=</span> <span class="n">local_importances</span><span class="o">.</span><span class="n">to_global</span><span class="p">()</span>
+
+<span class="n">ranked_importances</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">top_alpha</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">partial_dependencies</span> <span class="o">=</span> <span class="n">compute_partial_dependence</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="n">ranked_importances</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">feature_stability</span>
+
+<span class="n">feature_stability</span><span class="p">(</span><span class="n">local_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.8804413323983704)
+</pre></div></div>
+</div>
+<p>The metrics used to evaluate the feature importance indicates that:</p>
+<ul class="simple">
+<li><p>Alpha importance score: a rasonable number of features have high importance values, suggesting a more even distribution of feature importance.</p></li>
+<li><p>XAI ease score: simple, linear relationship between the feature and the predicted outcome. These curves are easy to interpret.</p></li>
+<li><p>Position parity: low consistency in the order of feature importance, suggesting variability in model behavior across different groups.</p></li>
+<li><p>Rank alignment: low overlap in the top-k feature importance rankings, suggesting variability in the model’s feature importance across different groups.</p></li>
+<li><p>Spread ratio: distribution of feature importance is far from uniform, suggesting that the model relies on fewer, more significant features. This implies higher interpretability.</p></li>
+<li><p>Feature stability: the importance of features is consistent across different features, making the model more interpretable and reliable.</p></li>
+<li><p>Data stability: the importance of features is consistent across different instances, making the model more interpretable and reliable.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">classification_explainability_metrics</span>
+
+<span class="n">classification_explainability_metrics</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">,</span> <span class="n">local_importances</span><span class="o">=</span><span class="n">local_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>reference</th>
+    </tr>
+    <tr>
+      <th>metric</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alpha Importance Score</th>
+      <td>0.600000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>XAI Ease Score</th>
+      <td>1.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Position Parity</th>
+      <td>0.120833</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Rank Alignment</th>
+      <td>0.261111</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Spread Ratio</th>
+      <td>0.913433</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Spread Divergence</th>
+      <td>0.715095</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Feature Stability</th>
+      <td>0.880441</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_feature_importance</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Feature Importance&#39;}, xlabel=&#39;Importance&#39;, ylabel=&#39;Features&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_58_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_58_1.png" />
+</div>
+</div>
+<p>We can observe that the importances in the LIME model are not concentrated in a few features. The top-10 features show serum_sodium, time, high blood pressure, platelets, and smoking as the most important features. This is different from the permutation and surrogate feature importance, which showed time and ejection fraction as the most important features.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_index</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#1</span>
+<span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">class_idx</span><span class="o">=</span><span class="n">class_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_60_0.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_60_0.png" />
+</div>
+</div>
+<p>Partial dependence plot show that the model has a linear relationship between the feature and the predicted outcome. This indicates that the model is easy to interpret and understand.</p>
+</section>
+<section id="SHAP-metrics">
+<h3>SHAP metrics<a class="headerlink" href="#SHAP-metrics" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.utils</span> <span class="kn">import</span> <span class="n">BinaryClassificationProxy</span>
+<span class="kn">from</span> <span class="nn">holistic.utils.feature_importances</span> <span class="kn">import</span> <span class="n">compute_shap_feature_importance</span>
+<span class="kn">from</span> <span class="nn">holistic.inspection</span> <span class="kn">import</span> <span class="n">compute_partial_dependence</span>
+
+<span class="n">proxy</span> <span class="o">=</span> <span class="n">BinaryClassificationProxy</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">predict_proba</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">local_importances</span> <span class="o">=</span> <span class="n">compute_shap_feature_importance</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">)</span>
+
+<span class="n">importances</span> <span class="o">=</span> <span class="n">local_importances</span><span class="o">.</span><span class="n">to_global</span><span class="p">()</span>
+
+<span class="n">ranked_importances</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">top_alpha</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">partial_dependencies</span> <span class="o">=</span> <span class="n">compute_partial_dependence</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="n">ranked_importances</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">classification_explainability_metrics</span>
+
+<span class="n">classification_explainability_metrics</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">conditional_importances</span><span class="p">,</span> <span class="n">local_importances</span><span class="o">=</span><span class="n">local_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>reference</th>
+    </tr>
+    <tr>
+      <th>metric</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alpha Importance Score</th>
+      <td>0.200000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>XAI Ease Score</th>
+      <td>1.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Position Parity</th>
+      <td>0.375000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Rank Alignment</th>
+      <td>0.625000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Spread Ratio</th>
+      <td>0.393863</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Spread Divergence</th>
+      <td>0.310986</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Feature Stability</th>
+      <td>0.933345</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The metrics used to evaluate the feature importance based on SHAP values is close to the LIME, except for the spread ratio. The spread ratio is lower for SHAP.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.explainability.metrics</span> <span class="kn">import</span> <span class="n">feature_stability</span>
+
+<span class="n">feature_stability</span><span class="p">(</span><span class="n">local_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.9333448553882717)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_feature_importance</span><span class="p">(</span><span class="n">importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Feature Importance&#39;}, xlabel=&#39;Importance&#39;, ylabel=&#39;Features&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_67_1.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_67_1.png" />
+</div>
+</div>
+<p>By analyzing the SHAP summary plot, we can observe that the most important features are time and ejection fraction, which are consistent with the permutation feature importance and surrogate importance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_index</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#1</span>
+<span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">partial_dependencies</span><span class="p">,</span> <span class="n">ranked_importances</span><span class="p">,</span> <span class="n">class_idx</span><span class="o">=</span><span class="n">class_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_69_0.png" src="../../../../_images/gallery_tutorials_explainability_examples_example_clinical_records_69_0.png" />
+</div>
+</div>
+<p>Partial dependence plot also show that the model has a linear relationship between the feature and the predicted outcome. This indicates that the model is easy to interpret and understand.</p>
+</section>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>This case study explored the explainability of a Logistic Regression model trained to predict the survival of heart failure patients. We used a dataset from the UCI Repository, featuring 299 patient records with 10 clinical features.</p>
+<p>The analysis revealed that “time” (follow-up period) and “ejection fraction” were identified as the most influential features for predicting survival outcomes, consistently across permutation feature importance, surrogate model analysis, and SHAP metrics. This finding aligns with clinical understanding, where longer follow-up periods allow for better observation of disease progression and the ejection fraction directly reflects the heart’s pumping efficiency.</p>
+<p>The global explainability metrics highlighted the model’s overall simplicity and interpretability. The high XAI ease score, position parity, and rank alignment suggest a straightforward relationship between features and outcomes and consistent model behavior across different patient subgroups. The relatively high spread ratio reinforces this interpretability by indicating that the model primarily relies on a few, highly significant features. While LIME metrics also highlighted the model’s
+simplicity, they pointed to potential variability in feature importance across different subgroups and individual instances. This observation suggests the need for further investigation and potentially, model refinement to ensure consistent and equitable predictions for all patients.</p>
+<p>This case study demonstrates the value of explainability metrics in healthcare applications of machine learning. Understanding the model’s reasoning process not only strengthens trust in its predictions but also provides valuable insights into the clinical factors driving survival outcomes for heart failure patients.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.silhouette\_diff
+======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: silhouette_diff

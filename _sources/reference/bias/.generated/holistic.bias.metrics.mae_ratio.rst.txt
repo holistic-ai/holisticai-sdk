@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.mae\_ratio
+================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: mae_ratio

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.confusion\_matrix
+=======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: confusion_matrix

@@ -1,0 +1,6 @@
+﻿holistic.security.metrics.privacy\_risk\_score
+==============================================
+
+.. currentmodule:: holistic.security.metrics
+
+.. autofunction:: privacy_risk_score

@@ -1,0 +1,6 @@
+﻿holistic.datasets.load\_last\_fm
+================================
+
+.. currentmodule:: holistic.datasets
+
+.. autofunction:: load_last_fm

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.cluster\_balance
+======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: cluster_balance

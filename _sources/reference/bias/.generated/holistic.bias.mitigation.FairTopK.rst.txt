@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.FairTopK
+=================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: FairTopK

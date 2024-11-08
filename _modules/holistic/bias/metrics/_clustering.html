@@ -1,0 +1,1205 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.bias.metrics._clustering &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/bias/metrics/_clustering';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.bias.metrics._clustering</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.bias.metrics._clustering</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">holistic.utils._recommender_tools</span> <span class="kn">import</span> <span class="n">entropy</span>
+<span class="kn">from</span> <span class="nn">holistic.utils._validation</span> <span class="kn">import</span> <span class="n">_clustering_checks</span>
+
+<span class="c1"># sklearn imports</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">adjusted_mutual_info_score</span><span class="p">,</span>
+    <span class="n">mean_absolute_error</span><span class="p">,</span>
+    <span class="n">silhouette_samples</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="cluster_balance">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.cluster_balance.html#holistic.bias.metrics.cluster_balance">[docs]</a>
+<span class="k">def</span> <span class="nf">cluster_balance</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cluster Balance</span>
+
+<span class="sd">    Given a clustering and protected attribute. The cluster balance is\</span>
+<span class="sd">    the minimum over all groups and clusters of the ratio of the representation\</span>
+<span class="sd">    of members of that group in that cluster to the representation overall.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. That is when all clusters have the exact same\</span>
+<span class="sd">    representation as the data. Lower values imply the existence of clusters\</span>
+<span class="sd">    where either group_a or group_b is underrepresented.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Cluster Balance</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import cluster_balance</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_cluster = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; cluster_balance(group_a, group_b, y_pred_cluster)</span>
+<span class="sd">    0.5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># Get clusters</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># group_a ratio overall</span>
+    <span class="n">r_tot_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a</span><span class="p">)</span>
+    <span class="c1"># group_b ratio overall</span>
+    <span class="n">r_tot_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_b</span><span class="p">)</span>
+
+    <span class="n">min_ratio</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># loop over clusters</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+        <span class="c1"># variables</span>
+        <span class="n">members</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">==</span> <span class="n">c</span>
+        <span class="n">n_members</span> <span class="o">=</span> <span class="n">members</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1.0e-20</span>
+        <span class="n">n_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="p">[</span><span class="n">members</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1.0e-20</span>
+        <span class="n">n_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="p">[</span><span class="n">members</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1.0e-20</span>
+
+        <span class="c1"># group_a ratios</span>
+        <span class="n">ratio_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_a</span> <span class="o">/</span> <span class="n">n_members</span><span class="p">)</span> <span class="o">/</span> <span class="n">r_tot_a</span>
+        <span class="n">min_a</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">ratio_a</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ratio_a</span><span class="p">)</span>
+
+        <span class="c1"># group_b ratios</span>
+        <span class="n">ratio_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_b</span> <span class="o">/</span> <span class="n">n_members</span><span class="p">)</span> <span class="o">/</span> <span class="n">r_tot_b</span>
+        <span class="n">min_b</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">ratio_b</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ratio_b</span><span class="p">)</span>
+
+        <span class="n">min_ratio</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_ratio</span><span class="p">,</span> <span class="n">min_a</span><span class="p">,</span> <span class="n">min_b</span><span class="p">)</span>
+
+    <span class="c1"># return minimum balance in list</span>
+    <span class="k">return</span> <span class="n">min_ratio</span></div>
+
+
+
+<div class="viewcode-block" id="min_cluster_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.min_cluster_ratio.html#holistic.bias.metrics.min_cluster_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">min_cluster_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minimum Cluster Ratio</span>
+
+<span class="sd">    Given a clustering and protected attributes. The min cluster ratio is\</span>
+<span class="sd">    the minimum over all clusters of the ratio of number of group_a members\</span>
+<span class="sd">    to the number of group_b members.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. That is when all clusters are perfectly\</span>
+<span class="sd">    balanced. Low values imply the existence of clusters where\</span>
+<span class="sd">    group_a has fewer members than group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Minimum Cluster Ratio</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import min_cluster_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_cluster = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; min_cluster_ratio(group_a, group_b, y_pred_cluster)</span>
+<span class="sd">    0.2499999999375</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># Get clusters</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">min_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+    <span class="c1"># Get balance of each cluster</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+        <span class="n">members</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">==</span> <span class="n">c</span>
+        <span class="n">n_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="p">[</span><span class="n">members</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">n_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="p">[</span><span class="n">members</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="n">min_ratio</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_ratio</span><span class="p">,</span> <span class="p">(</span><span class="n">n_a</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_b</span> <span class="o">+</span> <span class="mf">1.0e-32</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">min_ratio</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_avg_cluster_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Average Cluster Ratio</span>
+
+<span class="sd">    Given a clustering and protected attributes. The average cluster ratio is\</span>
+<span class="sd">    the average over all clusters of the ratio of group_a members to group_b\</span>
+<span class="sd">    members in that cluster.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Low values imply the predominance of clusters where\</span>
+<span class="sd">    group_a is underrepresented. High values imply the predominance of clusters where\</span>
+<span class="sd">    group_b is underrepresented.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Average Cluster Ratio</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_cluster_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_cluster = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; avg_cluster_ratio(group_a, group_b, y_pred_cluster)</span>
+<span class="sd">    1.0833333323124998</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># Get clusters</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+    <span class="n">balances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_clusters</span><span class="p">,))</span>
+
+    <span class="c1"># Get balance of each cluster</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">),</span> <span class="n">clusters</span><span class="p">):</span>
+        <span class="n">members</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">==</span> <span class="n">c</span>
+        <span class="n">n_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="p">[</span><span class="n">members</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">n_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="p">[</span><span class="n">members</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="c1"># if n_b zero we get infinity for mean</span>
+        <span class="k">if</span> <span class="n">n_b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">balances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_a</span> <span class="o">/</span> <span class="n">n_b</span>
+        <span class="c1"># Check non zero for b</span>
+        <span class="n">balances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_a</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_b</span> <span class="o">+</span> <span class="mf">1.0e-32</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">balances</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_cluster_dist</span><span class="p">(</span><span class="n">y_pred_g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Group distribution over clusters</span>
+
+<span class="sd">    This function computes the distribution of the group across clusters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_pred_g : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+<span class="sd">    clusters : array-like</span>
+<span class="sd">        Cluster ground truth (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy array</span>
+<span class="sd">        Cluster Distribution</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bin_mat</span> <span class="o">=</span> <span class="n">y_pred_g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">clusters</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">bin_mat</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dist</span> <span class="o">/</span> <span class="n">dist</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="cluster_dist_l1">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.cluster_dist_l1.html#holistic.bias.metrics.cluster_dist_l1">[docs]</a>
+<span class="k">def</span> <span class="nf">cluster_dist_l1</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cluster Distribution Total Variation</span>
+
+<span class="sd">    This function computes the distribution of group_a and group_b across clusters.\</span>
+<span class="sd">    It then outputs the total variation distance between these distributions.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. That indicates that both groups are distributed\</span>
+<span class="sd">    similarly amongst the clusters. The metric ranges between 0 and 1,\</span>
+<span class="sd">    with higher values indicating the groups are distributed in very\</span>
+<span class="sd">    different ways.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Cluster Distribution Total Variation</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import cluster_dist_l1</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_cluster = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; cluster_dist_l1(group_a, group_b, y_pred_cluster)</span>
+<span class="sd">    0.4166666666666667</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># get unique clusters</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># split data by group</span>
+    <span class="n">y_pred_a</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_pred_b</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># compute distributions</span>
+    <span class="n">dist_a</span> <span class="o">=</span> <span class="n">_cluster_dist</span><span class="p">(</span><span class="n">y_pred_a</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+    <span class="n">dist_b</span> <span class="o">=</span> <span class="n">_cluster_dist</span><span class="p">(</span><span class="n">y_pred_b</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+
+    <span class="c1"># return total variation norm</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dist_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">dist_a</span><span class="p">,</span> <span class="n">dist_b</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cluster_dist_kl">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.cluster_dist_kl.html#holistic.bias.metrics.cluster_dist_kl">[docs]</a>
+<span class="k">def</span> <span class="nf">cluster_dist_kl</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cluster Distribution KL</span>
+
+<span class="sd">    This function computes the distribution of group_a and group_b\</span>
+<span class="sd">    membership across the clusters. It then returns the KL distance\</span>
+<span class="sd">    from the distribution of group_a to the distribution of group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. That indicates that both groups are distributed\</span>
+<span class="sd">    similarly amongst the clusters. Higher values indicate the distributions\</span>
+<span class="sd">    of both groups amongst the clusters differ more.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Cluster Distribution KL</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`KL(P_a,P_b)`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import cluster_dist_kl</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_cluster = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; cluster_dist_kl(group_a, group_b, y_pred_cluster)</span>
+<span class="sd">    0.4054651081081642</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># get unique clusters</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># split data by group</span>
+    <span class="n">y_pred_a</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_pred_b</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># compute distributions</span>
+    <span class="n">dist_a</span> <span class="o">=</span> <span class="n">_cluster_dist</span><span class="p">(</span><span class="n">y_pred_a</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+    <span class="n">dist_b</span> <span class="o">=</span> <span class="n">_cluster_dist</span><span class="p">(</span><span class="n">y_pred_b</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+
+    <span class="c1"># return KL</span>
+    <span class="k">return</span> <span class="n">entropy</span><span class="p">(</span><span class="n">dist_a</span><span class="p">,</span> <span class="n">dist_b</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cluster_dist_entropy">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.cluster_dist_entropy.html#holistic.bias.metrics.cluster_dist_entropy">[docs]</a>
+<span class="k">def</span> <span class="nf">cluster_dist_entropy</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minority Cluster Distribution Entropy</span>
+
+<span class="sd">    The entropy of the distribution of the group</span>
+<span class="sd">    over the clusters.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    Lower values indicate most members of the group are allocated to\</span>
+<span class="sd">    the same cluaster. Hence we encourage higher values of\</span>
+<span class="sd">    the entropy, which indicate more homogeneity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Group Presence Entropy</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`Entropy(P_{group})`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import cluster_dist_entropy</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred_cluster = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; cluster_dist_entropy(group_b, y_pred_cluster)</span>
+<span class="sd">    0.8675632284814613</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># get unique clusters</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># split data by group</span>
+    <span class="n">y_pred_group</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># compute distribution</span>
+    <span class="n">dist_b</span> <span class="o">=</span> <span class="n">_cluster_dist</span><span class="p">(</span><span class="n">y_pred_group</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+
+    <span class="c1"># return Entropy</span>
+    <span class="k">return</span> <span class="n">entropy</span><span class="p">(</span><span class="n">dist_b</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_ami_diff</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adjusted Mutual information Difference</span>
+
+<span class="sd">    We compute the difference of the adjusted mutual information\</span>
+<span class="sd">    on group_a and group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    The MI difference ranges from -1 to 1, with lower values indicating bias\</span>
+<span class="sd">    towards group_a and larger values indicating bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+<span class="sd">    y_true : array-like</span>
+<span class="sd">        Cluster ground truth (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Mutual information Difference</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import ami_diff</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; y_true = np.array([0, 1, 1, 2, 1, 0, 1, 2, 0, 2])</span>
+<span class="sd">    &gt;&gt;&gt; ami_diff(group_a, group_b, y_pred, y_true)</span>
+<span class="sd">    0.6342556627317533</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span>
+
+    <span class="c1"># Slice by min and maj groups</span>
+    <span class="n">y_pred_a</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_pred_b</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_true_a</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_true_b</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Compute AMI scores</span>
+    <span class="n">ami_a</span> <span class="o">=</span> <span class="n">adjusted_mutual_info_score</span><span class="p">(</span><span class="n">y_true_a</span><span class="p">,</span> <span class="n">y_pred_a</span><span class="p">)</span>
+    <span class="n">ami_b</span> <span class="o">=</span> <span class="n">adjusted_mutual_info_score</span><span class="p">(</span><span class="n">y_true_b</span><span class="p">,</span> <span class="n">y_pred_b</span><span class="p">)</span>
+
+    <span class="c1"># Return Spread</span>
+    <span class="k">return</span> <span class="n">ami_a</span> <span class="o">-</span> <span class="n">ami_b</span>
+
+
+<div class="viewcode-block" id="social_fairness_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.social_fairness_ratio.html#holistic.bias.metrics.social_fairness_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">social_fairness_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Social Fairness Ratio</span>
+
+<span class="sd">    Given a centroid based clustering, this function compute the average\</span>
+<span class="sd">    distance to the nearest centroid for both groups. The metric is the\</span>
+<span class="sd">    ratio of the resulting distance for group_a to group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values indicate the group_a\</span>
+<span class="sd">    is on average closer to the respective centroids. Higher\</span>
+<span class="sd">    values indicate that group_a is on average further from the\</span>
+<span class="sd">    respective centroids.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    data : matrix-like</span>
+<span class="sd">        Data matrix of shape (num_inst, dim)</span>
+<span class="sd">    centroids : matrix-like</span>
+<span class="sd">        Centroids (centers) of shape (num_centroids, dim)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Social Fairness Ratio</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import social_fairness_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; data = np.array(</span>
+<span class="sd">    ...     [</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [1, 1],</span>
+<span class="sd">    ...         [1, 1],</span>
+<span class="sd">    ...         [0, -1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [1, 1],</span>
+<span class="sd">    ...         [0, -1],</span>
+<span class="sd">    ...     ]</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; centroids = np.array([[-2, 1], [1, 2], [0, -2]])</span>
+<span class="sd">    &gt;&gt;&gt; social_fairness_ratio(group_a, group_b, data, centroids)</span>
+<span class="sd">    1.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">centroids</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="o">=</span><span class="n">centroids</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Split by group</span>
+    <span class="n">data_a</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">data_b</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Reshape matrices for vectorization</span>
+    <span class="n">data_a</span> <span class="o">=</span> <span class="n">data_a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data_a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">data_b</span> <span class="o">=</span> <span class="n">data_b</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data_b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Calculate distances</span>
+    <span class="n">dist_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">data_a</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">dist_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">data_b</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Take minimum over centroids and average over instances</span>
+    <span class="n">dist_a</span> <span class="o">=</span> <span class="n">dist_a</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">dist_b</span> <span class="o">=</span> <span class="n">dist_b</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># return ratio of averages</span>
+    <span class="k">return</span> <span class="n">dist_a</span> <span class="o">/</span> <span class="n">dist_b</span></div>
+
+
+
+<div class="viewcode-block" id="silhouette_diff">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.silhouette_diff.html#holistic.bias.metrics.silhouette_diff">[docs]</a>
+<span class="k">def</span> <span class="nf">silhouette_diff</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Silhouette Difference</span>
+
+<span class="sd">    We compute the difference of the mean silhouette score for both\</span>
+<span class="sd">    groups.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    The silhouette difference ranges from -1 to 1, with lower values indicating bias\</span>
+<span class="sd">    towards group_a and larger values indicating bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    data : matrix-like</span>
+<span class="sd">        Data matrix of shape (num_inst, dim)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Silhouette difference</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\texttt{mean_silhouette_a - mean_silhouette_b}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import silhouette_diff</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; data = np.array(</span>
+<span class="sd">    ...     [</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [1, 1],</span>
+<span class="sd">    ...         [1, 1],</span>
+<span class="sd">    ...         [0, -1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [-1, 1],</span>
+<span class="sd">    ...         [1, 1],</span>
+<span class="sd">    ...         [0, -1],</span>
+<span class="sd">    ...     ]</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0, 1, 1, 2, 0, 0, 0, 0, 1, 2])</span>
+<span class="sd">    &gt;&gt;&gt; silhouette_diff(group_a, group_b, data, y_pred)</span>
+<span class="sd">    0.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_clustering_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Compute silhouette scores</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">silhouette_samples</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Split min and maj</span>
+    <span class="n">scores_a</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">scores_b</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores_a</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores_b</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="clustering_bias_metrics">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.clustering_bias_metrics.html#holistic.bias.metrics.clustering_bias_metrics">[docs]</a>
+<span class="k">def</span> <span class="nf">clustering_bias_metrics</span><span class="p">(</span>
+    <span class="n">group_a</span><span class="p">,</span>
+    <span class="n">group_b</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">centroids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;equal_outcome&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clustering bias metrics batch computation</span>
+
+<span class="sd">    This function computes all the relevant clustering bias metrics,\</span>
+<span class="sd">    and displays them as a pandas dataframe.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Cluster predictions (categorical)</span>
+<span class="sd">    data : matrix-like, optional</span>
+<span class="sd">        Data matrix of shape (num_inst, dim)</span>
+<span class="sd">    centroids : matrix-like, optional</span>
+<span class="sd">        Centroids (centers)</span>
+<span class="sd">    metric_type : str, optional</span>
+<span class="sd">        Specifies which metrics we compute: &#39;both&#39;, &#39;equal_outcome&#39; or &#39;equal_opportunity&#39;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas DataFrame</span>
+<span class="sd">        Metrics | Values | Reference</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">perform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Cluster Balance&quot;</span><span class="p">:</span> <span class="n">cluster_balance</span><span class="p">,</span>
+        <span class="s2">&quot;Minimum Cluster Ratio&quot;</span><span class="p">:</span> <span class="n">min_cluster_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;Cluster Distribution Total Variation&quot;</span><span class="p">:</span> <span class="n">cluster_dist_l1</span><span class="p">,</span>
+        <span class="s2">&quot;Cluster Distribution KL Div&quot;</span><span class="p">:</span> <span class="n">cluster_dist_kl</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">centroids_data_perform</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Social Fairness Ratio&quot;</span><span class="p">:</span> <span class="n">social_fairness_ratio</span><span class="p">}</span>
+
+    <span class="n">pred_data_perform</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Silhouette Difference&quot;</span><span class="p">:</span> <span class="n">silhouette_diff</span><span class="p">}</span>
+
+    <span class="n">ref_vals</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Cluster Balance&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Minimum Cluster Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Cluster Distribution Total Variation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Cluster Distribution KL Div&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Social Fairness Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Silhouette Difference&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Mutual Information Difference&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">out_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">opp_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">out_metrics</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">perform</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">centroids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">out_metrics</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">centroids_data_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y_pred</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">out_metrics</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">pred_data_perform</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;both&quot;</span><span class="p">:</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="n">out_metrics</span> <span class="o">+</span> <span class="n">opp_metrics</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;equal_outcome&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">out_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;equal_opportunity&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">opp_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;metric_type is not one of : both, equal_outcome, equal_opportunity&quot;</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

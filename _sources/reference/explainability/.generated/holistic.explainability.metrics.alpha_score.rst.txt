@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.alpha\_score
+============================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: alpha_score

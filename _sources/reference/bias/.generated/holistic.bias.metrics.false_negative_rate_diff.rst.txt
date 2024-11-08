@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.false\_negative\_rate\_diff
+=================================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: false_negative_rate_diff

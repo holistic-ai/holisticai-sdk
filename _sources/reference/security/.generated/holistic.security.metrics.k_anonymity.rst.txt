@@ -1,0 +1,6 @@
+﻿holistic.security.metrics.k\_anonymity
+======================================
+
+.. currentmodule:: holistic.security.metrics
+
+.. autofunction:: k_anonymity

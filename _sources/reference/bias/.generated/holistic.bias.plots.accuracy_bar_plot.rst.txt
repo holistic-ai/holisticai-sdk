@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.accuracy\_bar\_plot
+=======================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: accuracy_bar_plot

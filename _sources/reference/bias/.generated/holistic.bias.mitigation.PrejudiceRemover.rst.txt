@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.PrejudiceRemover
+=========================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: PrejudiceRemover

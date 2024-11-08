@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.PluginEstimationAndCalibration
+=======================================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: PluginEstimationAndCalibration

@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.bias.mitigation.postprocessing.fair_topk.transformer &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/bias/mitigation/postprocessing/fair_topk/transformer';</script>
+    <link rel="icon" href="../../../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.bias.mitigation.postprocessing.fair_topk.transformer</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.bias.mitigation.postprocessing.fair_topk.transformer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation.postprocessing.fair_topk.algorithm_utils.fail_prob</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RecursiveNumericFailProbabilityCalculator</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.mitigation.postprocessing.fair_topk.algorithm_utils.valitation_utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_ranking</span><span class="p">,</span>
+    <span class="n">validate_basic_parameters</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">holistic.utils.transformers.bias</span> <span class="kn">import</span> <span class="n">BMPostprocessing</span> <span class="k">as</span> <span class="n">BMPost</span>
+
+
+<div class="viewcode-block" id="FairTopK">
+<a class="viewcode-back" href="../../../../../../reference/bias/.generated/holistic.bias.mitigation.FairTopK.html#holistic.bias.mitigation.FairTopK">[docs]</a>
+<span class="k">class</span> <span class="nc">FairTopK</span><span class="p">(</span><span class="n">BMPost</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fair Top K bias mitigation [1]_ can be used for Recommender Systems.\</span>
+<span class="sd">    The strategy extends group fairness definition using the standard notion of protected groups\</span>
+<span class="sd">    and is based on ensuring that the proportion of protected candidates in every prefix of the top-k\</span>
+<span class="sd">    ranking.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    top_n : int</span>
+<span class="sd">        The total number of elements.</span>
+
+<span class="sd">    p : float</span>
+<span class="sd">        The proportion of protected candidates in the top-k ranking.</span>
+
+<span class="sd">    alpha : float</span>
+<span class="sd">        The significance level.</span>
+
+<span class="sd">    query_col : str</span>
+<span class="sd">        The name of the column in data that contains query ids.</span>
+
+<span class="sd">    doc_col : str</span>
+<span class="sd">        The name of the column in data that contains document ids.</span>
+
+<span class="sd">    group_col : str</span>
+<span class="sd">        The name of the column in data that contains protected attribute.</span>
+
+<span class="sd">    score_col : str</span>
+<span class="sd">        The name of the column in data that contains judgment values.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.mitigation import FairTopK</span>
+<span class="sd">    &gt;&gt;&gt; mitigator = FairTopK(**params)</span>
+<span class="sd">    &gt;&gt;&gt; new_rankings = mitigator.transform(rankings)</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ---------</span>
+<span class="sd">    .. [1] Zehlike, Meike, et al. &quot;Fa* ir: A fair top-k ranking algorithm.&quot; Proceedings of the 2017 ACM on\</span>
+<span class="sd">    Conference on Information and Knowledge Management. 2017.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">top_n</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">alpha</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">query_col</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;query_id&quot;</span><span class="p">,</span>
+        <span class="n">doc_col</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;doc_id&quot;</span><span class="p">,</span>
+        <span class="n">group_col</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;group_id&quot;</span><span class="p">,</span>
+        <span class="n">score_col</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># check the parameters first</span>
+        <span class="n">validate_basic_parameters</span><span class="p">(</span><span class="n">top_n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_col</span> <span class="o">=</span> <span class="n">query_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc_col</span> <span class="o">=</span> <span class="n">doc_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_col</span> <span class="o">=</span> <span class="n">group_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score_col</span> <span class="o">=</span> <span class="n">score_col</span>
+
+        <span class="c1"># assign the parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_n</span> <span class="o">=</span> <span class="n">top_n</span>  <span class="c1"># the total number of elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>  <span class="c1"># the proportion of protected candidates in the top-k ranking</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>  <span class="c1"># the significance level</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># stores generated mtables in memory</span>
+
+<div class="viewcode-block" id="FairTopK.transform">
+<a class="viewcode-back" href="../../../../../../reference/bias/.generated/holistic.bias.mitigation.FairTopK.html#holistic.bias.mitigation.FairTopK.transform">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rankings</span><span class="p">,</span> <span class="n">p_attr</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply transform to prediction scores.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rankings : DataFrame</span>
+<span class="sd">            Predicted matrix scores (nb_examples*top_n, 3) [query_id, doc_id, scores]</span>
+
+<span class="sd">        p_attr: matrix-like</span>
+<span class="sd">            Item groups (nb_examples, 3) [query_id, doc_id, protected]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DataFrame</span>
+<span class="sd">            The re-ranked dataframe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">p_attr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rankings</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;protected groups must be provided&quot;</span><span class="p">)</span>
+            <span class="n">new_rankings</span> <span class="o">=</span> <span class="n">rankings</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_col</span> <span class="ow">in</span> <span class="n">rankings</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">rankings</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_col</span><span class="p">]</span>
+
+            <span class="n">new_rankings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">rankings</span><span class="p">,</span> <span class="n">p_attr</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">query_col</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_col</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+        <span class="n">query_result_by_group</span> <span class="o">=</span> <span class="n">new_rankings</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_col</span><span class="p">)</span>
+        <span class="n">re_rankings</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fair</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_ranking</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">query_result_by_group</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">re_rankings</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FairTopK.transform_ranking">
+<a class="viewcode-back" href="../../../../../../reference/bias/.generated/holistic.bias.mitigation.FairTopK.html#holistic.bias.mitigation.FairTopK.transform_ranking">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform_ranking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranking</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applies FA*IR re-ranking to the input ranking using an adjusted mtable</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ranking: list</span>
+<span class="sd">            The ranking to be re-ranked (list of FairScoreDoc)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ------</span>
+<span class="sd">        DataFrame</span>
+<span class="sd">            The re-ranked dataframe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">protected</span> <span class="o">=</span> <span class="n">ranking</span><span class="p">[</span><span class="n">ranking</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_col</span><span class="p">]]</span>
+        <span class="n">non_protected</span> <span class="o">=</span> <span class="n">ranking</span><span class="p">[</span><span class="o">~</span><span class="n">ranking</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_col</span><span class="p">]]</span>
+        <span class="n">mtable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_adjusted_mtable</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fair_top_k</span><span class="p">(</span><span class="n">protected</span><span class="p">,</span> <span class="n">non_protected</span><span class="p">,</span> <span class="n">mtable</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_create_adjusted_mtable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        Creates an adjusted mtable by using the alpha value.</span>
+
+<span class="sd">        Return</span>
+<span class="sd">        ------</span>
+<span class="sd">        list</span>
+<span class="sd">            mtable as list of int elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+            <span class="c1"># create the mtable</span>
+            <span class="n">fail_prob_pair</span> <span class="o">=</span> <span class="n">RecursiveNumericFailProbabilityCalculator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">adjust_alpha</span><span class="p">()</span>
+            <span class="n">mtable</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fail_prob_pair</span><span class="o">.</span><span class="n">mtable</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+            <span class="c1"># store as list</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)]</span> <span class="o">=</span> <span class="n">mtable</span>
+
+        <span class="c1"># return from cache</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)]</span>
+
+<div class="viewcode-block" id="FairTopK.is_fair">
+<a class="viewcode-back" href="../../../../../../reference/bias/.generated/holistic.bias.mitigation.FairTopK.html#holistic.bias.mitigation.FairTopK.is_fair">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_fair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranking</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the ranking is fair for the given parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ranking: list</span>
+<span class="sd">            The ranking to be checked (list of Resultinfo)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True if the ranking is fair, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">check_ranking</span><span class="p">(</span><span class="n">ranking</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">group_col</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_adjusted_mtable</span><span class="p">())</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_fair_top_k</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protected_candidates</span><span class="p">,</span> <span class="n">non_protected_candidates</span><span class="p">,</span> <span class="n">mtable</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reorganize the results info ensuring true the mtable condition (#protected[:i] &gt;= mtable[i]).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        protected_candidates:  pd.DataFrame</span>
+<span class="sd">            ranking dataframe filtered with only protected candidates</span>
+
+<span class="sd">        non_protected_candidates:  pd.DataFrame</span>
+<span class="sd">            ranking dataframe filtered with only non protected candidates</span>
+
+<span class="sd">        mtable: list</span>
+<span class="sd">            adjusted mtable</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ------</span>
+<span class="sd">        list</span>
+<span class="sd">            List of re-ranked results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">countProtected</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">idxProtected</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">idxNonProtected</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">idxProtected</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">protected_candidates</span><span class="p">)</span> <span class="ow">and</span> <span class="n">idxNonProtected</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_protected_candidates</span><span class="p">):</span>
+                <span class="c1"># no more candidates available, return list shorter than k</span>
+                <span class="k">return</span> <span class="n">result</span>
+            <span class="k">if</span> <span class="n">idxProtected</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">protected_candidates</span><span class="p">):</span>
+                <span class="c1"># no more protected candidates available, take non-protected instead</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">non_protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxNonProtected</span><span class="p">])</span>
+                <span class="n">idxNonProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">elif</span> <span class="n">idxNonProtected</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_protected_candidates</span><span class="p">):</span>
+                <span class="c1"># no more non-protected candidates available, take protected instead</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxProtected</span><span class="p">])</span>
+                <span class="n">idxProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">countProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">countProtected</span> <span class="o">&lt;</span> <span class="n">mtable</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="c1"># add a protected candidate</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxProtected</span><span class="p">])</span>
+                <span class="n">idxProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">countProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="p">(</span>
+                <span class="n">protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxProtected</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">]</span>
+                <span class="o">&gt;=</span> <span class="n">non_protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxNonProtected</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">score_col</span><span class="p">]</span>
+            <span class="p">):</span>
+                <span class="c1"># the best is a protected one</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxProtected</span><span class="p">])</span>
+                <span class="n">idxProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">countProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># the best is a non-protected one</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">non_protected_candidates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idxNonProtected</span><span class="p">])</span>
+                <span class="n">idxNonProtected</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

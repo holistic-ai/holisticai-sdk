@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.tree\_number\_of\_rules
+=======================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: tree_number_of_rules

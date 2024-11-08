@@ -1,0 +1,6 @@
+﻿holistic.robustness.metrics.accuracy\_degradation\_profile
+==========================================================
+
+.. currentmodule:: holistic.robustness.metrics
+
+.. autofunction:: accuracy_degradation_profile

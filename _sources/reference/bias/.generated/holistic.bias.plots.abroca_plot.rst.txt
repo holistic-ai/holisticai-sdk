@@ -1,0 +1,12 @@
+﻿holistic.bias.plots.abroca\_plot
+================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: holistic.bias.plots.abroca_plot
+
+.. _sphx_glr_backreferences_holistic.bias.plots.abroca_plot:
+
+.. minigallery:: holistic.bias.plots.abroca_plot
+   :add-heading: Gallery examples
+   :heading-level: -

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.no\_disparate\_impact\_level
+==================================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: no_disparate_impact_level

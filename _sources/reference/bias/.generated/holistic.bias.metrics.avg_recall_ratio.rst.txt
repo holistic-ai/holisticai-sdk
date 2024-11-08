@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.avg\_recall\_ratio
+========================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: avg_recall_ratio

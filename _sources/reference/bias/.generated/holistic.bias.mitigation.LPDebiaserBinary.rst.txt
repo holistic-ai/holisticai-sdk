@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.LPDebiaserBinary
+=========================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: LPDebiaserBinary

@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.robustness.metrics.dataset_shift._accuracy_degradation_profile &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/robustness/metrics/dataset_shift/_accuracy_degradation_profile';</script>
+    <link rel="icon" href="../../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.robustness.metrics.dataset_shift._accuracy_degradation_profile</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.robustness.metrics.dataset_shift._accuracy_degradation_profile</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module description:</span>
+<span class="sd">-------------------</span>
+<span class="sd">- This module contains functions to calculate the accuracy degradation profile of a model.</span>
+
+
+<span class="sd">This module provides tools to evaluate and visualize the robustness of machine</span>
+<span class="sd">learning models under conditions of dataset shift by analyzing accuracy</span>
+<span class="sd">degradation. It includes methods for generating degradation profiles and</span>
+<span class="sd">identifying critical points where performance significantly drops. The</span>
+<span class="sd">functions in this module help quantify how well a model maintains its</span>
+<span class="sd">predictive performance as the available test data size decreases, enabling</span>
+<span class="sd">users to make informed decisions about model stability in real-world scenarios.</span>
+
+<span class="sd">Functions included:</span>
+<span class="sd">-------------------</span>
+<span class="sd">- accuracy_degradation_factor: Identifies the first percentual of the group of</span>
+<span class="sd">interest where accuracy suffers a significant drawback.</span>
+
+<span class="sd">- accuracy_degradation_profile: Generates a detailed profile showing how a</span>
+<span class="sd">model&#39;s accuracy degrades as the test set size is iteratively reduced, enabling</span>
+<span class="sd">analysis of the model&#39;s stability and resilience under varying conditions.</span>
+
+<span class="sd">This module is particularly useful for monitoring model performance in dynamic</span>
+<span class="sd">environments where test data may change or reduce in size.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+
+<span class="c1"># Constants</span>
+<span class="n">STEP_SIZE</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">DECISION_COLUMN</span> <span class="o">=</span> <span class="s2">&quot;decision&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">accuracy_degradation_factor</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies the first percentual of the group of interest where accuracy suffers</span>
+<span class="sd">    a significant drawback.</span>
+
+<span class="sd">    This function analyzes a DataFrame with decision data and detects the first</span>
+<span class="sd">    occurrence of an accuracy degradation. It then returns the corresponding</span>
+<span class="sd">    factor size for the degradation event.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        A DataFrame containing at least the following columns:</span>
+<span class="sd">        - `size_factor`: A float or numeric column representing the size factor at</span>
+<span class="sd">        different levels.</span>
+<span class="sd">        - `decision`: A string column where decisions are labeled either as &#39;OK&#39; or</span>
+<span class="sd">        &#39;acc degrad!&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The `size_factor` associated with the first occurrence of the decision</span>
+<span class="sd">        being &#39;acc degrad!&#39;. If no such decision exists, the function will raise an</span>
+<span class="sd">        IndexError.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; data = {&#39;size_factor&#39;: [0.95, 0.9, 0.85, 0.8],</span>
+<span class="sd">                &#39;decision&#39;: [&#39;OK&#39;, &#39;OK&#39;, &#39;acc degrad!&#39;, &#39;acc degrad!&#39;]}</span>
+<span class="sd">    &gt;&gt;&gt; df = pd.DataFrame(data)</span>
+<span class="sd">    &gt;&gt;&gt; accuracy_degradation_factor(df)</span>
+<span class="sd">    0.85</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    -------</span>
+<span class="sd">    IndexError</span>
+<span class="sd">        If the DataFrame does not contain any &#39;acc degrad!&#39; decisions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Find the first row where the decision is &#39;acc degrad!&#39;</span>
+    <span class="n">first_degradation</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;decision&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;acc degrad!&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Return the corresponding size_factor</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">first_degradation</span><span class="p">[</span><span class="s2">&quot;size_factor&quot;</span><span class="p">])</span>
+
+
+<div class="viewcode-block" id="accuracy_degradation_profile">
+<a class="viewcode-back" href="../../../../../reference/robustness/.generated/holistic.robustness.metrics.accuracy_degradation_profile.html#holistic.robustness.metrics.accuracy_degradation_profile">[docs]</a>
+<span class="k">def</span> <span class="nf">accuracy_degradation_profile</span><span class="p">(</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">neighbor_estimator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">baseline_accuracy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">threshold_percentual</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
+    <span class="n">above_percentual</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.90</span><span class="p">,</span>
+    <span class="n">step_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">STEP_SIZE</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates an accuracy degradation profile by iteratively reducing the size</span>
+<span class="sd">    of the nearest neighbors considered in the test set and comparing the</span>
+<span class="sd">    classifier&#39;s accuracy against a baseline.</span>
+
+<span class="sd">    This function assesses the robustness of a model by gradually reducing the</span>
+<span class="sd">    test set size and evaluating whether the accuracy falls below a defined</span>
+<span class="sd">    threshold. It returns a DataFrame summarizing whether the accuracy at each</span>
+<span class="sd">    step meets the baseline accuracy or if there is degradation.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_test : pd.DataFrame</span>
+<span class="sd">        The feature matrix of the test set. Each row represents a sample, and</span>
+<span class="sd">        each column represents a feature.</span>
+
+<span class="sd">    y_test : pd.Series</span>
+<span class="sd">        The true labels for the test set. This should be a one-dimensional Series.</span>
+
+<span class="sd">    y_pred : pd.Series</span>
+<span class="sd">        The predicted labels for the test set. This should be a one-dimensional Series.</span>
+
+<span class="sd">    n_neighbors : Optional[int], optional</span>
+<span class="sd">        The number of neighbors to consider when using a nearest neighbors model.</span>
+<span class="sd">        If not provided, the function will not perform neighbor-based operations.</span>
+
+<span class="sd">    neighbor_estimator : Optional[Any], optional</span>
+<span class="sd">        An estimator implementing the neighbor search algorithm. If not provided,</span>
+<span class="sd">        the default `NearestNeighbors` from sklearn will be used.</span>
+
+<span class="sd">    baseline_accuracy : Optional[float], optional</span>
+<span class="sd">        The baseline accuracy to be compared against. If not provided, it will</span>
+<span class="sd">        be calculated using `y_test` and `y_pred`.</span>
+
+<span class="sd">    threshold_percentual : float, optional (default=0.95)</span>
+<span class="sd">        The threshold for acceptable accuracy degradation. Defined as a percentage</span>
+<span class="sd">        of the baseline accuracy, below which degradation is considered to occur.</span>
+
+<span class="sd">    above_percentual : float, optional (default=0.90)</span>
+<span class="sd">        The proportion of samples that must have accuracy above the threshold</span>
+<span class="sd">        to avoid being marked as degraded.</span>
+
+<span class="sd">    step_size : float, optional (default=STEP_SIZE)</span>
+<span class="sd">        The step size by which to reduce the test set size in each iteration. It</span>
+<span class="sd">        determines the incremental reduction of the test set in each step.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        A pandas DataFrame summarizing the accuracy degradation results. The DataFrame</span>
+<span class="sd">        contains the following columns:</span>
+
+<span class="sd">        - `size_factor`: The fraction of the test set used in each step.</span>
+<span class="sd">        - `above_threshold`: The number of samples with accuracy above the threshold.</span>
+<span class="sd">        - `ADP`: The percentage of samples exceeding the accuracy threshold.</span>
+<span class="sd">        - `decision`: Whether the accuracy at each step meets the threshold (&#39;OK&#39;) or is considered degraded (&#39;acc degrad!&#39;).</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.neighbors import NearestNeighbors</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; X_test = pd.DataFrame([[1.2, 3.4], [2.2, 1.8], [1.1, 4.5], [3.2, 2.1]])</span>
+<span class="sd">    &gt;&gt;&gt; y_test = pd.Series([0, 1, 0, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = pd.Series([0, 1, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; degradation_profile = accuracy_degradation_profile(</span>
+<span class="sd">    ...     X_test=X_test, y_test=y_test, y_pred=y_pred, n_neighbors=3</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; print(degradation_profile)</span>
+<span class="sd">    # Outputs a DataFrame summarizing the accuracy degradation decisions for each step.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the lengths of `X_test`, `y_test`, or `y_pred` are inconsistent, or</span>
+<span class="sd">        if invalid values are provided for `threshold_percentual`, `above_percentual`,</span>
+<span class="sd">        or `n_neighbors`.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The function assumes that the input DataFrames or Series are correctly structured</span>
+<span class="sd">      and that the baseline accuracy, if provided, is meaningful.</span>
+<span class="sd">    - Nearest neighbors is used to simulate accuracy degradation by reducing the test</span>
+<span class="sd">      set size incrementally.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check if the step size is too small</span>
+    <span class="k">if</span> <span class="n">step_size</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;step_size&#39; is too small (less than 1 divided by the number of samples).&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Validate inputs</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+        <span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">baseline_accuracy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">baseline_accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># Validate inputs</span>
+    <span class="n">_validate_inputs</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">baseline_accuracy</span><span class="p">,</span> <span class="n">threshold_percentual</span><span class="p">,</span> <span class="n">above_percentual</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">neighbor_estimator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">neighbor_estimator</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">)</span>
+
+    <span class="c1"># Neighborhood on test set</span>
+    <span class="n">neighbor_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># Calculate accuracies for varying test set sizes</span>
+    <span class="n">results_df</span><span class="p">,</span> <span class="n">set_size_list</span> <span class="o">=</span> <span class="n">_calculate_accuracies</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">neighbor_estimator</span><span class="p">,</span> <span class="n">step_size</span><span class="p">)</span>
+
+    <span class="c1"># Summarize the results</span>
+    <span class="n">results_summary_df</span> <span class="o">=</span> <span class="n">_summarize_results</span><span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">baseline_accuracy</span><span class="p">,</span> <span class="n">threshold_percentual</span><span class="p">,</span> <span class="n">above_percentual</span><span class="p">)</span>
+
+    <span class="c1"># Apply styling</span>
+    <span class="n">styled_df</span> <span class="o">=</span> <span class="n">_styled_results</span><span class="p">(</span><span class="n">results_summary_df</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">styled_df</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_validate_inputs</span><span class="p">(</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">baseline_accuracy</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">threshold_percentual</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">above_percentual</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validates the inputs for the accuracy degradation profile function.</span>
+
+<span class="sd">    This function ensures that the input arrays have matching lengths and that</span>
+<span class="sd">    the input parameters (baseline_accuracy, threshold_percentual, and</span>
+<span class="sd">    above_percentual) are within their expected ranges.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_test : np.ndarray</span>
+<span class="sd">        The test set features array. This array is expected to have the same</span>
+<span class="sd">        length as `y_test` and `y_pred`.</span>
+<span class="sd">    y_test : np.ndarray</span>
+<span class="sd">        The true labels for the test set. Must have the same length as `X_test`</span>
+<span class="sd">        and `y_pred`.</span>
+<span class="sd">    y_pred : np.ndarray</span>
+<span class="sd">        The predicted labels for the test set, corresponding to `X_test`. Must</span>
+<span class="sd">        have the same length as `X_test` and `y_test`.</span>
+<span class="sd">    baseline_accuracy : float</span>
+<span class="sd">        The baseline accuracy of the model, expected to be a value between 0 and 1.</span>
+<span class="sd">    threshold_percentual : float</span>
+<span class="sd">        The percentage threshold to determine significant accuracy degradation.</span>
+<span class="sd">        Must be between 0 and 1.</span>
+<span class="sd">    above_percentual : float</span>
+<span class="sd">        The minimum percentage of samples that must exceed the accuracy threshold</span>
+<span class="sd">        to avoid triggering an accuracy degradation alert. Must be between 0 and 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        This function does not return a value. It only raises an exception if</span>
+<span class="sd">        validation fails.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    -------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If any of the following conditions are met:</span>
+<span class="sd">        - The length of `X_test`, `y_test`, and `y_pred` do not match.</span>
+<span class="sd">        - `threshold_percentual` is not in the range (0, 1].</span>
+<span class="sd">        - `above_percentual` is not in the range (0, 1].</span>
+<span class="sd">        - `baseline_accuracy` is not in the range (0, 1].</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; _validate_inputs(</span>
+<span class="sd">    ...     np.array([1, 2, 3]),</span>
+<span class="sd">    ...     np.array([0, 1, 0]),</span>
+<span class="sd">    ...     np.array([0, 1, 1]),</span>
+<span class="sd">    ...     0.9,</span>
+<span class="sd">    ...     0.8,</span>
+<span class="sd">    ...     0.95,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    No error raised, input is valid.</span>
+
+<span class="sd">    &gt;&gt;&gt; _validate_inputs(</span>
+<span class="sd">    ...     np.array([1, 2, 3]), np.array([0, 1]), np.array([0, 1, 1]), 0.9, 0.8, 0.95</span>
+<span class="sd">    ... )</span>
+<span class="sd">    ValueError: X_test, y_test, and y_pred must have the same length.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X_test, y_test, and y_pred must have the same length.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">threshold_percentual</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;threshold_percentual must be between 0 and 1.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">above_percentual</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;above_percentual must be between 0 and 1.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">baseline_accuracy</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;baseline_accuracy must be between 0 and 1.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">batched</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">_calculate_accuracies</span><span class="p">(</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">knn</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">step_size</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate accuracies by iteratively reducing the test set size and evaluating accuracy.</span>
+
+<span class="sd">    This function evaluates the accuracy of predictions as the size of the test set is gradually reduced.</span>
+<span class="sd">    For each reduction, it calculates the accuracy over a subset of the nearest neighbors in the test set.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_test : np.ndarray</span>
+<span class="sd">        The test set features array.</span>
+<span class="sd">    y_test : np.ndarray</span>
+<span class="sd">        The true labels for the test set.</span>
+<span class="sd">    y_pred : np.ndarray</span>
+<span class="sd">        The predicted labels for the test set.</span>
+<span class="sd">    n_neighbors : int</span>
+<span class="sd">        The number of nearest neighbors to consider for each test set size.</span>
+<span class="sd">    step_size : float</span>
+<span class="sd">        The fraction by which to reduce the test set size at each step. Must be between 0 and 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple[pd.DataFrame, list[float]]</span>
+<span class="sd">        A tuple containing:</span>
+<span class="sd">        - pd.DataFrame: A DataFrame with the calculated accuracies for each size factor.</span>
+<span class="sd">                        Rows represent the number of neighbors, and columns represent the size factors.</span>
+<span class="sd">        - list[float]: A list of size factors used in the reduction process.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    -------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If step_size is not within the valid range (0, 1].</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.neighbors import KNeighborsClassifier</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import accuracy_score</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+
+<span class="sd">    &gt;&gt;&gt; # Generate a sample classification dataset</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_samples=100, n_features=5, random_state=42)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(</span>
+<span class="sd">    ...     X, y, test_size=0.3, random_state=42</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    &gt;&gt;&gt; # Calculate accuracies over decreasing test set sizes</span>
+<span class="sd">    &gt;&gt;&gt; results_df, set_size_list = _calculate_accuracies(</span>
+<span class="sd">    ...     X_test, y_test, y_pred, n_neighbors=5, step_size=0.05</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    &gt;&gt;&gt; print(results_df)</span>
+<span class="sd">    &gt;&gt;&gt; print(set_size_list)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Validate step_size input</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">step_size</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;step_size must be between 0 and 1.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Auxiliary data structures</span>
+    <span class="n">full_set_size</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">no_of_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">//</span> <span class="n">step_size</span><span class="p">)</span>
+    <span class="n">set_size_list</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">step_size</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_steps</span><span class="p">)]</span>
+    <span class="n">n_neighbours_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">full_set_size</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">set_size_list</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="n">size_factor</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">size_factor</span> <span class="ow">in</span> <span class="n">set_size_list</span><span class="p">}</span>
+
+    <span class="c1"># TODO: Get the neighbors for each test set size (is it possible to optimize like this?)</span>
+    <span class="n">test_set_neighbours</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batched</span><span class="p">(</span><span class="n">X_test</span><span class="p">):</span>
+        <span class="n">batch_indexes</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">full_set_size</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">test_set_neighbours</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">batch_indexes</span><span class="p">)</span>
+    <span class="n">test_set_neighbours</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_set_neighbours</span><span class="p">)</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="n">test_set_neighbours</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">test_set_neighbours</span><span class="p">]</span>
+
+    <span class="c1"># Loop over different number of neighbors</span>
+    <span class="k">for</span> <span class="n">size_factor_index</span><span class="p">,</span> <span class="n">n_neighbours</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_neighbours_list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n_neighbours</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>  <span class="c1"># Skip invalid neighbor size</span>
+
+        <span class="c1"># Evaluate accuracy over each test set size</span>
+        <span class="n">size_factor</span> <span class="o">=</span> <span class="n">set_size_list</span><span class="p">[</span><span class="n">size_factor_index</span><span class="p">]</span>
+        <span class="c1"># test_set_neighbours_2 = knn.kneighbors(X_test, n_neighbors=n_neighbours, return_distance=False)</span>
+        <span class="c1"># print(test_set_neighbours_2)</span>
+
+        <span class="n">accuracy_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+            <span class="n">matches</span><span class="p">[:,</span> <span class="p">:</span><span class="n">n_neighbours</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>  <span class="c1"># [accuracy_score(y_pred[neighbors[:n_neighbours]], y_test[neighbors[:n_neighbours]]) for neighbors in test_set_neighbours]</span>
+        <span class="c1"># accuracy_list = np.mean(matches[:,:n_neighbours], axis=1)</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="n">size_factor</span><span class="p">]</span> <span class="o">=</span> <span class="n">accuracy_list</span>
+
+    <span class="c1"># Organize results into a DataFrame</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+    <span class="n">results_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">full_set_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">size_factor</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">size_factor</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">results_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;n_neighbours&quot;</span>
+    <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;size_factor&quot;</span>
+
+    <span class="k">return</span> <span class="n">results_df</span><span class="p">,</span> <span class="n">set_size_list</span>
+
+
+<span class="k">def</span> <span class="nf">_summarize_results</span><span class="p">(</span>
+    <span class="n">results_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">baseline_accuracy</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">threshold_percentual</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">above_percentual</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summarize the accuracy results by checking against the threshold for degradation.</span>
+
+<span class="sd">    This function evaluates the accuracy degradation by comparing the accuracy</span>
+<span class="sd">    at each size factor against a calculated threshold. It determines whether</span>
+<span class="sd">    the accuracy is acceptable or indicates degradation.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    results_df : pd.DataFrame</span>
+<span class="sd">        A DataFrame containing accuracy values for different size factors. Each</span>
+<span class="sd">        column represents a size factor, and each row represents the accuracy for</span>
+<span class="sd">        that size factor.</span>
+<span class="sd">    baseline_accuracy : float</span>
+<span class="sd">        The baseline accuracy to which the calculated accuracy is compared.</span>
+<span class="sd">    threshold_percentual : float</span>
+<span class="sd">        A percentage (between 0 and 1) of the baseline accuracy that sets the</span>
+<span class="sd">        minimum acceptable accuracy.</span>
+<span class="sd">    above_percentual : float</span>
+<span class="sd">        A percentage (between 0 and 1) representing the proportion of accuracies</span>
+<span class="sd">        that need to be above the threshold for the decision to be marked as &#39;OK&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        A DataFrame summarizing the degradation decisions for each size factor.</span>
+<span class="sd">        The DataFrame contains columns:</span>
+<span class="sd">        - &#39;size_factor&#39;: The fraction of the original test set used.</span>
+<span class="sd">        - &#39;decision&#39;: A string indicating whether the accuracy is acceptable</span>
+<span class="sd">        (&#39;OK&#39;) or degraded (&#39;acc degrad!&#39;).</span>
+<span class="sd">        - &#39;above_threshold&#39;: The count of samples with accuracy above the</span>
+<span class="sd">        threshold.</span>
+<span class="sd">        - &#39;ADP&#39;: The percentage of samples with accuracy above the</span>
+<span class="sd">        threshold.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    -------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If `threshold_percentual` or `above_percentual` are not within the range</span>
+<span class="sd">        (0, 1].</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; data = {</span>
+<span class="sd">    ...     0.95: [0.9, 0.95, 0.97],</span>
+<span class="sd">    ...     0.90: [0.85, 0.89, 0.92],</span>
+<span class="sd">    ...     0.85: [0.75, 0.80, 0.85],</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; results_df = pd.DataFrame(data)</span>
+<span class="sd">    &gt;&gt;&gt; baseline_accuracy = 0.95</span>
+<span class="sd">    &gt;&gt;&gt; threshold_percentual = 0.90</span>
+<span class="sd">    &gt;&gt;&gt; above_percentual = 0.95</span>
+
+<span class="sd">    &gt;&gt;&gt; results_summary_df = _summarize_results(</span>
+<span class="sd">    ...     results_df,</span>
+<span class="sd">    ...     baseline_accuracy=baseline_accuracy,</span>
+<span class="sd">    ...     threshold_percentual=threshold_percentual,</span>
+<span class="sd">    ...     above_percentual=above_percentual,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; print(results_summary_df)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Calculate the threshold accuracy</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_percentual</span> <span class="o">*</span> <span class="n">baseline_accuracy</span>
+
+    <span class="c1"># Initialize an empty DataFrame to store the summary of results</span>
+    <span class="n">results_summary_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;size_factor&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;above_threshold&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ADP&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;average_accuracy&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;variance_accuracy&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;degradate&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;decision&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Iterate through each size_factor in the results_df</span>
+    <span class="k">for</span> <span class="n">size_factor</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="c1"># Count how many accuracies are above the threshold for the current</span>
+        <span class="c1"># size factor</span>
+        <span class="n">above_threshold</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">results_df</span><span class="p">[</span><span class="n">size_factor</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># results_df[results_df[size_factor] &gt; threshold].shape[0]</span>
+
+        <span class="c1"># Determine whether the decision is &#39;OK&#39; or indicates &#39;acc degrad!&#39;</span>
+        <span class="c1"># based on above_threshold percentage</span>
+        <span class="n">degradate</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">above_threshold</span> <span class="o">/</span> <span class="n">results_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">above_percentual</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">decision</span> <span class="o">=</span> <span class="s2">&quot;OK&quot;</span> <span class="k">if</span> <span class="n">above_threshold</span> <span class="o">/</span> <span class="n">results_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">above_percentual</span> <span class="k">else</span> <span class="s2">&quot;acc degrad!&quot;</span>
+
+        <span class="c1"># Create a new row with the summary data</span>
+        <span class="n">new_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;size_factor&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">size_factor</span><span class="p">],</span>
+                <span class="s2">&quot;ADP&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">above_threshold</span> <span class="o">/</span> <span class="n">results_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                <span class="s2">&quot;above_threshold&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">above_threshold</span><span class="p">],</span>
+                <span class="s2">&quot;average_accuracy&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="n">size_factor</span><span class="p">]),</span>
+                <span class="s2">&quot;variance_accuracy&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="n">size_factor</span><span class="p">]),</span>
+                <span class="s2">&quot;degradate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">degradate</span><span class="p">],</span>
+                <span class="s2">&quot;decision&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">decision</span><span class="p">],</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Concatenate the new row to the summary DataFrame</span>
+        <span class="n">results_summary_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_summary_df</span><span class="p">,</span> <span class="n">new_row</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Adjust the index of the results summary DataFrame to start from 1</span>
+    <span class="n">results_summary_df</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">results_summary_df</span>
+
+
+<span class="k">def</span> <span class="nf">_color_cells</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determines the color styling based on the value of the cell.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    val : str</span>
+<span class="sd">        The cell value to evaluate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        CSS style string to apply the appropriate color.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span> <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="s2">&quot;OK&quot;</span> <span class="k">else</span> <span class="s2">&quot;red&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_styled_results</span><span class="p">(</span><span class="n">results_summary_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">decision_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DECISION_COLUMN</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply styling to the results summary DataFrame to highlight decisions.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    results_summary_df : pd.DataFrame</span>
+<span class="sd">        The DataFrame containing the summary results.</span>
+<span class="sd">    decision_column : str</span>
+<span class="sd">        The column name in the DataFrame to apply the color styling.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        DataFrame with color-coded decisions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">styled_df</span> <span class="o">=</span> <span class="n">results_summary_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_color_cells</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">decision_column</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">styled_df</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

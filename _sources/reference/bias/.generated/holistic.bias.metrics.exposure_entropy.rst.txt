@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.exposure\_entropy
+=======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: exposure_entropy

@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.LPDebiaserMulticlass
+=============================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: LPDebiaserMulticlass

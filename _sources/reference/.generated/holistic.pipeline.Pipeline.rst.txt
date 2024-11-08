@@ -1,0 +1,6 @@
+﻿holistic.pipeline.Pipeline
+==========================
+
+.. currentmodule:: holistic.pipeline
+
+.. autoclass:: Pipeline

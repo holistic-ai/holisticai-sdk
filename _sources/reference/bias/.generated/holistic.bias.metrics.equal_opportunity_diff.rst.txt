@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.equal\_opportunity\_diff
+==============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: equal_opportunity_diff

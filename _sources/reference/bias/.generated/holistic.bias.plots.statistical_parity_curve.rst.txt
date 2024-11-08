@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.statistical\_parity\_curve
+==============================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: statistical_parity_curve

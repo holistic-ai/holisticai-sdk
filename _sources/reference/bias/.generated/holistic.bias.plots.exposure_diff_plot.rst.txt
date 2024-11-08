@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.exposure\_diff\_plot
+========================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: exposure_diff_plot

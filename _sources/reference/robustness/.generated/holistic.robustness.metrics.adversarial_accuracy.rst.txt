@@ -1,0 +1,6 @@
+﻿holistic.robustness.metrics.adversarial\_accuracy
+=================================================
+
+.. currentmodule:: holistic.robustness.metrics
+
+.. autofunction:: adversarial_accuracy

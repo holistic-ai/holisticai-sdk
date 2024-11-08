@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mitigation &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/bias/mitigation';</script>
+    <link rel="icon" href="../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pre-processing Methods" href="mitigation/preprocessing.html" />
+    <link rel="prev" title="Clustering" href="metrics/clustering.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sdk.html">Holistic AI SDK</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/qassessment.html">Setting Up a Quantitative Assessment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdk/github_cicd.html">Setting Up a GitHub CI/CD Pipeline</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../technical_risks.html">Learn About AI Technical Risks</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Bias</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="metrics/binary_classification.html">Binary Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metrics/multi_classification.html">Multi-Class Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metrics/regression.html">Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metrics/recommender.html">Recommender Systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metrics/clustering.html">Clustering</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 current active has-children"><a class="current reference internal" href="#">Mitigation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="mitigation/preprocessing.html">Pre-processing Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mitigation/inprocessing.html">In-processing Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mitigation/postprocessing.html">Post-processing Methods</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../explainability/index.html">Explainability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../explainability/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../explainability/metrics/spread.html">Spread Metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../explainability/metrics/similarity.html">Order Cohesion Metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../explainability/metrics/permutation.html">Feature Permutation-Based Metric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../explainability/metrics/stability.html">Stability Metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../explainability/metrics/tree.html">Tree Based Metrics</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../security/metrics.html">Security Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../security/metrics/shapr.html">SHAPr: SHapley vAlue-based Privacy Risk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../security/metrics/attribute_attack.html">Attribute Inference Attack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../security/metrics/data_minimization.html">Data Minimization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../security/mitigation.html">Mitigation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../security/mitigation/anonymize.html">Anonymization Mitigator</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../robustness/index.html">Robustness</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../robustness/attackers/hopskipjump.html">HopSkipJumpAttack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../robustness/attackers/zoo.html">ZOO: Zeroth Order Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../robustness/attackers/linreggdpoisoner.html">Gradient-Based Poisoning Attackers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../robustness/metrics/index.html">Metrics</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Getting Started</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../technical_risks.html" class="nav-link">Learn About AI Technical Risks</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Bias</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Mitigation</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mitigation">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink">Mitigation</a><a class="headerlink" href="#mitigation" title="Link to this heading">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This page is currently under construction. Please check back later for updates.</p>
+</div>
+<nav class="contents" id="contents">
+<p class="topic-title"><strong>Contents:</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#mitigation" id="id2">Mitigation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#summary-table" id="id4">Summary Table</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>This page is currently under construction. Please check back later for updates.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bias mitigation can be approached through <strong>pre-processing</strong>, <strong>in-processing</strong>, and <strong>post-processing</strong> methods.</p>
+</div>
+<p>Bias in AI systems can lead to systematic disadvantages for certain individuals or groups. To address and reduce these biases, several mitigation methods can be employed throughout the development process, from data generation to model deployment. This document outlines various techniques and strategies for mitigating bias in AI systems.</p>
+<p><strong>Pre-processing Methods</strong></p>
+<p>Pre-processing techniques aim to mitigate bias by transforming the data before it is used to train a model. This can include:</p>
+<ul class="simple">
+<li><p><strong>Reweighting</strong>: Adjusting the weights of data points to ensure balanced representation across groups.</p></li>
+<li><p><strong>Resampling</strong>: Over-sampling underrepresented groups or under-sampling overrepresented groups to achieve a balanced dataset.</p></li>
+<li><p><strong>Data Augmentation</strong>: Generating synthetic data to bolster the representation of minority groups.</p></li>
+<li><p><strong>Fair Representation Learning</strong>: Learning new representations of data that remove sensitive information while retaining useful information for prediction.</p></li>
+</ul>
+<p><strong>In-processing Methods</strong></p>
+<p>In-processing techniques modify the learning algorithm itself to reduce bias during the model training phase. This can include:</p>
+<ul class="simple">
+<li><p><strong>Adversarial Debiasing</strong>: Training the model in conjunction with an adversary that penalizes the model for producing biased predictions.</p></li>
+<li><p><strong>Fairness Constraints</strong>: Incorporating constraints that enforce fairness criteria directly into the optimization objective of the learning algorithm.</p></li>
+<li><p><strong>Regularization Techniques</strong>: Adding regularization terms to the loss function that penalize bias.</p></li>
+</ul>
+<p><strong>Post-processing Methods</strong></p>
+<p>Post-processing techniques adjust the predictions of the trained model to mitigate bias. This can include:</p>
+<ul class="simple">
+<li><p><strong>Calibrated Equalized Odds</strong>: Adjusting the decision thresholds for different groups to achieve equalized odds across groups.</p></li>
+<li><p><strong>Reject Option Classification</strong>: Allowing uncertain predictions to be reconsidered, particularly for disadvantaged groups, to improve fairness.</p></li>
+<li><p><strong>Output Adjustment</strong>: Modifying the output probabilities to ensure fair treatment across groups.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mitigation/preprocessing.html">Pre-processing Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mitigation/inprocessing.html">In-processing Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mitigation/postprocessing.html">Post-processing Methods</a></li>
+</ul>
+</div>
+</section>
+<section id="summary-table">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Summary Table</a><a class="headerlink" href="#summary-table" title="Link to this heading">#</a></h2>
+<p>The following table summarizes the bias mitigation methods and their applicability at different Machine Learning (ML) tasks.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text"><strong>Bias Mitigation Methods</strong></span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type Strategy</p></th>
+<th class="head"><p>Method name</p></th>
+<th class="head"><p>Binary Classification</p></th>
+<th class="head"><p>Multi Classification</p></th>
+<th class="head"><p>Regression</p></th>
+<th class="head"><p>Clustering</p></th>
+<th class="head"><p>Recommender Systems</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Preprocessing</p></td>
+<td><p>Correlation Remover</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Preprocessing</p></td>
+<td><p>Disparate Impact Remover</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Preprocessing</p></td>
+<td><p>Learning Fair Representation</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Preprocessing</p></td>
+<td><p>Reweighing</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Preprocessing</p></td>
+<td><p>Fair Clustering</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Adversarial Debiasing</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Exponentiated Gradient</p></td>
+<td><p>X</p></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Fair K Center Clustering</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Fair K Median Clustering</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Fair Scoring Classifier</p></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Fairlet Clustering</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Grid Search</p></td>
+<td><p>X</p></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Debiasing Learning</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Blind Spot Aware</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Popularity Propensity</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Meta Fair Classifier</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Prejudice Remover</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Inprocessing</p></td>
+<td><p>Two Sided Fairness</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>Inprocessing</p></td>
+<td><p>Variational Fair Clustering</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Postprocessing</p></td>
+<td><p>Debiasing Exposure</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>Postprocessing</p></td>
+<td><p>Fair Top-K</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-odd"><td><p>Postprocessing</p></td>
+<td><p>LP Debiaser</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Postprocessing</p></td>
+<td><p>MCMF Clustering</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Postprocessing</p></td>
+<td><p>ML Debiaser</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Postprocessing</p></td>
+<td><p>Plugin Estimator and Recalibration</p></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Postprocessing</p></td>
+<td><p>Wasserstein Barycenters</p></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Postprocessing</p></td>
+<td><p>Calibrated Equalized Odds</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Postprocessing</p></td>
+<td><p>Equalized Odds</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Postprocessing</p></td>
+<td><p>Reject Option Classification</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Postprocessing</p></td>
+<td><p>Disparate Impact Remover for RS</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>X</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="metrics/clustering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clustering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mitigation/preprocessing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pre-processing Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

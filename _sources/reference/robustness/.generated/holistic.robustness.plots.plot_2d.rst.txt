@@ -1,0 +1,6 @@
+﻿holistic.robustness.plots.plot\_2d
+==================================
+
+.. currentmodule:: holistic.robustness.plots
+
+.. autofunction:: plot_2d

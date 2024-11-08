@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.rank\_consistency
+=================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: rank_consistency

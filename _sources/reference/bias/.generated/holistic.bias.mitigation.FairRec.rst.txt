@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.FairRec
+================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: FairRec

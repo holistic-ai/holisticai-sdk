@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.avg\_score\_diff
+======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: avg_score_diff

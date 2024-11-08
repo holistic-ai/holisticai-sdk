@@ -1,0 +1,6 @@
+﻿holistic.robustness.attackers.LinRegGDPoisoner
+==============================================
+
+.. currentmodule:: holistic.robustness.attackers
+
+.. autoclass:: LinRegGDPoisoner

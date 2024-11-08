@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.GridSearchReduction
+============================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: GridSearchReduction

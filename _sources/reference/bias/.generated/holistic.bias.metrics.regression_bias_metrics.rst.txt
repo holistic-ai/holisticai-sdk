@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.regression\_bias\_metrics
+===============================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: regression_bias_metrics

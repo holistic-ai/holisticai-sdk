@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.importance\_stability
+=====================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: importance_stability

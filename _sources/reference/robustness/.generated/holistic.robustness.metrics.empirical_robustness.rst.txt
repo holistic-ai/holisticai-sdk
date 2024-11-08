@@ -1,0 +1,6 @@
+﻿holistic.robustness.metrics.empirical\_robustness
+=================================================
+
+.. currentmodule:: holistic.robustness.metrics
+
+.. autofunction:: empirical_robustness

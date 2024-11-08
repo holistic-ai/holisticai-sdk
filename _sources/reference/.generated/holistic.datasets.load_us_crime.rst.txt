@@ -1,0 +1,6 @@
+﻿holistic.datasets.load\_us\_crime
+=================================
+
+.. currentmodule:: holistic.datasets
+
+.. autofunction:: load_us_crime

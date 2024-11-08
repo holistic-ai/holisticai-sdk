@@ -1,0 +1,6 @@
+﻿holistic.bias.mitigation.VariationalFairClustering
+==================================================
+
+.. currentmodule:: holistic.bias.mitigation
+
+.. autoclass:: VariationalFairClustering

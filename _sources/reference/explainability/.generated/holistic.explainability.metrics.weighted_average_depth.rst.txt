@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.weighted\_average\_depth
+========================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: weighted_average_depth

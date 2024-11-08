@@ -1,0 +1,1831 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Measuring Bias in multiclass classification &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/tutorials/bias/measuring_bias/measuring_bias_multiclass';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><strong>Measuring Bias in multiclass classification</strong></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Measuring-Bias-in-multiclass-classification">
+<h1><strong>Measuring Bias in multiclass classification</strong><a class="headerlink" href="#Measuring-Bias-in-multiclass-classification" title="Link to this heading">#</a></h1>
+<p>This tutorial will explain how to measure bias in a multiclass classification task using the holisticai library. We will introduce here some of the functions that can help study algorithmic bias.</p>
+<p>The sections are organised as follows : 1. Load the data : we load the student dataset as a pandas DataFrame 2. Data Exploration : some preliminary analysis of the data 3. Train a Model : we train a model (sklearn) 4. Measure Bias : we compute a few bias metrics, and comment on their meaning</p>
+<section id="Load-the-data">
+<h2><strong>Load the data</strong><a class="headerlink" href="#Load-the-data" title="Link to this heading">#</a></h2>
+<p>First of all, we need to import the required packages to perform our bias analysis and mitigation. You will need to have the <code class="docutils literal notranslate"><span class="pre">holisticai</span></code> package installed on your system, remember that you can install it by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>holisticai<span class="o">[</span>all<span class="o">]</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The student dataset can be easily</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;student_multiclass&#39;</span><span class="p">,</span> <span class="n">preprocessed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: rgba(242, 248, 253, 0.9) !important; /* Light blue with 70% opacity */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: rgba(152, 171, 202, 0.4) !important; /* Darker blue with 60% opacity */
+}
+
+.generic-object-header.blue:hover {
+    background-color: rgba(139, 177, 192, 0.8) !important; /* Darker blue on hover with 60% opacity */
+}
+
+.attribute-list.blue:hover {
+    background-color: rgba(178, 223, 219, 0.8) !important; /* Attribute hover background with 60% opacity */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 0px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 2px 5px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 8px 20px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 395</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Data-Exploration">
+<h2><strong>Data Exploration</strong><a class="headerlink" href="#Data-Exploration" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;p_attrs&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>address</th>
+      <th>Mjob</th>
+      <th>Fjob</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>'F'</td>
+      <td>'U'</td>
+      <td>'at_home'</td>
+      <td>'teacher'</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>'F'</td>
+      <td>'U'</td>
+      <td>'at_home'</td>
+      <td>'other'</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>'F'</td>
+      <td>'U'</td>
+      <td>'at_home'</td>
+      <td>'other'</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>'F'</td>
+      <td>'U'</td>
+      <td>'health'</td>
+      <td>'services'</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>'F'</td>
+      <td>'U'</td>
+      <td>'other'</td>
+      <td>'other'</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>390</th>
+      <td>'M'</td>
+      <td>'U'</td>
+      <td>'services'</td>
+      <td>'services'</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>'M'</td>
+      <td>'U'</td>
+      <td>'services'</td>
+      <td>'services'</td>
+    </tr>
+    <tr>
+      <th>392</th>
+      <td>'M'</td>
+      <td>'R'</td>
+      <td>'other'</td>
+      <td>'other'</td>
+    </tr>
+    <tr>
+      <th>393</th>
+      <td>'M'</td>
+      <td>'R'</td>
+      <td>'services'</td>
+      <td>'other'</td>
+    </tr>
+    <tr>
+      <th>394</th>
+      <td>'M'</td>
+      <td>'U'</td>
+      <td>'other'</td>
+      <td>'at_home'</td>
+    </tr>
+  </tbody>
+</table>
+<p>395 rows × 4 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">group_pie_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">histogram_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">frequency_matrix_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">frequency_plot</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">p_attrs</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;p_attrs&#39;</span><span class="p">]</span>
+<span class="n">group_pie_plot</span><span class="p">(</span><span class="n">p_attrs</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">group_pie_plot</span><span class="p">(</span><span class="n">p_attrs</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">histogram_plot</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">p_attr</span><span class="o">=</span><span class="n">p_attrs</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">frequency_matrix_plot</span><span class="p">(</span><span class="n">p_attrs</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Frequency matrix plot&#39;}, xlabel=&#39;Class&#39;, ylabel=&#39;Group&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_9_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_9_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_plot</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;p_attrs&#39;</span><span class="p">][</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_10_0.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_10_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_10_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_10_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_10_2.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_10_2.png" />
+</div>
+</div>
+</section>
+<section id="Train-a-model">
+<h2><strong>Train a model</strong><a class="headerlink" href="#Train-a-model" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">datasets</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: rgba(242, 248, 253, 0.9) !important; /* Light blue with 70% opacity */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: rgba(152, 171, 202, 0.4) !important; /* Darker blue with 60% opacity */
+}
+
+.generic-object-header.blue:hover {
+    background-color: rgba(139, 177, 192, 0.8) !important; /* Darker blue on hover with 60% opacity */
+}
+
+.attribute-list.blue:hover {
+    background-color: rgba(178, 223, 219, 0.8) !important; /* Attribute hover background with 60% opacity */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 0px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 2px 5px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 8px 20px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [DatasetDict]
+            </div>
+            <div class="generic-object-body">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: rgba(242, 248, 253, 0.9) !important; /* Light blue with 70% opacity */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: rgba(152, 171, 202, 0.4) !important; /* Darker blue with 60% opacity */
+}
+
+.generic-object-header.blue:hover {
+    background-color: rgba(139, 177, 192, 0.8) !important; /* Darker blue on hover with 60% opacity */
+}
+
+.attribute-list.blue:hover {
+    background-color: rgba(178, 223, 219, 0.8) !important; /* Attribute hover background with 60% opacity */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 0px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 2px 5px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 8px 20px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> train [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 276</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: rgba(242, 248, 253, 0.9) !important; /* Light blue with 70% opacity */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: rgba(152, 171, 202, 0.4) !important; /* Darker blue with 60% opacity */
+}
+
+.generic-object-header.blue:hover {
+    background-color: rgba(139, 177, 192, 0.8) !important; /* Darker blue on hover with 60% opacity */
+}
+
+.attribute-list.blue:hover {
+    background-color: rgba(178, 223, 219, 0.8) !important; /* Attribute hover background with 60% opacity */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 0px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 2px 5px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 8px 20px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> test [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 119</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># Train a simple Random Forest Classifier</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict values</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="n">p_attr_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;p_attrs&#39;</span><span class="p">][</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">accuracy_score</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.0</td>
+      <td>13.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12.0</td>
+      <td>18.0</td>
+      <td>40.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.48739495798319327
+[0.42105263 0.18181818 0.57142857]
+[0.5        0.06060606 0.74074074]
+</pre></div></div>
+</div>
+</section>
+<section id="Measure-bias">
+<h2><strong>Measure bias</strong><a class="headerlink" href="#Measure-bias" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">frequency_matrix_plot</span>
+<span class="kn">from</span> <span class="nn">holistic.bias.plots</span> <span class="kn">import</span> <span class="n">frequency_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>   <span class="c1"># multiclass prediction vector                                                 # multiclass label vector</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_matrix_plot</span><span class="p">(</span><span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: title={&#39;center&#39;: &#39;Frequency matrix plot&#39;}, xlabel=&#39;Class&#39;, ylabel=&#39;Group&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_20_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_20_1.png" />
+</div>
+</div>
+<p>Using the above plot, we observe unfairness by looking at differences over columns. For instance we look at the class 1.0, and observe how the ‘health’ group has a much higher probability of being within it.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_plot</span><span class="p">(</span><span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_22_0.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_22_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_22_1.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_22_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_22_2.png" src="../../../../_images/gallery_tutorials_bias_measuring_bias_measuring_bias_multiclass_22_2.png" />
+</div>
+</div>
+<p>This is the same data as the previous plot, but displayed in a different way.</p>
+<p>Let’s compute a few bias metrics. We have generalised versions of ‘1d’ bias metrics. For instance multiclass statistical parity.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">multiclass_statistical_parity</span>
+
+<span class="n">multiclass_statistical_parity</span><span class="p">(</span>
+    <span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggregation_fun</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.051977401129943465)
+</pre></div></div>
+</div>
+<p>We now compute statistical parity, generalized for the multiclass case. We aggregate by taking the average multilabel statistical parity over all possible group pairs (<code class="docutils literal notranslate"><span class="pre">aggregation_fun=&quot;mean&quot;</span></code>). As in the 1d case, the suggested accepted range is (-0.1, 0.1).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiclass_statistical_parity</span><span class="p">(</span>
+    <span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggregation_fun</span><span class="o">=</span><span class="s2">&quot;max&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.051977401129943465)
+</pre></div></div>
+</div>
+<p>Alternatively, we could aggregate by taking the maximum (<code class="docutils literal notranslate"><span class="pre">aggregation_fun=&quot;max&quot;</span></code>) over all possible group pairs. As expected, the maximum statistical parity is higher in this case.</p>
+<p>We can try another bias metric, for instace multiclass_equality_of_opp is the multidimensional version of the 1d equal opportunity metric.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">multiclass_equality_of_opp</span>
+
+<span class="n">multiclass_equality_of_opp</span><span class="p">(</span>
+    <span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggregation_fun</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.3224740773502383)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiclass_equality_of_opp</span><span class="p">(</span>
+    <span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggregation_fun</span><span class="o">=</span><span class="s2">&quot;max&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+np.float64(0.3224740773502383)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.bias.metrics</span> <span class="kn">import</span> <span class="n">multiclass_bias_metrics</span>
+<span class="n">multiclass_bias_metrics</span><span class="p">(</span><span class="n">p_attr_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">metric_type</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Value</th>
+      <th>Reference</th>
+    </tr>
+    <tr>
+      <th>Metric</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Max Multiclass Statistical Parity</th>
+      <td>0.051977</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Mean Multiclass Statistical Parity</th>
+      <td>0.051977</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Max Multiclass Equality of Opportunity</th>
+      <td>0.322474</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Max Multiclass Average Odds</th>
+      <td>0.076275</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Max Multiclass True Positive Difference</th>
+      <td>0.172115</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Mean Multiclass Equality of Opportunity</th>
+      <td>0.322474</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Mean Multiclass Average Odds</th>
+      <td>0.076275</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Mean Multiclass True Positive Difference</th>
+      <td>0.172115</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

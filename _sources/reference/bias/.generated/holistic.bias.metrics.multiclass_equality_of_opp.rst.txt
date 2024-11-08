@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.multiclass\_equality\_of\_opp
+===================================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: multiclass_equality_of_opp

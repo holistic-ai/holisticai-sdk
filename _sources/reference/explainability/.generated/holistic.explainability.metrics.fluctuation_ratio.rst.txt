@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.fluctuation\_ratio
+==================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: fluctuation_ratio

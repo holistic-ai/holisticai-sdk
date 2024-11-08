@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.bias.mitigation.postprocessing.reject_option_classification &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/bias/mitigation/postprocessing/reject_option_classification';</script>
+    <link rel="icon" href="../../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.bias.mitigation.postprocessing.reject_option_classification</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.bias.mitigation.postprocessing.reject_option_classification</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+
+<span class="kn">import</span> <span class="nn">holistic.bias.metrics</span> <span class="k">as</span> <span class="nn">bias_metrics</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">holistic.utils.transformers.bias</span> <span class="kn">import</span> <span class="n">BMPostprocessing</span> <span class="k">as</span> <span class="n">BMPost</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">balanced_accuracy_score</span>
+
+
+<span class="k">def</span> <span class="nf">statistical_parity</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bias_metrics</span><span class="o">.</span><span class="n">statistical_parity</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RejectOptionClassification">
+<a class="viewcode-back" href="../../../../../reference/bias/.generated/holistic.bias.mitigation.RejectOptionClassification.html#holistic.bias.mitigation.RejectOptionClassification">[docs]</a>
+<span class="k">class</span> <span class="nc">RejectOptionClassification</span><span class="p">(</span><span class="n">BMPost</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reject option classification gives favorable outcomes (y=1) to unpriviliged groups and unfavorable outcomes (y=0) to\</span>
+<span class="sd">    priviliged groups in a confidence band around the decision boundary with the highest uncertainty.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    low_class_thresh : float</span>
+<span class="sd">        Smallest classification threshold to use in the optimization.</span>
+<span class="sd">        Should be between 0. and 1.</span>
+<span class="sd">    low_class_thresh : float</span>
+<span class="sd">        Smallest classification threshold to use in the optimization.</span>
+<span class="sd">        Should be between 0. and 1.</span>
+<span class="sd">    high_class_thresh : float</span>
+<span class="sd">        Highest classification threshold to use in the optimization.</span>
+<span class="sd">        Should be between 0. and 1.</span>
+<span class="sd">    num_class_thresh : int</span>
+<span class="sd">        Number of classification thresholds between low_class_thresh and high_class_thresh for the optimization</span>
+<span class="sd">        search. Should be &gt; 0.</span>
+<span class="sd">    num_ROC_margin : int</span>
+<span class="sd">        Number of relevant ROC margins to be used in the optimization search. Should be &gt; 0.</span>
+<span class="sd">    metric_name : str</span>
+<span class="sd">        Name of the metric to use for the optimization. Allowed options are:</span>
+<span class="sd">        &quot;Statistical parity difference&quot;,</span>
+<span class="sd">        &quot;Average odds difference&quot;,</span>
+<span class="sd">        &quot;Equal opportunity difference&quot;.</span>
+<span class="sd">    metric_ub : float</span>
+<span class="sd">        Upper bound of constraint on the metric value</span>
+<span class="sd">    metric_lb : float</span>
+<span class="sd">        Lower bound of constraint on the metric value</span>
+<span class="sd">    verbose : int</span>
+<span class="sd">        If &gt;0, will show progress percentage.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.mitigation import RejectOptionClassification</span>
+<span class="sd">    &gt;&gt;&gt; mitigator = RejectOptionClassification(**params)</span>
+<span class="sd">    &gt;&gt;&gt; mitigator.fit(y, y_proba, group_a, group_b)</span>
+<span class="sd">    &gt;&gt;&gt; test_data_transformed = mitigator.predict(y_pred, y_proba, group_a, group_b)</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">        .. [1] Kamiran, Faisal, Asim Karim, and Xiangliang Zhang. &quot;Decision theory for discrimination-aware classification.&quot;\</span>
+<span class="sd">        2012 IEEE 12th International Conference on Data Mining. IEEE, 2012.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ALLOWED_METRICS</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span>
+        <span class="s2">&quot;Statistical parity difference&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Average odds difference&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Equal opportunity difference&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">low_class_thresh</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">high_class_thresh</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span>
+        <span class="n">num_class_thresh</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">num_ROC_margin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="n">metric_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;Statistical parity difference&quot;</span><span class="p">,</span>
+        <span class="n">metric_ub</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">metric_lb</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="n">allowed_metrics</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;Statistical parity difference&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Average odds difference&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Equal opportunity difference&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">low_class_thresh</span> <span class="o">=</span> <span class="n">low_class_thresh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">high_class_thresh</span> <span class="o">=</span> <span class="n">high_class_thresh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_class_thresh</span> <span class="o">=</span> <span class="n">num_class_thresh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_ROC_margin</span> <span class="o">=</span> <span class="n">num_ROC_margin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span> <span class="o">=</span> <span class="n">metric_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_ub</span> <span class="o">=</span> <span class="n">metric_ub</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_lb</span> <span class="o">=</span> <span class="n">metric_lb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">classification_threshold</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ROC_margin</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low_class_thresh</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low_class_thresh</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">high_class_thresh</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">high_class_thresh</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low_class_thresh</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">high_class_thresh</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_class_thresh</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_ROC_margin</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Input parameter values out of bounds&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">metric_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_metrics</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;metric name not in the list of allowed metrics&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RejectOptionClassification.fit">
+<a class="viewcode-back" href="../../../../../reference/bias/.generated/holistic.bias.mitigation.RejectOptionClassification.html#holistic.bias.mitigation.RejectOptionClassification.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">y_proba</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">group_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute parameters for reject option classification strategy.</span>
+
+<span class="sd">        Description</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Evaluate the likelihood with different thresholds. Select the threshold and ROC margin \</span>
+<span class="sd">        with the best fair metric value and highest balanced accuracy.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y : array-like</span>
+<span class="sd">            Target vector (nb_examples,)</span>
+<span class="sd">        y_proba : matrix-like</span>
+<span class="sd">            Predicted probability matrix (num_examples, num_classes). The probability</span>
+<span class="sd">            estimates must sum to 1 across the possible classes and each matrix value</span>
+<span class="sd">            must be in the interval [0,1].</span>
+<span class="sd">        group_a : array-like</span>
+<span class="sd">            Group membership vector (binary)</span>
+<span class="sd">        group_b : array-like</span>
+<span class="sd">            Group membership vector (binary)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            Self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_data</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">y_proba</span><span class="o">=</span><span class="n">y_proba</span><span class="p">,</span> <span class="n">group_a</span><span class="o">=</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="o">=</span><span class="n">group_b</span><span class="p">)</span>
+
+        <span class="n">group_a</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;group_a&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">group_b</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;group_b&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span>
+        <span class="n">likelihoods</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;y_score&quot;</span><span class="p">]</span>
+        <span class="n">y_proba</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;y_proba&quot;</span><span class="p">]</span>
+
+        <span class="n">class_thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low_class_thresh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">high_class_thresh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_class_thresh</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span> <span class="o">==</span> <span class="s2">&quot;Statistical parity difference&quot;</span><span class="p">:</span>
+            <span class="n">fair_metric</span> <span class="o">=</span> <span class="n">statistical_parity</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span> <span class="o">==</span> <span class="s2">&quot;Average odds difference&quot;</span><span class="p">:</span>
+            <span class="n">fair_metric</span> <span class="o">=</span> <span class="n">bias_metrics</span><span class="o">.</span><span class="n">average_odds_diff</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span> <span class="o">==</span> <span class="s2">&quot;Equal opportunity difference&quot;</span><span class="p">:</span>
+            <span class="n">fair_metric</span> <span class="o">=</span> <span class="n">bias_metrics</span><span class="o">.</span><span class="n">equal_opportunity_diff</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;metric name not in the list of allowed metrics&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">args_iterator</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span>
+                <span class="n">fair_metric</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">,</span>
+                <span class="n">likelihoods</span><span class="p">,</span>
+                <span class="n">group_a</span><span class="p">,</span>
+                <span class="n">group_b</span><span class="p">,</span>
+                <span class="n">class_threshold</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">num_ROC_margin</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">class_threshold</span> <span class="ow">in</span> <span class="n">class_thresholds</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Serial</span>
+        <span class="c1"># configurations = []</span>
+        <span class="c1"># self.num_cases = len(args_iterator)</span>
+        <span class="c1"># for i, argv in enumerate(args_iterator):</span>
+        <span class="c1">#    configurations.append(_evaluate_threshold(*argv))</span>
+        <span class="c1">#    self._log_progres(i)</span>
+
+        <span class="c1"># Pool</span>
+        <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
+        <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+            <span class="n">configurations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">_evaluate_threshold</span><span class="p">,</span> <span class="n">args_iterator</span><span class="p">))</span>
+
+        <span class="c1"># Joblib</span>
+        <span class="c1"># from joblib import Parallel, delayed</span>
+        <span class="c1"># configurations = Parallel(n_jobs=-1)(</span>
+        <span class="c1">#    delayed(_evaluate_threshold)(*args) for args in args_iterator</span>
+        <span class="c1"># )</span>
+
+        <span class="n">configurations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">configurations</span><span class="p">))</span>
+
+        <span class="n">selected_configurations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;fair_score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_lb</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;fair_score&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_ub</span><span class="p">),</span>
+                <span class="n">configurations</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">selected_configurations</span><span class="p">):</span>
+            <span class="n">best_config</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">selected_configurations</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">[</span><span class="s2">&quot;balanced_accurracy&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">best_config</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">configurations</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;fair_score&quot;</span><span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ROC_margin</span> <span class="o">=</span> <span class="n">best_config</span><span class="p">[</span><span class="s2">&quot;roc_margin&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classification_threshold</span> <span class="o">=</span> <span class="n">best_config</span><span class="p">[</span><span class="s2">&quot;class_thresh&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="RejectOptionClassification.transform">
+<a class="viewcode-back" href="../../../../../reference/bias/.generated/holistic.bias.mitigation.RejectOptionClassification.html#holistic.bias.mitigation.RejectOptionClassification.transform">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">y_proba</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">group_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">group_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtain fair predictions using the ROC method.</span>
+
+<span class="sd">        Description</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Predict the output using the fitted threshold and ROC margin.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_pred : array-like</span>
+<span class="sd">            Predicted vector (nb_examples,)</span>
+<span class="sd">        y_proba : matrix-like</span>
+<span class="sd">            Predicted probability matrix (num_examples, num_classes). The probability\</span>
+<span class="sd">            estimates must sum to 1 across the possible classes and each matrix value\</span>
+<span class="sd">            must be in the interval [0,1].</span>
+<span class="sd">        group_a : array-like</span>
+<span class="sd">            Group membership vector (binary)</span>
+<span class="sd">        group_b : array-like</span>
+<span class="sd">            Group membership vector (binary)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            A dictionary of new predictions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_data</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_proba</span><span class="o">=</span><span class="n">y_proba</span><span class="p">,</span> <span class="n">group_a</span><span class="o">=</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="o">=</span><span class="n">group_b</span><span class="p">)</span>
+
+        <span class="n">group_a</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;group_a&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">group_b</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;group_b&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;y_pred&quot;</span><span class="p">]</span>
+        <span class="n">y_score</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;y_score&quot;</span><span class="p">]</span>
+
+        <span class="n">new_y_pred</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span>
+            <span class="n">y_score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">classification_threshold</span><span class="p">,</span>
+            <span class="n">y_score</span><span class="p">,</span>
+            <span class="n">group_a</span><span class="p">,</span>
+            <span class="n">group_b</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classification_threshold</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ROC_margin</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">new_y_score</span> <span class="o">=</span> <span class="n">y_score</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">new_y_pred</span><span class="p">,</span>
+            <span class="s2">&quot;y_score&quot;</span><span class="p">:</span> <span class="n">new_y_score</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_log_progres</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">Progress: </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_cases</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_evaluate_threshold</span><span class="p">(</span><span class="n">fair_metric</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">likelihoods</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">class_thresh</span><span class="p">,</span> <span class="n">num_roc_margin</span><span class="p">):</span>
+    <span class="n">base_predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">likelihoods</span> <span class="o">&gt;</span> <span class="n">class_thresh</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">high_roc_margin</span> <span class="o">=</span> <span class="n">class_thresh</span> <span class="k">if</span> <span class="n">class_thresh</span> <span class="o">&lt;=</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">class_thresh</span>
+    <span class="n">roc_margins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high_roc_margin</span><span class="p">,</span> <span class="n">num_roc_margin</span><span class="p">)</span>
+    <span class="n">configurations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">roc_margin</span> <span class="ow">in</span> <span class="n">roc_margins</span><span class="p">:</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">base_predictions</span><span class="p">,</span> <span class="n">likelihoods</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">class_thresh</span><span class="p">,</span> <span class="n">roc_margin</span><span class="p">)</span>
+        <span class="n">configuration</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;class_thresh&quot;</span><span class="p">:</span> <span class="n">class_thresh</span><span class="p">,</span>
+            <span class="s2">&quot;roc_margin&quot;</span><span class="p">:</span> <span class="n">roc_margin</span><span class="p">,</span>
+            <span class="s2">&quot;balanced_accurracy&quot;</span><span class="p">:</span> <span class="n">balanced_accuracy_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">prediction</span><span class="p">),</span>
+            <span class="s2">&quot;fair_score&quot;</span><span class="p">:</span> <span class="n">fair_metric</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">configurations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">configurations</span>
+
+
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">likelihoods</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">roc_margin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Predict the output using the ROC method.</span>
+
+<span class="sd">    Description</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Predict the output using the fitted threshold and ROC margin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    predictions : array-like</span>
+<span class="sd">        Predicted vector (nb_examples,)</span>
+<span class="sd">    likelihoods : matrix-like</span>
+<span class="sd">        Predicted probability matrix (num_examples, num_classes). The probability\</span>
+<span class="sd">        estimates must sum to 1 across the possible classes and each matrix value\</span>
+<span class="sd">        must be in the interval [0,1].</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    threshold : float</span>
+<span class="sd">        float value to discriminate between 0 and 1</span>
+<span class="sd">    roc_margin : float</span>
+<span class="sd">        float value to determine the margin around the decision boundary</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    array-like</span>
+<span class="sd">        A new array of predictions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Indices of critical region around the classification boundary</span>
+    <span class="n">upper_threshold</span> <span class="o">=</span> <span class="n">threshold</span> <span class="o">+</span> <span class="n">roc_margin</span>
+    <span class="n">lower_threshold</span> <span class="o">=</span> <span class="n">threshold</span> <span class="o">-</span> <span class="n">roc_margin</span>
+    <span class="n">crit_region_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">likelihoods</span> <span class="o">&lt;=</span> <span class="n">upper_threshold</span><span class="p">,</span> <span class="n">likelihoods</span> <span class="o">&gt;</span> <span class="n">lower_threshold</span><span class="p">)</span>
+
+    <span class="c1"># New, fairer labels</span>
+    <span class="n">new_predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">new_predictions</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">crit_region_inds</span><span class="p">,</span> <span class="n">group_a</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">new_predictions</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">crit_region_inds</span><span class="p">,</span> <span class="n">group_b</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">new_predictions</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

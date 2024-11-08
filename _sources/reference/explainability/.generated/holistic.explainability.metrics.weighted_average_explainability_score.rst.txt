@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.weighted\_average\_explainability\_score
+========================================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: weighted_average_explainability_score

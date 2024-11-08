@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.datasets._dataloaders &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/datasets/_dataloaders';</script>
+    <link rel="icon" href="../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.datasets._dataloaders</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.datasets._dataloaders</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Base Imports</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">environ</span><span class="p">,</span> <span class="n">makedirs</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">expanduser</span><span class="p">,</span> <span class="n">join</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># sklearn imports</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+
+
+<span class="k">def</span> <span class="nf">get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the path of the holistic data directory.</span>
+<span class="sd">    By default the data directory is set to a folder named &#39;holistic_data&#39; in the</span>
+<span class="sd">    user home folder.</span>
+<span class="sd">    Alternatively, it can be set by the &#39;holistic_DATA&#39; environment</span>
+<span class="sd">    variable or programmatically by giving an explicit folder path. The &#39;~&#39;</span>
+<span class="sd">    symbol is expanded to the user home folder.</span>
+<span class="sd">    If the folder does not already exist, it is automatically created.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : str, default=None</span>
+<span class="sd">        The path to holistic data directory. If `None`, the default path</span>
+<span class="sd">        is `~/holistic_data`.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_home: str</span>
+<span class="sd">        The path to holistic data directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">data_home</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data_home</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;HOLISTIC_AI_DATA&quot;</span><span class="p">,</span> <span class="n">join</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="s2">&quot;holistic_data&quot;</span><span class="p">))</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">expanduser</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+    <span class="n">makedirs</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_home</span>
+
+
+<span class="k">def</span> <span class="nf">load_openml</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic function to load datasets from OpenML.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Name of the dataset on OpenML.</span>
+<span class="sd">    version : int</span>
+<span class="sd">        Version of the dataset.</span>
+<span class="sd">    data_home : str, optional</span>
+<span class="sd">        The directory to which the data is downloaded. If None, we download</span>
+<span class="sd">        to the default data home directory.</span>
+<span class="sd">    return_X_y : bool, default=False</span>
+<span class="sd">        If True, returns ``(data, target)`` instead of a Bunch object.</span>
+<span class="sd">    as_frame : bool, default=True</span>
+<span class="sd">        If True, the data is a pandas DataFrame including columns with</span>
+<span class="sd">        appropriate dtypes (numeric).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : sklearn.utils.Bunch or tuple</span>
+<span class="sd">        Dataset object or (data, target) tuple if return_X_y is True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">data_home</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data_home</span> <span class="o">=</span> <span class="n">get_data_home</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fetch_openml</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span>
+        <span class="n">data_home</span><span class="o">=</span><span class="n">data_home</span><span class="p">,</span>
+        <span class="n">return_X_y</span><span class="o">=</span><span class="n">return_X_y</span><span class="p">,</span>
+        <span class="n">as_frame</span><span class="o">=</span><span class="n">as_frame</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="load_student">
+<a class="viewcode-back" href="../../../reference/.generated/holistic.datasets.load_student.html#holistic.datasets.load_student">[docs]</a>
+<span class="k">def</span> <span class="nf">load_student</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;UCI-student-performance-mat&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_adult">
+<a class="viewcode-back" href="../../../reference/.generated/holistic.datasets.load_adult.html#holistic.datasets.load_adult">[docs]</a>
+<span class="k">def</span> <span class="nf">load_adult</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;adult&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_law_school">
+<a class="viewcode-back" href="../../../reference/.generated/holistic.datasets.load_law_school.html#holistic.datasets.load_law_school">[docs]</a>
+<span class="k">def</span> <span class="nf">load_law_school</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;law-school-admission-bianry&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_last_fm">
+<a class="viewcode-back" href="../../../reference/.generated/holistic.datasets.load_last_fm.html#holistic.datasets.load_last_fm">[docs]</a>
+<span class="k">def</span> <span class="nf">load_last_fm</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;LastFM_dataset&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_us_crime">
+<a class="viewcode-back" href="../../../reference/.generated/holistic.datasets.load_us_crime.html#holistic.datasets.load_us_crime">[docs]</a>
+<span class="k">def</span> <span class="nf">load_us_crime</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;us_crime&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">load_heart</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;heart-failure&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_german_credit</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;German-Credit-Risk-with-Target&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_census_kdd</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;Census-Income-KDD&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_bank_marketing</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;bank-marketing&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_compas_two_year_recid</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="s2">&quot;https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years.csv&quot;</span>
+    <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;is_recid&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;c_charge_degree&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;O&quot;</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;score_text&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_charge_degree&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;race&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age_cat&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;score_text&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;priors_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;decile_score&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;juv_fel_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;juv_misd_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;juv_other_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;v_type_of_assessment&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_days_from_compas&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;v_score_text&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;v_decile_score&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;two_year_recid&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">load_compas_is_recid</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="s2">&quot;https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years.csv&quot;</span>
+    <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;is_recid&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;c_charge_degree&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;O&quot;</span><span class="p">)</span>
+        <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;score_text&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_charge_degree&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;race&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age_cat&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;score_text&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;priors_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;decile_score&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;juv_fel_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;juv_misd_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;juv_other_count&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;v_type_of_assessment&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;c_days_from_compas&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;v_score_text&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;v_decile_score&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;is_recid&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">load_diabetes</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;Diabetes-130-Hospitals_(Fairlearn)&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_acsincome</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;ACSIncome&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_acspublic</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">load_openml</span><span class="p">(</span><span class="s2">&quot;ACSPublicCoverage&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="n">return_X_y</span><span class="p">,</span> <span class="n">as_frame</span><span class="p">)</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1564 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holistic.bias.metrics._regression &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/holistic/bias/metrics/_regression';</script>
+    <link rel="icon" href="../../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../gallery/index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">holistic.bias.metrics._regression</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for holistic.bias.metrics._regression</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Base Imports</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># utils</span>
+<span class="kn">from</span> <span class="nn">holistic.utils._formatting</span> <span class="kn">import</span> <span class="n">slice_arrays_by_quantile</span>
+<span class="kn">from</span> <span class="nn">holistic.utils._validation</span> <span class="kn">import</span> <span class="n">_check_non_empty</span><span class="p">,</span> <span class="n">_regression_checks</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_success_rate</span><span class="p">(</span><span class="n">group_membership</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="nb">float</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">group_membership</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">success_rate_regression</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Success rate (Regression version)</span>
+
+<span class="sd">    Calculates the raw success rates for each group.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (numerical)</span>
+<span class="sd">    threshold: float, str, optional</span>
+<span class="sd">        The number above which the result is considered a success. Ranged between 0 and 1.</span>
+<span class="sd">        Also accepts &#39;median&#39; and &#39;mean&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Dictionary with two keys, sr_a and sr_b (success rate for group a and b)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Needs to be numpy array or the following operations won&#39;t be correct</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">threshold</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">}):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Threshold not recognised&quot;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">threshold</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">threshold</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">group_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">group_a</span><span class="p">)</span>
+    <span class="n">group_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">group_b</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">group_a_membership</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">group_b_membership</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">sr_a</span> <span class="o">=</span> <span class="n">_calc_success_rate</span><span class="p">(</span><span class="n">group_a_membership</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="n">sr_b</span> <span class="o">=</span> <span class="n">_calc_success_rate</span><span class="p">(</span><span class="n">group_b_membership</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>  <span class="c1"># success rate group_b</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;sr_a&quot;</span><span class="p">:</span> <span class="n">sr_a</span><span class="p">,</span> <span class="s2">&quot;sr_b&quot;</span><span class="p">:</span> <span class="n">sr_b</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="disparate_impact_regression">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.disparate_impact_regression.html#holistic.bias.metrics.disparate_impact_regression">[docs]</a>
+<span class="k">def</span> <span class="nf">disparate_impact_regression</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Disparate Impact quantile (Regression version)</span>
+
+<span class="sd">    This function computes the ratio of success rates between group_a and</span>
+<span class="sd">    group_b, where sucess means predicted score exceeds a given quantile (default = 0.8).</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Values below 1 are unfair towards group_a.</span>
+<span class="sd">    Values above 1 are unfair towards group_b. The range (0.8,1.2)</span>
+<span class="sd">    is considered acceptable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.8</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Disparate Impact (top %)</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{sr_a}{sr_b}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import disparate_impact_regression</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.8, 0.9, 0.2, 0.1, 0.7, 0.9, 0.8, 0.6, 0.3, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; disparate_impact_regression(group_a, group_b, y_pred, q=0.7)</span>
+<span class="sd">    1.5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="c1"># numbers</span>
+    <span class="n">n_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">n_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">])</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">disp_impact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">sr_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">n_a</span>  <span class="c1"># success rate group_a</span>
+        <span class="n">sr_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">n_b</span>  <span class="c1"># success rate group_b</span>
+
+        <span class="n">disp_impact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sr_a</span> <span class="o">/</span> <span class="n">sr_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">disp_impact</span><span class="p">)[()]</span></div>
+
+
+
+<div class="viewcode-block" id="statistical_parity_regression">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.statistical_parity_regression.html#holistic.bias.metrics.statistical_parity_regression">[docs]</a>
+<span class="k">def</span> <span class="nf">statistical_parity_regression</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Statistical Parity quantile (Regression version)</span>
+
+<span class="sd">    This function computes the difference of success rates between group_a and\</span>
+<span class="sd">    group_b, where sucess means that the predicted score exceeds a given quantile.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. Values below 0 are unfair towards group_a.\</span>
+<span class="sd">    Values above 0 are unfair towards group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.5</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Statistical Parity (top %) : SR_a - SR_b</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import statistical_parity_regression</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.8, 0.9, 0.2, 0.1, 0.7, 0.9, 0.8, 0.6, 0.3, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; statistical_parity_regression(group_a, group_b, y_pred, q=0.7)</span>
+<span class="sd">    0.16666666666666669</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="c1"># numbers</span>
+    <span class="n">n_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">n_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">])</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">stat_parity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">sr_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">n_a</span>  <span class="c1"># success rate group_a</span>
+        <span class="n">sr_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">n_b</span>  <span class="c1"># success rate group_b</span>
+
+        <span class="n">stat_parity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sr_a</span> <span class="o">-</span> <span class="n">sr_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">stat_parity</span><span class="p">)[()]</span></div>
+
+
+
+<div class="viewcode-block" id="no_disparate_impact_level">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.no_disparate_impact_level.html#holistic.bias.metrics.no_disparate_impact_level">[docs]</a>
+<span class="k">def</span> <span class="nf">no_disparate_impact_level</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;No disparate impact level</span>
+
+<span class="sd">    This function computes the maximum score such that thresholding at that score\</span>
+<span class="sd">    does not allow adverse impact.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        No disparate impact level</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import no_disparate_impact_level</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.8, 0.9, 0.2, 0.1, 0.7, 0.9, 0.8, 0.6, 0.3, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; no_disparate_impact_level(group_a, group_b, y_pred)</span>
+<span class="sd">    0.7</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># grid</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="c1"># try different values</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">q</span><span class="p">:</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">pass_members</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">&gt;=</span> <span class="n">pred</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">group_a</span> <span class="o">*</span> <span class="n">pass_members</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">group_b</span> <span class="o">*</span> <span class="n">pass_members</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="c1"># find score that does not allow adverse impact</span>
+        <span class="n">lower_bound</span> <span class="o">=</span> <span class="mf">0.8</span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="mf">1.2</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">lower_bound</span> <span class="o">&lt;</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">upper_bound</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">pred</span></div>
+
+
+
+<div class="viewcode-block" id="avg_score_diff">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.avg_score_diff.html#holistic.bias.metrics.avg_score_diff">[docs]</a>
+<span class="k">def</span> <span class="nf">avg_score_diff</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Average Score Difference</span>
+
+<span class="sd">    This function computes the difference in average scores between\</span>
+<span class="sd">    group_a and group_b.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. Negative values indicate the group_a\</span>
+<span class="sd">    has lower average score, so bias against group_a. Positive values\</span>
+<span class="sd">    indicate group_b has lower average score, so bias against group_b.\</span>
+<span class="sd">    Scale is relative to task.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Average Score Spread</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\texttt{AVgroup_a - AVgroup_b}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_score_diff</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.8, 0.9, 0.2, 0.1, 0.7, 0.9, 0.8, 0.6, 0.3, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; avg_score_diff(group_a, group_b, y_pred)</span>
+<span class="sd">    -0.13333333333333341</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="n">y_pred_list</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">])</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">avg_score_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">avgroup_a</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">avgroup_b</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="n">avg_score_diff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">avgroup_a</span> <span class="o">-</span> <span class="n">avgroup_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">avg_score_diff</span><span class="p">)[()]</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">avg_score_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Average Score Ratio</span>
+
+<span class="sd">    This function computes the ratio in average scores between\</span>
+<span class="sd">    group_a and group_b.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Values below 1 indicate the group_a\</span>
+<span class="sd">    has lower average score, so bias against group_a. Values above 1\</span>
+<span class="sd">    indicate group_b has lower average score, so bias against group_b.\</span>
+<span class="sd">    (0.8, 1.25) range is considered fair.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Average Score Ratio</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\texttt{AVgroup_a / AVgroup_b}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import avg_score_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.8, 0.9, 0.2, 0.1, 0.7, 0.9, 0.8, 0.6, 0.3, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; avg_score_ratio(group_a, group_b, y_pred)</span>
+<span class="sd">    0.7894736842</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="n">y_pred_list</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">])</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">avg_score_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">avgroup_a</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">avgroup_b</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="n">avg_score_ratio</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">avgroup_a</span> <span class="o">/</span> <span class="n">avgroup_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">avg_score_ratio</span><span class="p">)[()]</span>
+
+
+<div class="viewcode-block" id="zscore_diff">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.zscore_diff.html#holistic.bias.metrics.zscore_diff">[docs]</a>
+<span class="k">def</span> <span class="nf">zscore_diff</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ZScore Difference</span>
+
+<span class="sd">    This function computes the spread in Zscores between\</span>
+<span class="sd">    group_a and group_b. The Zscore is a normalised\</span>
+<span class="sd">    version of Disparate Impact.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. The Zscore will approximate the number\</span>
+<span class="sd">    of standard deviations away from the mean. In particular values that\</span>
+<span class="sd">    exceed 2 are statistically significant with 95% probability.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        ZScore Difference</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{\texttt{AVgroup_a} - \texttt{AVgroup_b}}{\texttt{STD_pool}}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import zscore_diff</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1, 1, 1, 1, 0, 0, 0, 0, 0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.8, 0.9, 0.2, 0.1, 0.2, 0.9, 0.3, 0.6, 0.3, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; zscore_diff(group_a, group_b, y_pred)</span>
+<span class="sd">    0.1166919931983158</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="n">y_pred_list</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">])</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">zscore_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="c1"># Get means</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">av_group_a</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">av_group_b</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="c1"># Get n_a and n_b</span>
+        <span class="n">n_a</span> <span class="o">=</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">n_b</span> <span class="o">=</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="c1"># STD pooled</span>
+        <span class="n">std_pool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="p">((</span><span class="n">n_a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">**</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_b</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span>
+            <span class="o">/</span> <span class="p">(</span><span class="n">n_b</span> <span class="o">+</span> <span class="n">n_a</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">zscore_diff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">av_group_a</span> <span class="o">-</span> <span class="n">av_group_b</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_pool</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">zscore_diff</span><span class="p">)[()]</span></div>
+
+
+
+<div class="viewcode-block" id="statistical_parity_auc">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.statistical_parity_auc.html#holistic.bias.metrics.statistical_parity_auc">[docs]</a>
+<span class="k">def</span> <span class="nf">statistical_parity_auc</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Statistical parity (AUC)</span>
+
+<span class="sd">    This function computes the area under the statistical parity\</span>
+<span class="sd">    versus threshold curve.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. Values below 0.075 are considered\</span>
+<span class="sd">    acceptable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        statistical parity (AUC)</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import statistical_parity_auc</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1] * 50 + [0] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0] * 50 + [1] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50) ** 3))</span>
+<span class="sd">    &gt;&gt;&gt; statistical_parity_auc(group_a, group_b, y_pred)</span>
+<span class="sd">    0.12106666666666668</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># thresholds</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="n">pass_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">thresh</span><span class="p">)</span>
+    <span class="n">y_binary</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">pass_value</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pass_a</span> <span class="o">=</span> <span class="n">y_binary</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">pass_b</span> <span class="o">=</span> <span class="n">y_binary</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">di_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pass_a</span> <span class="o">-</span> <span class="n">pass_b</span><span class="p">)</span>
+
+    <span class="c1"># AUC</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">di_arr</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">150</span><span class="p">]</span> <span class="o">*</span> <span class="mi">150</span><span class="p">))</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_weighed_statistical_parity_auc</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Weighed Statistical parity (AUC)</span>
+
+<span class="sd">    This function computes the area under the statistical\</span>
+<span class="sd">    parity versus threshold curve, weighed by the 2t distribution.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. Values below 0.1 are considered\</span>
+<span class="sd">    acceptable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : numpy array</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Weighed statistical parity (AUC)</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import _weighed_statistical_parity_auc</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1] * 50 + [0] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0] * 50 + [1] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50) ** 3))</span>
+<span class="sd">    &gt;&gt;&gt; _weighed_statistical_parity_auc(group_a, group_b, y_pred)</span>
+<span class="sd">    0.12106666666666666</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># thresholds</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="n">pass_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">thresh</span><span class="p">)</span>
+    <span class="n">y_binary</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">pass_value</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pass_a</span> <span class="o">=</span> <span class="n">y_binary</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">pass_b</span> <span class="o">=</span> <span class="n">y_binary</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">di_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pass_a</span> <span class="o">-</span> <span class="n">pass_b</span><span class="p">)</span>
+    <span class="n">differentials</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+
+    <span class="c1"># Weighed AUC</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">di_arr</span> <span class="o">*</span> <span class="n">differentials</span> <span class="o">/</span> <span class="mi">150</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="max_statistical_parity">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.max_statistical_parity.html#holistic.bias.metrics.max_statistical_parity">[docs]</a>
+<span class="k">def</span> <span class="nf">max_statistical_parity</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Max absolute statistical parity</span>
+
+<span class="sd">    This function computes the maximum over all thresholds of\</span>
+<span class="sd">    the absolute statistical parity between group_a and group_b.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. Values below 0.1 in absolute value are\</span>
+<span class="sd">    considered acceptable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        max absolute statistical parity</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import max_statistical_parity</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1] * 50 + [0] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0] * 50 + [1] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50) ** 3))</span>
+<span class="sd">    &gt;&gt;&gt; max_statistical_parity(group_a, group_b, y_pred)</span>
+<span class="sd">    0.20000000000000007</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># thresholds</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="n">pass_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">thresh</span><span class="p">)</span>
+    <span class="n">y_binary</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">pass_value</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pass_a</span> <span class="o">=</span> <span class="n">y_binary</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">pass_b</span> <span class="o">=</span> <span class="n">y_binary</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">group_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">di_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pass_a</span> <span class="o">-</span> <span class="n">pass_b</span><span class="p">)</span>
+
+    <span class="c1"># MAX</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">di_arr</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="correlation_diff">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.correlation_diff.html#holistic.bias.metrics.correlation_diff">[docs]</a>
+<span class="k">def</span> <span class="nf">correlation_diff</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Correlation difference</span>
+
+<span class="sd">    This function computes the difference in correlation between predictions\</span>
+<span class="sd">    and targets for group_a and group_b.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 0 is desired. This metric ranges between -2 and 2,\</span>
+<span class="sd">    with -1 indicating strong bias against group_a, and +1\</span>
+<span class="sd">    indicating strong bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    y_true : numpy array</span>
+<span class="sd">        Target vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        correlation difference</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`CV_a - CV_b`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import correlation_diff</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1] * 50 + [0] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0] * 50 + [1] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50) ** 3))</span>
+<span class="sd">    &gt;&gt;&gt; y_true = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50) ** 2))</span>
+<span class="sd">    &gt;&gt;&gt; correlation_diff(group_a, group_b, y_pred, y_true, q=0)</span>
+<span class="sd">    1.0000000000000002</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="n">y_pred_list</span><span class="p">,</span> <span class="n">y_true_list</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span>
+        <span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">corr_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="c1"># Compute Pearson correlations</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">cv_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_true</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">cv_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_true</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">corr_diff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv_a</span> <span class="o">-</span> <span class="n">cv_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">corr_diff</span><span class="p">)[()]</span></div>
+
+
+
+<div class="viewcode-block" id="rmse_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.rmse_ratio.html#holistic.bias.metrics.rmse_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">rmse_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;RMSE ratio</span>
+
+<span class="sd">    This function computes the ratio of the RMSE for group_a and group_b.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values show bias against group_a.</span>
+<span class="sd">    Higher values show bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    y_true : numpy array</span>
+<span class="sd">        Target vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        RMSE ratio</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{RMSE_a}{RMSE_b}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import rmse_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1] * 50 + [0] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0] * 50 + [1] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50)))</span>
+<span class="sd">    &gt;&gt;&gt; y_true = np.concatenate(</span>
+<span class="sd">    ...     (np.linspace(-1, 1, 50) ** 2, np.linspace(-1, 1, 50) ** 3)</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; rmse_ratio(group_a, group_b, y_pred, y_true)</span>
+<span class="sd">    2.7471209467641367</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="n">y_pred_list</span><span class="p">,</span> <span class="n">y_true_list</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span>
+        <span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">rmse_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="c1"># Compute RMSE for both groups</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">rmse_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">y_true</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+        <span class="n">rmse_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">y_true</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+        <span class="n">rmse_ratio</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rmse_a</span> <span class="o">/</span> <span class="n">rmse_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">rmse_ratio</span><span class="p">)[()]</span></div>
+
+
+
+<div class="viewcode-block" id="mae_ratio">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.mae_ratio.html#holistic.bias.metrics.mae_ratio">[docs]</a>
+<span class="k">def</span> <span class="nf">mae_ratio</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MAE ratio</span>
+
+<span class="sd">    This function computes the ratio of the MAE for group_a and group_b.</span>
+
+<span class="sd">    If q is a vector, this function returns a vector with the\</span>
+<span class="sd">    respective result for each given quantile in q.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    A value of 1 is desired. Lower values show bias against group_a.</span>
+<span class="sd">    Higher values show bias against group_b.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    y_true : numpy array</span>
+<span class="sd">        Target vector (regression)</span>
+<span class="sd">    q : float, array-like, optional</span>
+<span class="sd">        quantile of predictions considered, default=0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        MAE ratio</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :math:`\frac{MAE_a}{MAE_b}`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import mae_ratio</span>
+<span class="sd">    &gt;&gt;&gt; group_a = np.array([1] * 50 + [0] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; group_b = np.array([0] * 50 + [1] * 50)</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.concatenate((np.linspace(-1, 1, 50), np.linspace(-1, 1, 50)))</span>
+<span class="sd">    &gt;&gt;&gt; y_true = np.concatenate(</span>
+<span class="sd">    ...     (np.linspace(-1, 1, 50) ** 2, np.linspace(-1, 1, 50) ** 3)</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; mae_ratio(group_a, group_b, y_pred, y_true)</span>
+<span class="sd">    2.084201388888889</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check and coerce inputs</span>
+    <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">_regression_checks</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="n">y_pred_list</span><span class="p">,</span> <span class="n">y_true_list</span><span class="p">,</span> <span class="n">group_a_list</span><span class="p">,</span> <span class="n">group_b_list</span> <span class="o">=</span> <span class="n">slice_arrays_by_quantile</span><span class="p">(</span>
+        <span class="n">q</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">n_q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_a_list</span><span class="p">)</span>
+    <span class="n">mae_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_q</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_q</span><span class="p">):</span>
+        <span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span> <span class="o">=</span> <span class="n">group_a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">group_b_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_a&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">_check_non_empty</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;group_b&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="o">=</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="c1"># Compute MAE for both groups</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">mae_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">mae_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">group_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="n">mae_ratio</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mae_a</span> <span class="o">/</span> <span class="n">mae_b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">mae_ratio</span><span class="p">)[()]</span></div>
+
+
+
+<div class="viewcode-block" id="regression_bias_metrics">
+<a class="viewcode-back" href="../../../../reference/bias/.generated/holistic.bias.metrics.regression_bias_metrics.html#holistic.bias.metrics.regression_bias_metrics">[docs]</a>
+<span class="k">def</span> <span class="nf">regression_bias_metrics</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metric_type</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Regression bias metrics batch computation</span>
+
+<span class="sd">    This function computes all the relevant regression bias metrics,\</span>
+<span class="sd">    and displays them as a pandas dataframe.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    group_a : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    group_b : array-like</span>
+<span class="sd">        Group membership vector (binary)</span>
+<span class="sd">    y_pred : array-like</span>
+<span class="sd">        Predictions vector (regression)</span>
+<span class="sd">    y_true : numpy array, optional</span>
+<span class="sd">        Target vector (regression)</span>
+<span class="sd">    metric_type : str, optional</span>
+<span class="sd">        Specifies which metrics we compute : individual, group, equal_outcome, equal_opportunity, both</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas DataFrame</span>
+<span class="sd">        Metrics | Values | Reference</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">individual_metrics</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Jain Index&quot;</span><span class="p">:</span> <span class="n">jain_index</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">equal_outcome_metrics</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Disparate Impact Q90&quot;</span><span class="p">:</span> <span class="n">disparate_impact_regression</span><span class="p">,</span>
+        <span class="s2">&quot;Disparate Impact Q80&quot;</span><span class="p">:</span> <span class="n">disparate_impact_regression</span><span class="p">,</span>
+        <span class="s2">&quot;Disparate Impact Q50&quot;</span><span class="p">:</span> <span class="n">disparate_impact_regression</span><span class="p">,</span>
+        <span class="s2">&quot;Statistical Parity Q50&quot;</span><span class="p">:</span> <span class="n">statistical_parity_regression</span><span class="p">,</span>
+        <span class="s2">&quot;No Disparate Impact Level&quot;</span><span class="p">:</span> <span class="n">no_disparate_impact_level</span><span class="p">,</span>
+        <span class="s2">&quot;Average Score Difference&quot;</span><span class="p">:</span> <span class="n">avg_score_diff</span><span class="p">,</span>
+        <span class="s2">&quot;Average Score Ratio&quot;</span><span class="p">:</span> <span class="n">avg_score_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;Z Score Difference&quot;</span><span class="p">:</span> <span class="n">zscore_diff</span><span class="p">,</span>
+        <span class="s2">&quot;Max Statistical Parity&quot;</span><span class="p">:</span> <span class="n">max_statistical_parity</span><span class="p">,</span>
+        <span class="s2">&quot;Statistical Parity AUC&quot;</span><span class="p">:</span> <span class="n">statistical_parity_auc</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">equal_opportunity_metrics</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;RMSE Ratio&quot;</span><span class="p">:</span> <span class="n">rmse_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;RMSE Ratio Q80&quot;</span><span class="p">:</span> <span class="n">rmse_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;MAE Ratio&quot;</span><span class="p">:</span> <span class="n">mae_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;MAE Ratio Q80&quot;</span><span class="p">:</span> <span class="n">mae_ratio</span><span class="p">,</span>
+        <span class="s2">&quot;Correlation Difference&quot;</span><span class="p">:</span> <span class="n">correlation_diff</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">ref_vals</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Disparate Impact Q90&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Disparate Impact Q80&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Disparate Impact Q50&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Statistical Parity Q50&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;No Disparate Impact Level&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Average Score Difference&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Average Score Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Z Score Difference&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Max Statistical Parity&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Statistical Parity AUC&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;RMSE Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;RMSE Ratio Q80&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;MAE Ratio&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;MAE Ratio Q80&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;Correlation Difference&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;Jain Index&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">hypers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Disparate Impact Q90&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
+        <span class="s2">&quot;Disparate Impact Q80&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">},</span>
+        <span class="s2">&quot;Disparate Impact Q50&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+        <span class="s2">&quot;Statistical Parity Q50&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">},</span>
+        <span class="s2">&quot;No Disparate Impact Level&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;Average Score Difference&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;Average Score Ratio&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;Z Score Difference&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;Max Statistical Parity&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;Statistical Parity AUC&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;RMSE Ratio&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;RMSE Ratio Q80&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">},</span>
+        <span class="s2">&quot;MAE Ratio&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;MAE Ratio Q80&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">},</span>
+        <span class="s2">&quot;Correlation Difference&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="p">}</span>
+
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">y_true</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+
+    <span class="n">has_group_parameters</span> <span class="o">=</span> <span class="nb">all</span><span class="p">((</span><span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">has_group_parameters</span><span class="p">:</span>
+        <span class="n">out_metrics</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">hypers</span><span class="p">[</span><span class="n">pf</span><span class="p">]),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">equal_outcome_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">y_true</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">opp_metrics</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="n">pf</span><span class="p">,</span>
+                    <span class="n">fn</span><span class="p">(</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="o">**</span><span class="n">hypers</span><span class="p">[</span><span class="n">pf</span><span class="p">]),</span>
+                    <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">],</span>
+                <span class="p">]</span>
+                <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">equal_opportunity_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;individual&quot;</span><span class="p">:</span>
+        <span class="n">indv_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">y_pred</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y_true</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">indv_metrics</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">pf</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">),</span> <span class="n">ref_vals</span><span class="p">[</span><span class="n">pf</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pf</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">individual_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># in case of missing y_pred or y_true</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;y_pred and y_true must be provided for individual metrics&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;both&quot;</span><span class="p">:</span>
+            <span class="c1"># TODO: remove both for next version</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;`both` option will be depreciated in the next versions, use group&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span>
+            <span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="n">out_metrics</span> <span class="o">+</span> <span class="n">opp_metrics</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;equal_outcome&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">out_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;equal_opportunity&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">opp_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">metric_type</span> <span class="o">==</span> <span class="s2">&quot;individual&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">indv_metrics</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;metric_type is not one of : both, equal_outcome, equal_opportunity&quot;</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+
+<span class="c1">#### Individual metrics</span>
+
+
+<span class="k">def</span> <span class="nf">jain_index</span><span class="p">(</span><span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Jain index (Fairness index)</span>
+
+<span class="sd">    The Jain index is an index proposed for resources allocation that measures the &quot;equality&quot; of user allocation [1].</span>
+<span class="sd">    For our purposes, from the point of view of fairness, it measures the equality of the error distributed in the\</span>
+<span class="sd">    model outcomes. Empirically, we could say that a model with a Jain index of 1 is a model that distributes the error\</span>
+<span class="sd">    equally among all the samples.</span>
+
+<span class="sd">    Please, use this metric with caution, as it is not a metric that has been proposed for fairness in machine learning\</span>
+<span class="sd">    models, but for resources allocation.</span>
+
+<span class="sd">    Interpretation</span>
+<span class="sd">    --------------</span>
+<span class="sd">    From the point of view of fairness, it measures the equality of the error distributed among the samples. A fairer\</span>
+<span class="sd">    model will have a Jain index closer to 1.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        The true target values.</span>
+<span class="sd">    y_pred : array-like of shape (n_samples,)</span>
+<span class="sd">        The predicted target values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The Jain index of the input array.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Jain, R. (1984). A Quantitative Measure of Fairness and Discrimination for Resource Allocation in Shared</span>
+<span class="sd">    Computer Systems. Eastern Research Laboratory, Digital Equipment Corporation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from holistic.bias.metrics import jain_index</span>
+<span class="sd">    &gt;&gt;&gt; y_true = np.array([1, 2, 3, 4, 5])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([1, 2, 3, 4, 4])</span>
+<span class="sd">    &gt;&gt;&gt; jain_index(y_pred, y_true)</span>
+<span class="sd">    0.2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">jain</span> <span class="o">=</span> <span class="p">((</span><span class="n">error</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">error</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">jain</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">jain</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

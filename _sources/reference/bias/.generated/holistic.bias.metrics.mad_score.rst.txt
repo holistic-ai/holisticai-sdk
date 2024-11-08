@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.mad\_score
+================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: mad_score

@@ -1,0 +1,6 @@
+﻿holistic.datasets.GroupByDataset
+================================
+
+.. currentmodule:: holistic.datasets
+
+.. autoclass:: GroupByDataset

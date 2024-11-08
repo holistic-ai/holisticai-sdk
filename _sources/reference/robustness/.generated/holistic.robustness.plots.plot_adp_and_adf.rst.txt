@@ -1,0 +1,6 @@
+﻿holistic.robustness.plots.plot\_adp\_and\_adf
+=============================================
+
+.. currentmodule:: holistic.robustness.plots
+
+.. autofunction:: plot_adp_and_adf

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.accuracy\_matrix
+======================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: accuracy_matrix

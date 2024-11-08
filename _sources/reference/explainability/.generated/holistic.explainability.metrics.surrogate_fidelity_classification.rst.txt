@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.surrogate\_fidelity\_classification
+===================================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: surrogate_fidelity_classification

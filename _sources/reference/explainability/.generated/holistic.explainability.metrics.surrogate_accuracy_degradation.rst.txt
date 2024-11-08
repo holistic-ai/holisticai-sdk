@@ -1,0 +1,6 @@
+﻿holistic.explainability.metrics.surrogate\_accuracy\_degradation
+================================================================
+
+.. currentmodule:: holistic.explainability.metrics
+
+.. autofunction:: surrogate_accuracy_degradation

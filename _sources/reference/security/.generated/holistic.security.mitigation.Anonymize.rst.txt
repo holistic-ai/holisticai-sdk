@@ -1,0 +1,6 @@
+﻿holistic.security.mitigation.Anonymize
+======================================
+
+.. currentmodule:: holistic.security.mitigation
+
+.. autoclass:: Anonymize

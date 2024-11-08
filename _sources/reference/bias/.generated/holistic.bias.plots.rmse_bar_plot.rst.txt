@@ -1,0 +1,6 @@
+﻿holistic.bias.plots.rmse\_bar\_plot
+===================================
+
+.. currentmodule:: holistic.bias.plots
+
+.. autofunction:: rmse_bar_plot

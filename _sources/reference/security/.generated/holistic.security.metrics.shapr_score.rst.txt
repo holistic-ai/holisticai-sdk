@@ -1,0 +1,6 @@
+﻿holistic.security.metrics.shapr\_score
+======================================
+
+.. currentmodule:: holistic.security.metrics
+
+.. autofunction:: shapr_score

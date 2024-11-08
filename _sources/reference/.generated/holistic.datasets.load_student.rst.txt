@@ -1,0 +1,6 @@
+﻿holistic.datasets.load\_student
+===============================
+
+.. currentmodule:: holistic.datasets
+
+.. autofunction:: load_student

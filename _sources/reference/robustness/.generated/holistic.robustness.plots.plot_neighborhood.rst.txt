@@ -1,0 +1,6 @@
+﻿holistic.robustness.plots.plot\_neighborhood
+============================================
+
+.. currentmodule:: holistic.robustness.plots
+
+.. autofunction:: plot_neighborhood

@@ -1,0 +1,6 @@
+﻿holistic.bias.metrics.four\_fifths
+==================================
+
+.. currentmodule:: holistic.bias.metrics
+
+.. autofunction:: four_fifths

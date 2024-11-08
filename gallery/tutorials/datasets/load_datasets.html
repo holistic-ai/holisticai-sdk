@@ -1,0 +1,3314 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to the Dataset Object &#8212; holistic  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_style.css?v=ac75cb35" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/tutorials/datasets/load_datasets';</script>
+    <link rel="icon" href="../../../_static/holistic_ai.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/hai_logo.svg" class="logo__image only-light" alt="holistic  documentation - Home"/>
+    <img src="https://assets-global.website-files.com/6305e5d42c283515c3e71b8c/63d771efd50a073bd66193f0_Holistic-AI-Logo-Horizontal-Dark.svg" class="logo__image only-dark pst-js-only" alt="holistic  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Example Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../contributor/index.html">
+    Contributor Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/holistic_ai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/holistic-ai/holisticai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://join.slack.com/t/holisticaicommunity/shared_invite/zt-2jamouyrn-BrMfeoBZIHT8HbLzB3P9QQ" title="Community" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-slack fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Community</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Introduction to the Dataset Object</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Introduction-to-the-Dataset-Object">
+<h1>Introduction to the Dataset Object<a class="headerlink" href="#Introduction-to-the-Dataset-Object" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> object is a powerful tool for working with structured data in Python. It provides a convenient interface for loading, manipulating, and analyzing datasets. Whether you are working with tabular data, time series data, or any other structured data, the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> object can streamline your workflow and make your data analysis tasks more efficient.</p>
+<p>In this tutorial, we will explore the various features and functionalities of the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> object. We will learn how to load datasets, access and manipulate data, perform common data preprocessing tasks, and visualize the data. By the end of this tutorial, you will have a solid understanding of how to effectively work with the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> object and leverage its capabilities for your data analysis projects.</p>
+<p>Let’s get started!</p>
+</section>
+<section id="Creating-a-Dataset">
+<h1>Creating a Dataset<a class="headerlink" href="#Creating-a-Dataset" title="Link to this heading">#</a></h1>
+<p>First, let’s create a dataset using the famous Iris dataset from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;target_names&#39;, &#39;DESCR&#39;, &#39;feature_names&#39;, &#39;filename&#39;, &#39;data_module&#39;])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">holistic.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 150</div><div class="attribute-list blue"><strong>Features</strong>: X , y</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Loading-a-Dataset">
+<h1>Loading a Dataset<a class="headerlink" href="#Loading-a-Dataset" title="Link to this heading">#</a></h1>
+<p>You can load a dataset with personalized parameters such as <code class="docutils literal notranslate"><span class="pre">protected_attribute</span></code>. For the <code class="docutils literal notranslate"><span class="pre">law_school</span></code> dataset, the protected attributes are the groups <code class="docutils literal notranslate"><span class="pre">race1</span></code> (ethnicity) and <code class="docutils literal notranslate"><span class="pre">sex</span></code> (gender).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic.datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;adult&#39;</span><span class="p">,</span> <span class="n">protected_attribute</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 45222</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+<section id="Accessing-Data">
+<h2>Accessing Data<a class="headerlink" href="#Accessing-Data" title="Link to this heading">#</a></h2>
+<p>Let’s look at how to access features and samples in the dataset.</p>
+<section id="Accessing-Features">
+<h3>Accessing Features<a class="headerlink" href="#Accessing-Features" title="Link to this heading">#</a></h3>
+<p>To access the features in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>workclass_Federal-gov</th>
+      <th>workclass_Local-gov</th>
+      <th>workclass_Never-worked</th>
+      <th>workclass_Private</th>
+      <th>workclass_Self-emp-inc</th>
+      <th>...</th>
+      <th>native-country_Portugal</th>
+      <th>native-country_Puerto-Rico</th>
+      <th>native-country_Scotland</th>
+      <th>native-country_South</th>
+      <th>native-country_Taiwan</th>
+      <th>native-country_Thailand</th>
+      <th>native-country_Trinadad&amp;Tobago</th>
+      <th>native-country_United-States</th>
+      <th>native-country_Vietnam</th>
+      <th>native-country_Yugoslavia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25.0</td>
+      <td>226802.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>38.0</td>
+      <td>89814.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>28.0</td>
+      <td>336951.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>44.0</td>
+      <td>160323.0</td>
+      <td>7688.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>34.0</td>
+      <td>198693.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>45217</th>
+      <td>27.0</td>
+      <td>257302.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>38.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45218</th>
+      <td>40.0</td>
+      <td>154374.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45219</th>
+      <td>58.0</td>
+      <td>151910.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45220</th>
+      <td>22.0</td>
+      <td>201490.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>45221</th>
+      <td>52.0</td>
+      <td>287927.0</td>
+      <td>15024.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>45222 rows × 97 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Accessing-a-Sample">
+<h3>Accessing a Sample<a class="headerlink" href="#Accessing-a-Sample" title="Link to this heading">#</a></h3>
+<p>To access a specific sample in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;X&#39;: subfeatures
+ age                                   25.0
+ fnlwgt                            226802.0
+ capital-gain                           0.0
+ capital-loss                           0.0
+ hours-per-week                        40.0
+                                     ...
+ native-country_Thailand                0.0
+ native-country_Trinadad&amp;Tobago         0.0
+ native-country_United-States           1.0
+ native-country_Vietnam                 0.0
+ native-country_Yugoslavia              0.0
+ Name: 0, Length: 97, dtype: float64,
+ &#39;y&#39;: np.int64(0),
+ &#39;p_attrs&#39;: subfeatures
+ race    Black
+ sex      Male
+ Name: 0, dtype: object,
+ &#39;group_a&#39;: np.True_,
+ &#39;group_b&#39;: np.False_}
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Manipulating-Data">
+<h2>Manipulating Data<a class="headerlink" href="#Manipulating-Data" title="Link to this heading">#</a></h2>
+<section id="Creating-New-Features">
+<h3>Creating New Features<a class="headerlink" href="#Creating-New-Features" title="Link to this heading">#</a></h3>
+<p>You can create new features in the dataset using the <code class="docutils literal notranslate"><span class="pre">map</span></code> function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;group_c&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">],</span> <span class="s1">&#39;group_d&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;group_b&#39;</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 45222</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b , group_c , group_d</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Renaming-Features">
+<h3>Renaming Features<a class="headerlink" href="#Renaming-Features" title="Link to this heading">#</a></h3>
+<p>You can rename features in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;group_a&#39;</span><span class="p">:</span> <span class="s1">&#39;ga&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 45222</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , ga , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Selecting-Specific-Indices">
+<h3>Selecting Specific Indices<a class="headerlink" href="#Selecting-Specific-Indices" title="Link to this heading">#</a></h3>
+<p>To select specific indices in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 3</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Filtering-Data">
+<h3>Filtering Data<a class="headerlink" href="#Filtering-Data" title="Link to this heading">#</a></h3>
+<p>To filter the dataset based on a condition:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;group_a&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 30527</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+</section>
+<section id="Grouping-Data">
+<h2>Grouping Data<a class="headerlink" href="#Grouping-Data" title="Link to this heading">#</a></h2>
+<section id="Creating-Groups">
+<h3>Creating Groups<a class="headerlink" href="#Creating-Groups" title="Link to this heading">#</a></h3>
+<p>You can create groups in the dataset using one or more features:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;group_a&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">grouped_dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [GroupByDataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Count</strong>: 4</div><div class="attribute-list blue"><strong>Grouped_names</strong>: group_a, y</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Iterating-Over-Groups">
+<h3>Iterating Over Groups<a class="headerlink" href="#Iterating-Over-Groups" title="Link to this heading">#</a></h3>
+<p>You can iterate over the groups in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_dataset</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group_a</th>
+      <th>y</th>
+      <th>group_size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>0</td>
+      <td>13026</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>1</td>
+      <td>1669</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>True</td>
+      <td>0</td>
+      <td>20988</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>True</td>
+      <td>1</td>
+      <td>9539</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Selecting-the-First-N-Elements-of-Each-Group">
+<h3>Selecting the First N Elements of Each Group<a class="headerlink" href="#Selecting-the-First-N-Elements-of-Each-Group" title="Link to this heading">#</a></h3>
+<p>To select the first 10 elements for each group in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_dataset</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 40</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+<section id="Sampling-Elements-from-Each-Group">
+<h3>Sampling Elements from Each Group<a class="headerlink" href="#Sampling-Elements-from-Each-Group" title="Link to this heading">#</a></h3>
+<p>To sample 10 elements from each group in the dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grouped_dataset</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 80</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+</section>
+<section id="Splitting-the-Dataset">
+<h2>Splitting the Dataset<a class="headerlink" href="#Splitting-the-Dataset" title="Link to this heading">#</a></h2>
+<p>You can split the dataset for training and testing purposes:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_test</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">train_test</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> [DatasetDict]
+            </div>
+            <div class="generic-object-body">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> train [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 36177</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Light blue theme (default) */
+.generic-object-container.blue {
+    background-color: #f2f8fd !important; /* Container background: light blue */
+    border-color: #4db6ac !important; /* Soft blue border */
+}
+
+.generic-object-header.blue {
+    background-color: #a0c4ff9a !important; /* Header background: darker blue */
+}
+
+.generic-object-header.blue:hover {
+    background-color: #8bb1c0 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.blue:hover {
+    background-color: #b2dfdb !important; /* Attribute background on hover: darker blue */
+}
+
+/* Orange theme */
+.generic-object-container.orange {
+    background-color: #fff9ef !important; /* Container background: light orange */
+    border-color: #ffb74d !important; /* Soft orange border */
+}
+
+.generic-object-header.orange {
+    background-color: #ffe0b2 !important; /* Header background: darker orange */
+}
+
+.generic-object-header.orange:hover {
+    background-color: #ffcc80 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.orange:hover {
+    background-color: #ffe0b2 !important; /* Attribute background on hover: darker orange */
+}
+
+/* Green theme */
+.generic-object-container.green {
+    background-color: #f6fff6 !important; /* Container background: light green */
+    border-color: #81c784 !important; /* Soft green border */
+}
+
+.generic-object-header.green {
+    background-color: #c8e6c9 !important; /* Header background: darker green */
+}
+
+.generic-object-header.green:hover {
+    background-color: #a5d6a7 !important; /* Darker shade on hover over the header */
+}
+
+.attribute-list.green:hover {
+    background-color: #c8e6c9 !important; /* Attribute background on hover: darker green */
+}
+
+/* Align the first container to the left */
+.generic-object-container.first-level {
+    margin: 0;
+    width: auto;
+    max-width: 800px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Nested containers stay centered */
+.generic-object-container .generic-object-container {
+    margin: 5px auto;
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Remove default background color so only themes apply it */
+.generic-object-container {
+    padding: 0;
+    margin: 0 auto;
+    border: 1px dashed;
+    border-radius: 5px;
+    display: block;
+    width: auto;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generic-object-container:hover {
+    box-shadow: 0px 4px 10px rgba(77, 182, 172, 0.3);
+}
+
+.generic-object-header {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    padding-left: 40px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    color: #004d40;
+}
+
+.generic-object-body {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background-color: inherit;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.attribute-list {
+    margin: 2px 0;
+    padding: 2px;
+    transition: background-color 0.2s;
+    display: block;
+}
+
+.flex-space-filler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generic-object-container,
+.generic-object-header,
+.attribute-list {
+    color: #000000 !important; /* Establece el color del texto a negro */
+}
+    </style>
+    <div style="display: flex;">
+    <div class="generic-object-container blue first-level">
+        <div class="generic-object-content">
+            <div class="generic-object-header blue" onclick="toggleCollapse(this)">
+                <button class="toggle-button blue">[-]</button> test [Dataset]
+            </div>
+            <div class="generic-object-body">
+                <div class="attribute-list blue"><strong>Instances</strong>: 9045</div><div class="attribute-list blue"><strong>Features</strong>: X , y , p_attrs , group_a , group_b</div><div class="attribute-list blue"><strong>Metadata</strong>: sex: {'group_a': 'Male', 'group_b': 'Female'}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    function toggleCollapse(element) {
+        var body = element.nextElementSibling;
+        var button = element.querySelector(".toggle-button");
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            button.textContent = "[-]";
+        } else {
+            body.classList.add('hidden');
+            button.textContent = "[+]";
+        }
+    }
+    </script></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Holistic AI.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
