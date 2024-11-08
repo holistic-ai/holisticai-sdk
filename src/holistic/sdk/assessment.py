@@ -21,7 +21,7 @@ class Assess:
     }
     """
 
-    mandatory_settings_fields = ["task", "target_column"]  # noqa: RUF012
+    mandatory_settings_fields = ["task", "target_column"]
     mandatory_settings_tasks = {  # noqa: RUF012
         # target column or target columns
         "binary-classification": ["prediction_column", "prediction_proba_column"],
@@ -40,10 +40,10 @@ class Assess:
             else "python-sdk"
         )
 
-    def run(self, X: pd.DataFrame, y, y_pred, model):  # noqa: N803
+    def run(self, X: pd.DataFrame, y, y_pred, model):
         either_model_or_predictions = (model is None) ^ (y_pred is None)
         if either_model_or_predictions is False:
-            raise Exception("Either the model or y_pred should be present")  # noqa: TRY003, TRY002, EM101
+            raise Exception("Either the model or y_pred should be present")  # noqa: TRY002
         config = self.session.config
         url = f"https://{config['api']}/sdk-assessment"
         headers = {

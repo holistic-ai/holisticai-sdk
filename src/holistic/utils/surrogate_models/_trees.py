@@ -5,7 +5,6 @@ from typing import Literal, Optional
 import numpy as np
 import pandas as pd
 from numpy.random import RandomState
-from sklearn.metrics import accuracy_score, mean_squared_error
 
 from holistic.utils.obj_rep.object_repr import ReprObj
 from holistic.utils.surrogate_models._base import SurrogateBase
@@ -83,6 +82,7 @@ class DecisionTreeClassifier(OptimalTreeBase, ReprObj):
 
         best_tree = None
         from sklearn.ensemble import RandomForestClassifier
+        from sklearn.metrics import accuracy_score
 
         if self.model_type == "shallow_tree":
             rf = RandomForestClassifier(n_estimators=100, random_state=self.random_state, max_depth=3)
@@ -134,6 +134,7 @@ class DecisionTreeRegressor(OptimalTreeBase, ReprObj):
 
         best_tree = None
         from sklearn.ensemble import RandomForestRegressor
+        from sklearn.metrics import mean_squared_error
 
         if self.model_type == "shallow_tree":
             rf = RandomForestRegressor(n_estimators=100, random_state=self.random_state, max_depth=3)

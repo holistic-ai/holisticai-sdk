@@ -4,9 +4,6 @@ from os.path import expanduser, join
 
 import pandas as pd
 
-# sklearn imports
-from sklearn.datasets import fetch_openml
-
 
 def get_data_home(data_home=None):
     """
@@ -58,6 +55,9 @@ def load_openml(name, version, data_home=None, return_X_y=False, as_frame=True):
     data : sklearn.utils.Bunch or tuple
         Dataset object or (data, target) tuple if return_X_y is True.
     """
+    # sklearn imports
+    from sklearn.datasets import fetch_openml
+
     if data_home is None:
         data_home = get_data_home()
 

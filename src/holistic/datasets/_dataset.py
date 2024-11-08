@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Literal, Union
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
 from holistic.utils.obj_rep.object_repr import DatasetReprObj
 
@@ -389,6 +388,7 @@ class Dataset(DatasetReprObj):
 
     def train_test_split(self, test_size=0.3, **kargs):
         """Splits the dataset into train and test datasets."""
+        from sklearn.model_selection import train_test_split
         train_df, test_df = train_test_split(self.data, test_size=test_size, **kargs)
         train = Dataset(_data=pd.DataFrame(train_df), _metadata=self._metadata)
         test = Dataset(_data=pd.DataFrame(test_df), _metadata=self._metadata)
