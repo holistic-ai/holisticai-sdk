@@ -103,8 +103,7 @@ In your Python code, import the Holistic AI SDK library together with Pandas as 
 
 .. code-block::
 
-  from haisdk.assessment import Assess
-  from haisdk.config import Config
+  from holistic import Assess, Config
   import pandas as pd
 
 
