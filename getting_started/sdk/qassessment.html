@@ -568,12 +568,39 @@
 <li><p>model_class – available model classes are ‘sklearn’, ‘lightgbm’, ‘catboost’, ‘xgboost’, ‘tensorflow’, and ‘pytorch’</p></li>
 </ul>
 <p>An instance of the Assess class can then be created thus and assigned to a variable called ‘assess’:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assess</span> <span class="o">=</span> <span class="n">Assess</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="running-a-quantitative-assessment">
 <h2>Running a Quantitative Assessment<a class="headerlink" href="#running-a-quantitative-assessment" title="Link to this heading">#</a></h2>
 <p>The assessment is run via the run method over the Assess instance, passing to the method the training data (as a Pandas DataFrame), the test data (also as a Pandas DataFrame), and either model predictions (if there are none, set y_pred=None) or the model itself that you want to test (if there is not model, set model=None):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">assess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">df_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>By assigning the result of the run method to a variable, the results of the assessment can be printed to the console.</p>
 <p>The results can be viewed in the console (if sent to the console via print()or otherwise):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="mf">0.64835</span><span class="p">,</span> <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="s2">&quot;Accuracy&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="mf">0.531325</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="mf">0.7431195127924269</span><span class="p">,</span>
+            <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="s2">&quot;Precision&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="mf">0.8514885837315943</span><span class="p">,</span>
+            <span class="s2">&quot;pass&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="mf">0.45365</span><span class="p">,</span> <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="s2">&quot;Recall&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="mf">0.0758</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="mf">0.758657</span><span class="p">,</span> <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="s2">&quot;AUC&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="mf">0.5891555</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="mf">0.6633033574180155</span><span class="p">,</span>
+            <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="s2">&quot;Log Loss&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="mf">0.7470556015829998</span><span class="p">,</span>
+            <span class="s2">&quot;pass&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>The results can also be viewed on the Solution’s Quantitative Efficacy Assessment page in the Governance Platform:</p>
 <a class="reference internal image-reference" href="../../_images/panel.png"><img alt="../../_images/panel.png" class="align-center" src="../../_images/panel.png" style="width: 600px;" />
 </a>

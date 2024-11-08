@@ -1,0 +1,162 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Quant Assessment SDK Tutorial"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This document provides guidance on how to use the Holistic AI Governance Platform’s SDK functionality to perform a quantitative assessment within a user’s development environment using Python. \n",
+    "It is recommended to use the documentation which provides a detailed explanation on accessing configuration data from the platform."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Initialising a Quantitative Assessment\n",
+    "\n",
+    "In your Python code, import the Holistic AI SDK library together with Pandas as a necessary prerequisite: "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from holistic import Assess, Config\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "from sklearn.linear_model import LogisticRegression\n",
+    "from holistic.datasets import load_dataset\n",
+    "import warnings\n",
+    "warnings.filterwarnings('ignore')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The data from the SDK Access Config, as copied to your clipboard above, should then be assigned to a variable named ‘config’ and then an instance of the Config class should be created and assigned to a variable named ‘session’ – for example:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "config = {\n",
+    "  \"projectId\": \"\",\n",
+    "  \"solutionId\": \"\",\n",
+    "  \"moduleId\": \"\",\n",
+    "  \"clientId\": \"\",\n",
+    "  \"key\": \"\",\n",
+    "  \"api\": \"\"\n",
+    "}\n",
+    "session = Config(config=config)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The settings for the assessment then need to be defined, and assigned to the ‘settings’ variable – for example:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "settings = {\n",
+    "    'config': config,\n",
+    "    'task': '',\n",
+    "    'data_type': '',\n",
+    "    'target_column': '',\n",
+    "    'prediction_columns': [],\n",
+    "    'model_class': ''\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load your data and train your Model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset = load_dataset(\"german_credit_demo\")\n",
+    "\n",
+    "df_train = dataset['train']['data']\n",
+    "df_test = dataset['test']['data']\n",
+    "\n",
+    "model = LogisticRegression(max_iter=10)\n",
+    "model.fit(df_train.drop(columns=settings[\"target_column\"]), df_train[\"default\"])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Running a Quantitative Assessment\n",
+    "\n",
+    "The assessment is run via the run method over the Assess instance, passing to the method the training data (as a Pandas DataFrame), the test data (also as a Pandas DataFrame), and either model predictions (if there are none, set y_pred=None) or the model itself that you want to test (if there is not model, set model=None):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'instanceId': '8e163f26-68d7-4d91-b84a-995f99ce4f4d'}\n"
+     ]
+    }
+   ],
+   "source": [
+    "assess = Assess(session=session, settings=settings)\n",
+    "res = assess.run(X=df_train, y=df_test, y_pred=None, model=model)\n",
+    "\n",
+    "print(res.json())"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "testing",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

@@ -168,6 +168,7 @@ Specific tests can then be built which can flag whether the an iteration of your
 and then, using Python's ```assert``` method, a specific test can be built around the Precision metric:
 
 .. code-block::
+  
   for metric in metrics:
         if metric['metric'] == 'Precision':
            assert metric['pass'] is True

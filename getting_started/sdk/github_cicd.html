@@ -630,6 +630,11 @@
 </pre></div>
 </div>
 <p>and then, using Python’s <code class="docutils literal notranslate"><span class="pre">`assert`</span></code> method, a specific test can be built around the Precision metric:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">metric</span><span class="p">[</span><span class="s1">&#39;metric&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Precision&#39;</span><span class="p">:</span>
+         <span class="k">assert</span> <span class="n">metric</span><span class="p">[</span><span class="s1">&#39;pass&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">True</span>
+</pre></div>
+</div>
 </section>
 <section id="running-the-pipeline">
 <h2>Running the Pipeline<a class="headerlink" href="#running-the-pipeline" title="Link to this heading">#</a></h2>
