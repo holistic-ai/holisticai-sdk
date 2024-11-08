@@ -83,6 +83,7 @@ The settings for the assessment then need to be defined, and assigned to the ‘
 An instance of the Assess class can then be created thus and assigned to a variable called ‘assess’:
 
 .. code-block::
+
   assess = Assess(session=session, settings=settings)
 
 
@@ -92,6 +93,7 @@ Running a Quantitative Assessment
 The assessment is run via the run method over the Assess instance, passing to the method the training data (as a Pandas DataFrame), the test data (also as a Pandas DataFrame), and either model predictions (if there are none, set y_pred=None) or the model itself that you want to test (if there is not model, set model=None):
 
 .. code-block::
+
   res = assess.run(X=df_train, y=df_test, y_pred=None, model=model)
 
 By assigning the result of the run method to a variable, the results of the assessment can be printed to the console.
@@ -99,6 +101,7 @@ By assigning the result of the run method to a variable, the results of the asse
 The results can be viewed in the console (if sent to the console via print()or otherwise):
 
 .. code-block::
+  
   {
       "results": [
           {"baseline": 0.64835, "metric": "Accuracy", "model": 0.531325, "pass": False},
