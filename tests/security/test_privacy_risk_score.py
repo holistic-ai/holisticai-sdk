@@ -1,5 +1,5 @@
 import numpy as np
-from holisticai.security.metrics import privacy_risk_score
+from holistic.security.metrics import privacy_risk_score
 
 def test_privacy_risk_score():
     # Generate synthetic data for testing

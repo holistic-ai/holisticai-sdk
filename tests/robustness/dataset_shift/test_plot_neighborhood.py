@@ -4,7 +4,7 @@ from unittest import mock
 from matplotlib import pyplot as plt
 
 # Import the functions to be tested
-from holisticai.robustness.plots._dataset_shift import (
+from holistic.robustness.plots._dataset_shift import (
     plot_neighborhood,
 )
 

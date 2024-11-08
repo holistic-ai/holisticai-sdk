@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import pytest
-from holisticai.explainability.metrics.global_feature_importance._xai_ease_score import XAIEaseScore, XAIEaseAnnotator, compare_tangents
+from holistic.explainability.metrics.global_feature_importance._xai_ease_score import XAIEaseScore, XAIEaseAnnotator, compare_tangents
 from collections import namedtuple
 
 @pytest.fixture
@@ -13,7 +13,7 @@ def xai_ease_score():
     return XAIEaseScore()
 
 def test_compute_xai_ease_score_data(xai_ease_annotator):
-    from holisticai.utils import PartialDependence
+    from holistic.utils import PartialDependence
     partial_dependence = PartialDependence( values = [[
         {'average': [[0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3]]},
         {'average': [[0.4, 0.5, 0.6, 0.6, 0.5, 0.4, 0.4, 0.5, 0.6]]},
@@ -30,7 +30,7 @@ def test_compute_xai_ease_score(xai_ease_score):
     assert xai_ease_score.compute_xai_ease_score(score_data) == 0.75
 
 def test_xai_feature_ease_score(xai_ease_score):
-    from holisticai.utils import PartialDependence
+    from holistic.utils import PartialDependence
     partial_dependence = PartialDependence( values = [[
         {'average': [[0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3]]},
         {'average': [[0.4, 0.5, 0.6, 0.6, 0.5, 0.4, 0.4, 0.5, 0.6]]},
@@ -40,7 +40,7 @@ def test_xai_feature_ease_score(xai_ease_score):
     assert xai_ease_score(partial_dependence, ranked_feature_importance) == 0.5
 
 def test_xai_ease_score(xai_ease_score):
-    from holisticai.utils import PartialDependence, Importances
+    from holistic.utils import PartialDependence, Importances
     partial_dependence = [[
         {'average': [[0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3]], 'grid_values': [[1,2,3,4,5,6,7,8,9]]},
         {'average': [[0.4, 0.5, 0.6, 0.6, 0.5, 0.4, 0.4, 0.5, 0.6]], 'grid_values': [[1,2,3,4,5,6,7,8,9]]},

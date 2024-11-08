@@ -2,14 +2,14 @@
 import warnings
 warnings.filterwarnings("ignore")
 
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from holisticai.robustness.attackers import HopSkipJump, ZooAttack
-from holisticai.utils import BinaryClassificationProxy
-from holisticai.robustness.attackers.classification.commons import format_function_predict_proba
-from holisticai.robustness.metrics import adversarial_accuracy, empirical_robustness
+from holistic.robustness.attackers import HopSkipJump, ZooAttack
+from holistic.utils import BinaryClassificationProxy
+from holistic.robustness.attackers.classification.commons import format_function_predict_proba
+from holistic.robustness.metrics import adversarial_accuracy, empirical_robustness
 from sklearn.metrics import accuracy_score
 import pytest
 

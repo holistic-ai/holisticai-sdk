@@ -23,14 +23,14 @@ def train_estimator(train, learning_task):
     ])
 
     if learning_task=='regression':
-        from holisticai.utils import RegressionProxy
+        from holistic.utils import RegressionProxy
         model = Pipeline(steps=[('preprocessor', preprocessor),
                             ('classifier', LinearRegression())])
         model.fit(train['X'], train['y'])
         proxy = RegressionProxy(predict=model.predict)
 
     elif learning_task=='multi_classification':
-        from holisticai.utils import MultiClassificationProxy
+        from holistic.utils import MultiClassificationProxy
         model = Pipeline(steps=[('preprocessor', preprocessor),
                                 ('classifier', LogisticRegression())])
         model.fit(train['X'], train['y'])
@@ -39,7 +39,7 @@ def train_estimator(train, learning_task):
                                         classes=model.classes_)
         
     elif learning_task=='binary_classification':
-        from holisticai.utils import BinaryClassificationProxy
+        from holistic.utils import BinaryClassificationProxy
         model = Pipeline(steps=[('preprocessor', preprocessor),
                                 ('classifier', LogisticRegression())])
         model.fit(train['X'], train['y'])
@@ -56,10 +56,10 @@ def train_estimator(train, learning_task):
     ("regression", 0.04, 'us_crime'),
 ])
 def test_data_minimization(learning_task, reference_score, dataset_name):
-    from holisticai.datasets import load_dataset
+    from holistic.datasets import load_dataset
     
-    from holisticai.security.commons import DataMinimizer
-    from holisticai.security.metrics import data_minimization_score
+    from holistic.security.commons import DataMinimizer
+    from holistic.security.metrics import data_minimization_score
 
     dataset = load_dataset(dataset_name, preprocessed=True)
     train_test = dataset.train_test_split(0.2, random_state=42)

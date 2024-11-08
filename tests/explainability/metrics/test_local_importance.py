@@ -1,8 +1,8 @@
 
 import numpy as np
 import pandas as pd
-from holisticai.explainability.metrics.local_feature_importance import feature_stability
-from holisticai.explainability.metrics.local_feature_importance import rank_consistency
+from holistic.explainability.metrics.local_feature_importance import feature_stability
+from holistic.explainability.metrics.local_feature_importance import rank_consistency
 
 def test_rank_consistency_unweighted_aggregated():
     local_importances_values = np.array([

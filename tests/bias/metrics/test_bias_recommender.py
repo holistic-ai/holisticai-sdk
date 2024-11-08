@@ -4,7 +4,7 @@ import pandas as pd
 from numpy.testing import assert_approx_equal
 
 # Recommender
-from holisticai.bias.metrics import (
+from holistic.bias.metrics import (
     aggregate_diversity,
     avg_f1_ratio,
     avg_precision_ratio,
@@ -20,7 +20,7 @@ from holisticai.bias.metrics import (
 )
 
 # Formatting
-from holisticai.utils import extract_columns
+from holistic.utils import extract_columns
 from tests.bias.utils import load_bias_recommender_data
 
 # Dataset

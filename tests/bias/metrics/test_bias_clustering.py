@@ -3,7 +3,7 @@ import numpy as np
 from numpy.testing import assert_approx_equal
 
 # Clustering
-from holisticai.bias.metrics import (
+from holistic.bias.metrics import (
     cluster_balance,
     cluster_dist_entropy,
     cluster_dist_kl,

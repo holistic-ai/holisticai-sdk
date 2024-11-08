@@ -1,4 +1,4 @@
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 
 def test_load_dataset():
     SHARD_SIZE = 50

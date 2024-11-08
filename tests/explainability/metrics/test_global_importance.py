@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-from holisticai.explainability.metrics.global_feature_importance import fluctuation_ratio
-from holisticai.utils import PartialDependence, Importances
+from holistic.explainability.metrics.global_feature_importance import fluctuation_ratio
+from holistic.utils import PartialDependence, Importances
 
 def test_fluctuation_ratio_unweighted_aggregated():
     partial_dependence = PartialDependence(values=[[

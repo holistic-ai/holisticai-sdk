@@ -1,5 +1,5 @@
 import numpy as np
-from holisticai.robustness.metrics import adversarial_accuracy, empirical_robustness
+from holistic.robustness.metrics import adversarial_accuracy, empirical_robustness
 
 def test_adversarial_accuracy():
     y = np.array([0, 1, 0, 1, 0])

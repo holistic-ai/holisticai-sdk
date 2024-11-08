@@ -1,5 +1,5 @@
-from holisticai.security.metrics import shapr_score
-from holisticai.datasets import load_dataset
+from holistic.security.metrics import shapr_score
+from holistic.datasets import load_dataset
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer

@@ -4,7 +4,7 @@ import pytest
 from sklearn import metrics
 
 
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 
 metrics_dict = {
     "Accuracy": metrics.accuracy_score,

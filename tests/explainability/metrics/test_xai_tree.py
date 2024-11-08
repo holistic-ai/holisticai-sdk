@@ -1,7 +1,7 @@
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from holisticai.explainability.metrics import tree_explainability_metrics
-from holisticai.explainability.metrics import (
+from holistic.explainability.metrics import tree_explainability_metrics
+from holistic.explainability.metrics import (
     weighted_average_depth,
     weighted_average_explainability_score,
     weighted_tree_gini,

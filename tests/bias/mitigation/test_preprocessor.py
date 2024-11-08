@@ -4,10 +4,10 @@ from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
-from holisticai.pipeline import Pipeline
-from holisticai.bias.metrics import classification_bias_metrics, regression_bias_metrics, multiclass_bias_metrics, clustering_bias_metrics
-from holisticai.datasets.synthetic.recruitment import generate_rankings
-from holisticai.bias.mitigation.postprocessing.debiasing_exposure.algorithm_utils import exposure_metric
+from holistic.pipeline import Pipeline
+from holistic.bias.metrics import classification_bias_metrics, regression_bias_metrics, multiclass_bias_metrics, clustering_bias_metrics
+from holistic.datasets.synthetic.recruitment import generate_rankings
+from holistic.bias.mitigation.postprocessing.debiasing_exposure.algorithm_utils import exposure_metric
 
 from tests.bias.mitigation.utils import (
     check_results,
@@ -22,12 +22,12 @@ warnings.filterwarnings("ignore")
 
 seed = 42
 
-from holisticai.bias.mitigation import MITIGATOR_NAME
-from holisticai.bias.mitigation import CorrelationRemover
-from holisticai.bias.mitigation import Reweighing
-from holisticai.bias.mitigation import LearningFairRepresentation
-from holisticai.bias.mitigation import FairletClusteringPreprocessing
-from holisticai.bias.mitigation import DisparateImpactRemoverRS
+from holistic.bias.mitigation import MITIGATOR_NAME
+from holistic.bias.mitigation import CorrelationRemover
+from holistic.bias.mitigation import Reweighing
+from holistic.bias.mitigation import LearningFairRepresentation
+from holistic.bias.mitigation import FairletClusteringPreprocessing
+from holistic.bias.mitigation import DisparateImpactRemoverRS
 
 def get_preprocessor(mitigator_name : MITIGATOR_NAME = "CorrelationRemover", parameters: dict = {}):
     if mitigator_name == "CorrelationRemover":

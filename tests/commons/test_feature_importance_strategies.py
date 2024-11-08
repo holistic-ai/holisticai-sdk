@@ -1,8 +1,8 @@
 from sklearn.linear_model import LogisticRegression
-from holisticai.inspection import SurrogateFeatureImportanceCalculator, PermutationFeatureImportanceCalculator
-from holisticai.utils import Importances
-from holisticai.datasets import load_dataset
-from holisticai.utils import BinaryClassificationProxy
+from holistic.inspection import SurrogateFeatureImportanceCalculator, PermutationFeatureImportanceCalculator
+from holistic.utils import Importances
+from holistic.datasets import load_dataset
+from holistic.utils import BinaryClassificationProxy
 import pytest
 import numpy as np
 from numpy.random import RandomState

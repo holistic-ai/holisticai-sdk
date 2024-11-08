@@ -1,5 +1,5 @@
 import pytest
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from numpy.random import RandomState
@@ -19,9 +19,9 @@ def input_data():
 
 def test_get_partial_dependence_results_binary_classification(input_data):
     test,model = input_data
-    from holisticai.utils import RegressionProxy
-    from holisticai.inspection import compute_permutation_importance
-    from holisticai.inspection import compute_partial_dependence
+    from holistic.utils import RegressionProxy
+    from holistic.inspection import compute_permutation_importance
+    from holistic.inspection import compute_partial_dependence
     
     proxy = RegressionProxy(predict=model.predict)
     importances  = compute_permutation_importance(proxy=proxy, X=test['X'], y=test['y'])

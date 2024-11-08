@@ -1,10 +1,10 @@
 import pandas as pd 
-from holisticai.explainability.metrics.surrogate import surrogate_features_stability, surrogate_feature_importances_stability
-from holisticai.explainability.metrics.global_feature_importance import SpreadDivergence, spread_divergence
+from holistic.explainability.metrics.surrogate import surrogate_features_stability, surrogate_feature_importances_stability
+from holistic.explainability.metrics.global_feature_importance import SpreadDivergence, spread_divergence
 import pytest
 import numpy as np
 from sklearn.datasets import make_classification
-from holisticai.utils.surrogate_models import MultiClassificationSurrogate
+from holistic.utils.surrogate_models import MultiClassificationSurrogate
 
 @pytest.fixture
 def data():
@@ -70,7 +70,7 @@ def test_feature_importance_spread():
 
 
 def test_categorical_explainability_metrics(data, surrogate):
-    from holisticai.explainability.metrics import classification_surrogate_explainability_metrics
+    from holistic.explainability.metrics import classification_surrogate_explainability_metrics
     X, y = data
     y_pred = surrogate.predict(X)
     metrics = classification_surrogate_explainability_metrics(X, y, y_pred, surrogate)
@@ -78,7 +78,7 @@ def test_categorical_explainability_metrics(data, surrogate):
     assert not values.isnull().any(), "Values should not be null"
 
 def test_regression_explainability_metrics(data, surrogate):
-    from holisticai.explainability.metrics import regression_surrogate_explainability_metrics
+    from holistic.explainability.metrics import regression_surrogate_explainability_metrics
     X, y = data
     y_pred = surrogate.predict(X)
     metrics = regression_surrogate_explainability_metrics(X, y, y_pred, surrogate)
@@ -86,7 +86,7 @@ def test_regression_explainability_metrics(data, surrogate):
     assert not values.isnull().any(), "Values should not be null"
 
 def test_clustering_explainability_metrics(data):
-    from holisticai.explainability.metrics import clustering_surrogate_explainability_metrics
+    from holistic.explainability.metrics import clustering_surrogate_explainability_metrics
     X, y = data
     metrics = clustering_surrogate_explainability_metrics(X, y, surrogate_type="shallow_tree", metric_type="all")
     values = metrics.loc[:,'Value'] # type: ignore

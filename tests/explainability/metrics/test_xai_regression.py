@@ -1,7 +1,7 @@
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 from sklearn.linear_model import LinearRegression
-from holisticai.explainability.metrics import regression_explainability_metrics
-from holisticai.explainability.metrics.global_feature_importance import (
+from holistic.explainability.metrics import regression_explainability_metrics
+from holistic.explainability.metrics.global_feature_importance import (
     alpha_score,
     rank_alignment,
     position_parity,
@@ -26,11 +26,11 @@ def input_data():
 
 
 def get_regression_features(model, test):
-    from holisticai.utils import RegressionProxy
-    from holisticai.inspection import (
+    from holistic.utils import RegressionProxy
+    from holistic.inspection import (
         compute_permutation_importance,
     )
-    from holisticai.inspection import compute_partial_dependence
+    from holistic.inspection import compute_partial_dependence
 
     proxy = RegressionProxy(predict=model.predict)
     importances = compute_permutation_importance(

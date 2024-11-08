@@ -1,4 +1,4 @@
-from holisticai.utils import LocalImportances
+from holistic.utils import LocalImportances
 import pandas as pd
 import numpy as np
 
@@ -24,8 +24,8 @@ def test_local_feature_importance_to_global():
     assert len(local_importance.to_global().values)==4
 
 def test_partial_dependence():
-    from holisticai.utils import PartialDependence, Importances
-    from holisticai.explainability.metrics.global_feature_importance import xai_ease_score
+    from holistic.utils import PartialDependence, Importances
+    from holistic.explainability.metrics.global_feature_importance import xai_ease_score
 
     partial_dependence = [[
          {'average': [[0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3]], 'grid_values': [[1,2,3,4,5,6,7,8,9]]},

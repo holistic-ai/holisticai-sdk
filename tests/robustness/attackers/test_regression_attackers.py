@@ -1,12 +1,12 @@
 import warnings
 warnings.filterwarnings("ignore")
 
-from holisticai.datasets import load_dataset
+from holistic.datasets import load_dataset
 from sklearn.pipeline import Pipeline
 from sklearn import linear_model
 import numpy as np
 from sklearn.metrics import mean_squared_error
-from holisticai.robustness.attackers import LinRegGDPoisoner, RidgeGDPoisoner
+from holistic.robustness.attackers import LinRegGDPoisoner, RidgeGDPoisoner
 import pytest
 
 SHARD_SIZE=60

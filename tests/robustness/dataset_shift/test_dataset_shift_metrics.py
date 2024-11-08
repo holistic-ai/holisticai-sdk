@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import pandas as pd
 from unittest import mock
-from holisticai.robustness.metrics.dataset_shift._accuracy_degradation_profile import (
+from holistic.robustness.metrics.dataset_shift._accuracy_degradation_profile import (
     accuracy_degradation_factor,
     accuracy_degradation_profile
 )

@@ -1,5 +1,5 @@
 import numpy as np
-from holisticai.utils import Importances
+from holistic.utils import Importances
 
 def test_compute_ranked_feature_importance():
     # Create a sample feature importance dataframe

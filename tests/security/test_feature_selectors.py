@@ -1,10 +1,10 @@
-from holisticai.datasets import load_dataset
-from holisticai.security.commons import DataMinimizer
+from holistic.datasets import load_dataset
+from holistic.security.commons import DataMinimizer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.tree import DecisionTreeClassifier
-from holisticai.utils import BinaryClassificationProxy
+from holistic.utils import BinaryClassificationProxy
 
 dataset = load_dataset('adult')
 

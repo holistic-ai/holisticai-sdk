@@ -5,7 +5,7 @@ from unittest import mock
 from matplotlib import pyplot as plt
 
 # Import the functions to be tested
-from holisticai.robustness.plots._dataset_shift import (
+from holistic.robustness.plots._dataset_shift import (
     _validate_and_extract_data,
     plot_2d,
     plot_label_and_prediction,

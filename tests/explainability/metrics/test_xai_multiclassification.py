@@ -1,7 +1,7 @@
 from sklearn.naive_bayes import GaussianNB
-from holisticai.datasets import load_dataset   
-from holisticai.explainability.metrics import multiclass_explainability_metrics
-from holisticai.explainability.metrics.global_feature_importance import alpha_score, rank_alignment, position_parity, xai_ease_score
+from holistic.datasets import load_dataset   
+from holistic.explainability.metrics import multiclass_explainability_metrics
+from holistic.explainability.metrics.global_feature_importance import alpha_score, rank_alignment, position_parity, xai_ease_score
 import numpy as np
 import pytest
 
@@ -18,9 +18,9 @@ def input_data():
 
 
 def get_multiclass_features(model, test):
-    from holisticai.utils import MultiClassificationProxy
-    from holisticai.inspection import compute_permutation_importance
-    from holisticai.inspection import compute_partial_dependence
+    from holistic.utils import MultiClassificationProxy
+    from holistic.inspection import compute_permutation_importance
+    from holistic.inspection import compute_partial_dependence
     
     proxy = MultiClassificationProxy(predict=model.predict, predict_proba=model.predict_proba, classes=model.classes_)
     importances  = compute_permutation_importance(proxy=proxy, X=test['X'], y=test['y'])

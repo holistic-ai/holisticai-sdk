@@ -5,7 +5,7 @@ import pytest
 from numpy.testing import assert_approx_equal
 
 # Regression
-from holisticai.bias.metrics import (
+from holistic.bias.metrics import (
     avg_score_diff,
     avg_score_ratio,
     correlation_diff,
@@ -22,7 +22,7 @@ from holisticai.bias.metrics import (
 )
 
 # Formatting
-from holisticai.utils import extract_columns
+from holistic.utils import extract_columns
 from tests.bias.utils import load_bias_regression_data
 
                         # Dataset
