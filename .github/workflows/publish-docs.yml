@@ -1,11 +1,7 @@
 name: Deploy Documentation to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main  # Cambia a la rama principal de tu proyecto si es diferente
-    paths:
-      - 'docs/**'  # Si tus archivos de documentación están en una carpeta específica, ajústalo
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -33,5 +29,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/build/html  # Ajusta al directorio donde se genera tu documentación
-          publish_branch: gh-pages  # La rama donde se publicará, por defecto es gh-pages
+          publish_dir: ./docs/build 
+          publish_branch: gh-pages

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "holisticai"
+name = "holistic"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
@@ -22,21 +22,16 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = [
-  "scikit-learn>=1.0.2",
-  "pandas",
-  "matplotlib",
-  "networkx>=3.1",
-  "seaborn",
-  "numpy>=1.25",
-  "pybind11>=2.12",
-  ]
+dependencies = [ 
+  "requests==2.31.0",
+  "dill==0.3.6"
+]
 
 [project.optional-dependencies]
-bias = ["networkx>=3.1", "pygad==3.3.1", "jax>=0.4.30", "jaxopt>=0.8.3", "optax>=0.2.3", "flax>=0.8.5"]
+bias = ["scikit-learn>=1.0.2", "pygad==3.3.1", "jax>=0.4.30", "optax>=0.2.3", "flax>=0.8.5", "pandas", "matplotlib", "seaborn", "numpy>=1.25"]
 explainability = ["lime>=0.2.0.1", "shap>=0.42.1"]
-security = ["jax>=0.4.30", "jaxopt>=0.8.3"]
-all = ["networkx>=3.1", "pygad==3.3.1", "lime>=0.2.0.1", "shap>=0.42.1",  "jax>=0.4.30", "jaxopt>=0.8.3", "optax>=0.2.3", "flax>=0.8.5"]
+security = ["jax>=0.4.30"]
+all = ["networkx>=3.1", "pygad==3.3.1", "lime>=0.2.0.1", "shap>=0.42.1",  "jax>=0.4.30", "optax>=0.2.3", "flax>=0.8.5"]
 
 [project.urls]
 Documentation = "https://github.com/holistic-ai/holisticai#readme"
@@ -44,17 +39,17 @@ Issues = "https://github.com/holistic-ai/holisticai/issues"
 Source = "https://github.com/holistic-ai/holisticai"
 
 [tool.hatch.version]
-path = "src/holisticai/__about__.py"
+path = "src/holistic/__about__.py"
 
 [tool.coverage.run]
-source_pkgs = ["holisticai", "tests"]
+source_pkgs = ["holistic", "tests"]
 branch = true
 parallel = true
-omit = ["src/holisticai/__about__.py"]
+omit = ["src/holistic/__about__.py"]
 
 [tool.coverage.paths]
-holistic_ai = ["src/holisticai", "*/holisticai/src/holisticai"]
-tests = ["tests", "*/holisticai/tests"]
+holistic_ai = ["src/holistic", "*/holisticai-sdk/src/holistic"]
+tests = ["tests", "*/holistic/tests"]
 
 [tool.coverage.report]
 exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
@@ -64,7 +59,7 @@ config-path = "ruff_default.toml"
 
 [tool.ruff]
 extend = "ruff_default.toml"
-exclude = ["docs/**", "tests/**", "tutorials/**", "src/holisticai/utils/trade_off_analysers/**"]
+exclude = ["docs/**", "tests/**", "tutorials/**", "src/holistic/utils/trade_off_analysers/**"]
 
 [tool.hatch.envs.sphinx]
 inherit = ["all"]
@@ -83,7 +78,8 @@ dependencies = [
   "pandas",
   "numpy==1.26",
   "pybind11>=2.12",
-
+  "matplotlib", 
+  "seaborn",
   "jax",
   "jaxopt",
   "optax",
@@ -116,7 +112,8 @@ dependencies = [
   "jax",
   "jaxopt",
   "optax",
-  "flax"
+  "flax",
+  "requests"
 ]
 env-vars = { PYTHONPATH = "src" }
 
@@ -128,4 +125,4 @@ foo = ["which python"]
 env-vars = { PYTHONPATH = "src" }
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/holisticai"]
+packages = ["src/holistic"]
