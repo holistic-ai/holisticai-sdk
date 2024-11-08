@@ -21,10 +21,10 @@ To use the CI/CD Pipeline functionality in GitHub, a workflow needs to be create
 4. You will be presented with a page which provides a selection of potential workflows that you might use. For this guidance, however, simply click through on the hyperlink towards the top of the 'Choose a workflow' page labeled 'set up a workflow yourself'.
 5. This will give you a page where you can enter your test script using the markup language YAML:
 
-.. |action| image:: action.avif
+.. |action| image:: ../../_static/sdk/action.avif
    :width: 80px 
 
-.. |newworkflow| image:: newworkflow.avif
+.. |newworkflow| image:: ../../_static/sdk/newworkflow.avif
    :width: 80px 
 
 .. image:: ../../_static/sdk/console.png
