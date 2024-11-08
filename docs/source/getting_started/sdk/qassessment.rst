@@ -17,18 +17,18 @@ Before using the library, you must be onboarded and given access to the platform
 
 In this guide, we will use the Efficacy Quantitative Assessment as an example. 
 
-.. image:: qassess.png
+.. image:: ../../_static/sdk/qassess.png
    :align: center
    :width: 400px
 
 In the Quantitative Assessment, click the 'SDK Access' button available at the top of the Quantitative Efficacy assessment page and copy the SDK Access Config information to the clipboard. 
 
 
-.. image:: sdkbutton.png
+.. image:: ../../_static/sdk/sdkbutton.png
    :align: center
    :width: 400px
 
-.. image:: sdkconfig.png
+.. image:: ../../_static/sdk/sdkconfig.png
    :align: center
    :width: 600px
 
@@ -121,6 +121,6 @@ The results can be viewed in the console (if sent to the console via print()or o
 
 The results can also be viewed on the Solution’s Quantitative Efficacy Assessment page in the Governance Platform:
 
-.. image:: panel.png
+.. image:: ../../_static/sdk/panel.png
    :align: center
    :width: 600px
