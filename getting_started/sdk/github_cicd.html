@@ -521,12 +521,12 @@
 <p>To use the CI/CD Pipeline functionality in GitHub, a workflow needs to be created for your repository:</p>
 <ol class="arabic simple">
 <li><p>Navigate to your repository in Github.</p></li>
-<li><p>Open the ‘Actions’ tab in the repository’s top navigation bar. <a class="reference internal" href="../../_images/action.avif"><img alt="action" src="../../_images/action.avif" style="width: 80px;" /></a></p></li>
-<li><p>Click the ‘New workflow’ button in the top left corner of the Actions tab <a class="reference internal" href="../../_images/newworkflow.avif"><img alt="newworkflow" src="../../_images/newworkflow.avif" style="width: 80px;" /></a>.</p></li>
+<li><p>Open the ‘Actions’ tab in the repository’s top navigation bar. <a class="reference internal" href="getting_started/sdk/action.avif"><img alt="action" src="getting_started/sdk/action.avif" style="width: 80px;" /></a></p></li>
+<li><p>Click the ‘New workflow’ button in the top left corner of the Actions tab <a class="reference internal" href="getting_started/sdk/newworkflow.avif"><img alt="newworkflow" src="getting_started/sdk/newworkflow.avif" style="width: 80px;" /></a>.</p></li>
 <li><p>You will be presented with a page which provides a selection of potential workflows that you might use. For this guidance, however, simply click through on the hyperlink towards the top of the ‘Choose a workflow’ page labeled ‘set up a workflow yourself’.</p></li>
 <li><p>This will give you a page where you can enter your test script using the markup language YAML:</p></li>
 </ol>
-<a class="reference internal image-reference" href="getting_started/sdk/console.png"><img alt="getting_started/sdk/console.png" class="align-center" src="getting_started/sdk/console.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="_static/sdk/console.png"><img alt="_static/sdk/console.png" class="align-center" src="_static/sdk/console.png" style="width: 400px;" />
 </a>
 <p>The following workflow script can be used to test Python development (specifically Python 3.9 in the below):</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test pipeline</span>
@@ -570,19 +570,18 @@
 <li><p>Find the Quantitative Assessment node in the Solution’s Panel view.</p></li>
 </ol>
 <p>In this guide, we will use the Efficacy Quantitative Assessment as an example.</p>
-<a class="reference internal image-reference" href="getting_started/sdk/qassess.png"><img alt="getting_started/sdk/qassess.png" class="align-center" src="getting_started/sdk/qassess.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="_static/sdk/qassess.png"><img alt="_static/sdk/qassess.png" class="align-center" src="_static/sdk/qassess.png" style="width: 400px;" />
 </a>
 <p>In the Quantitative Assessment, click the ‘SDK Access’ button available at the top of the Quantitative Efficacy assessment page and copy the SDK Access Config information to the clipboard.</p>
-<a class="reference internal image-reference" href="getting_started/sdk/sdkbutton.png"><img alt="getting_started/sdk/sdkbutton.png" class="align-center" src="getting_started/sdk/sdkbutton.png" style="width: 300px;" />
+<a class="reference internal image-reference" href="_static/sdk/sdkbutton.png"><img alt="_static/sdk/sdkbutton.png" class="align-center" src="_static/sdk/sdkbutton.png" style="width: 300px;" />
 </a>
-<a class="reference internal image-reference" href="getting_started/sdk/sdkconfig.png"><img alt="getting_started/sdk/sdkconfig.png" class="align-center" src="getting_started/sdk/sdkconfig.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="_static/sdk/sdkconfig.png"><img alt="_static/sdk/sdkconfig.png" class="align-center" src="_static/sdk/sdkconfig.png" style="width: 600px;" />
 </a>
 </section>
 <section id="initialising-a-quantitative-assessment">
 <h2>Initialising a Quantitative Assessment<a class="headerlink" href="#initialising-a-quantitative-assessment" title="Link to this heading">#</a></h2>
 <p>In your Python code, import the Holistic AI SDK library together with Pandas as a necessary prerequisite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">haisdk.assessment</span> <span class="kn">import</span> <span class="n">Assess</span>
-<span class="kn">from</span> <span class="nn">haisdk.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">holistic</span> <span class="kn">import</span> <span class="n">Assess</span><span class="p">,</span> <span class="n">Config</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>

@@ -27,7 +27,7 @@ To use the CI/CD Pipeline functionality in GitHub, a workflow needs to be create
 .. |newworkflow| image:: newworkflow.avif
    :width: 80px 
 
-.. image:: console.png
+.. image:: ../../_static/sdk/console.png
    :align: center
    :width: 400px
 
@@ -78,21 +78,21 @@ Before using the library, you must be onboarded and given access to the platform
 
 In this guide, we will use the Efficacy Quantitative Assessment as an example. 
 
-.. image:: qassess.png
+.. image:: ../../_static/sdk/qassess.png
    :align: center
    :width: 400px
 
 In the Quantitative Assessment, click the 'SDK Access' button available at the top of the Quantitative Efficacy assessment page and copy the SDK Access Config information to the clipboard. 
 
 
-.. image:: sdkbutton.png
+.. image:: ../../_static/sdk/sdkbutton.png
    :align: center
    :width: 300px
 
 .. raw:: html
    <br><br>
 
-.. image:: sdkconfig.png
+.. image:: ../../_static/sdk/sdkconfig.png
    :align: center
    :width: 600px
 
@@ -103,8 +103,7 @@ In your Python code, import the Holistic AI SDK library together with Pandas as 
 
 .. code-block::
 
-  from haisdk.assessment import Assess
-  from haisdk.config import Config
+  from holistic import Assess, Config
   import pandas as pd
 
 
