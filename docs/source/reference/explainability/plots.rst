@@ -1,7 +1,7 @@
-:py:mod:`holisticai.explainability.plots`
+:py:mod:`holistic.explainability.plots`
 ===========================================
 
-.. automodule:: holisticai.explainability.plots
+.. automodule:: holistic.explainability.plots
     :no-members:
     :no-inherited-members:
 

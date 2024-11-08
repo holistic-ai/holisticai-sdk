@@ -1,7 +1,7 @@
-:py:mod:`holisticai.security.mitigation`
+:py:mod:`holistic.security.mitigation`
 ========================================
 
-.. automodule:: holisticai.security.mitigation
+.. automodule:: holistic.security.mitigation
     :no-members:
     :no-inherited-members:
 

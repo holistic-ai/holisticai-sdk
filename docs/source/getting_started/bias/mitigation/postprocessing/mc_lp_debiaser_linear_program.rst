@@ -38,7 +38,7 @@ Description
 
 Basic Usage
 ~~~~~~~~~~~~~~
-You can find an example of using the Linear Program Method for Multiclass in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/multi_classification/demos/postprocessing.html#1.-LP-Debiaser-Multiclass>`_.
+You can find an example of using the Linear Program Method for Multiclass in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/multi_classification/demos/postprocessing.html#1.-LP-Debiaser-Multiclass>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.LPDebiaserMulticlass`.
 

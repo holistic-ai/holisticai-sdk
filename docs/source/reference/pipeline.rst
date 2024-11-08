@@ -1,7 +1,7 @@
-:py:mod:`holisticai.pipeline`
+:py:mod:`holistic.pipeline`
 ============================
 
-.. automodule:: holisticai.pipeline
+.. automodule:: holistic.pipeline
     :no-members:
     :no-inherited-members:
 

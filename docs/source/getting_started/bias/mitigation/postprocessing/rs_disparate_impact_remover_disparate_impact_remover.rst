@@ -31,7 +31,7 @@ Description
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Disparate impact remover for RS method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/postprocessing.html#Method:-Disparate-impact-remover>`_.
+You can find an example of using the Disparate impact remover for RS method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/postprocessing.html#Method:-Disparate-impact-remover>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.DisparateImpactRemoverRS`.
 

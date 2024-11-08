@@ -1,7 +1,7 @@
-:py:mod:`holisticai.bias.plots`
+:py:mod:`holistic.bias.plots`
 =================================
 
-.. automodule:: holisticai.bias.plots
+.. automodule:: holistic.bias.plots
     :no-members:
     :no-inherited-members:
 

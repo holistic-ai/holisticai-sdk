@@ -1,7 +1,7 @@
-:py:mod:`holisticai.datasets`
+:py:mod:`holistic.datasets`
 =============================
 
-.. automodule:: holisticai.datasets
+.. automodule:: holistic.datasets
     :no-members:
     :no-inherited-members:
 

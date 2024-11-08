@@ -1,7 +1,7 @@
-:py:mod:`holisticai.security.metrics`
+:py:mod:`holistic.security.metrics`
 =====================================
 
-.. automodule:: holisticai.security.metrics
+.. automodule:: holistic.security.metrics
     :no-members:
     :no-inherited-members:
 

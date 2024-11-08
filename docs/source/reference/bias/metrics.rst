@@ -1,9 +1,9 @@
 
 
-:py:mod:`holisticai.bias.metrics`
+:py:mod:`holistic.bias.metrics`
 =================================
 
-.. automodule:: holisticai.bias.metrics
+.. automodule:: holistic.bias.metrics
     :no-members:
     :no-inherited-members:
 

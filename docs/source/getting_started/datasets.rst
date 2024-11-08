@@ -22,7 +22,7 @@ For example, if we want to load the Adult dataset, we can use the following code
 
 .. code-block:: python
 
-   from holisticai.datasets import load_adult
+   from holistic.datasets import load_adult
     
     data, target = load_adult(return_X_y=True)
 
@@ -43,10 +43,10 @@ Processed datasets are refined and structured for specific machine learning task
     :widths: 7, 7, 7, 7
 
 
-You can use this processed datasets using the function load_dataset from holisticai.datasets. For example, to load the processed version of the Adult dataset and use the protected attribute sex, represented by group_a and group_b, we can use the following code:
+You can use this processed datasets using the function load_dataset from holistic.datasets. For example, to load the processed version of the Adult dataset and use the protected attribute sex, represented by group_a and group_b, we can use the following code:
 
 .. code-block:: python
 
-   from holisticai.datasets import load_dataset
+   from holistic.datasets import load_dataset
     
     dataset = load_dataset(dataset_name="adult", processed=True, protected_attribute="sex")

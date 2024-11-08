@@ -50,7 +50,7 @@ Description
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the ML Debiaser module in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/postprocessing.html#4.-ML-Debiaser>`_.
+You can find an example of using the ML Debiaser module in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/postprocessing.html#4.-ML-Debiaser>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.MLDebiaser`.
 

@@ -2,12 +2,21 @@
 Example Gallery
 =========================
 
-This gallery contains a collection of examples that demonstrate the usage of ``holisticai`` library.
+This gallery contains a collection of examples that demonstrate the usage of ``holistic`` library.
 
 .. grid:: 1 2 2 2
     :gutter: 4
     :padding: 2 2 0 0
     :class-container: sd-text-center
+
+    .. grid-item-card:: Holistic AI SDK
+        :img-top: ../_static/sdk_overview.svg
+        :class-card: intro-card
+        :link: tutorials/sdk.html
+        :link-alt: tutorial_bias
+        :shadow: md
+
+        Use the Holistic AI SDK to assess and improve fairness, explainability, robustness, and security in ML models.
 
     .. grid-item-card:: Bias
         :img-top: ../_static/fairness.svg

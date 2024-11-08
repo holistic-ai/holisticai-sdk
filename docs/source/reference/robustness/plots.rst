@@ -1,9 +1,9 @@
 
 
-:py:mod:`holisticai.robustness.plots`
+:py:mod:`holistic.robustness.plots`
 =======================================
 
-.. automodule:: holisticai.robustness.plots
+.. automodule:: holistic.robustness.plots
     :no-members:
     :no-inherited-members:
 

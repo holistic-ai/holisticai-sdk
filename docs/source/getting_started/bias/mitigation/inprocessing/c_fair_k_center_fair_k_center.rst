@@ -22,7 +22,7 @@ The method involves a recursive algorithm that handles the fairness constraints 
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Fair k-Center Clustering method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/clustering/demos/inprocessing.html#2.-Fair-K-Center>`_.
+You can find an example of using the Fair k-Center Clustering method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/clustering/demos/inprocessing.html#2.-Fair-K-Center>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.FairKCenterClustering`.
 

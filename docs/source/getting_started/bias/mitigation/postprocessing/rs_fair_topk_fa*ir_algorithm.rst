@@ -51,7 +51,7 @@ The FA*IR algorithm ensures that the ranking is fair by construction, adhering t
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Fair Top-k method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/postprocessing.html#Method:-Fair-Top-K>`_.
+You can find an example of using the Fair Top-k method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/postprocessing.html#Method:-Fair-Top-K>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.FairTopK`.
 

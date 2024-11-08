@@ -38,7 +38,7 @@ Description
 
 Basic Usage
 ~~~~~~~~~~~~~~
-You can find an example of using the Plugin estimator and calibrator Method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/regression/demos/postprocessing.html#Bias-Mitigation>`_.
+You can find an example of using the Plugin estimator and calibrator Method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/regression/demos/postprocessing.html#Bias-Mitigation>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.PluginEstimationAndCalibration`.
 

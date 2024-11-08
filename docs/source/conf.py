@@ -18,8 +18,9 @@ import sys
 import os
 import shutil
 
-sys.path.insert(0, os.path.abspath('.'))
-import utils.xai_image_plots as xai_utils
+#sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('./src'))
+import holistic.utils.xai_image_plots as xai_utils
 import inspect
 
 os.makedirs('_static/images', exist_ok=True)
@@ -32,7 +33,7 @@ for name, obj in inspect.getmembers(xai_utils):
 
 # -- Project information -----------------------------------------------------
 
-project = "holisticai"
+project = "holistic"
 copyright = "2024, Holistic AI"
 author = "Holistic AI"
 

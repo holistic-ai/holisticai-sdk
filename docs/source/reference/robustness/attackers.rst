@@ -1,7 +1,7 @@
-:py:mod:`holisticai.robustness.attackers`
+:py:mod:`holistic.robustness.attackers`
 =========================================
 
-.. automodule:: holisticai.robustness.attackers
+.. automodule:: holistic.robustness.attackers
     :no-members:
     :no-inherited-members:
 

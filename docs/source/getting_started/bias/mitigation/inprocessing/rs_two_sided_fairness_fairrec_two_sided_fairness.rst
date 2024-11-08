@@ -23,7 +23,7 @@ The algorithm operates in two phases:
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the FairRec method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/inprocessing.html#Method:-Two-sided-fairness>`_.
+You can find an example of using the FairRec method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/recommender_systems/demos/inprocessing.html#Method:-Two-sided-fairness>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.FairRec`.
 

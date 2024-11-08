@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 
 def preprocessed_dataset(dataset="adult", splitted=True):
     if dataset == "adult":
-        from holisticai.datasets import load_adult
+        from holistic.datasets import load_adult
 
         # Dataset
         dataset = load_adult()

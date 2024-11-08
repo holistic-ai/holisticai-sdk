@@ -47,7 +47,7 @@ Description
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Learning Fair Representation method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/preprocessing.html#3.-Learning-Fair-Representations>`_.
+You can find an example of using the Learning Fair Representation method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/preprocessing.html#3.-Learning-Fair-Representations>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.LearningFairRepresentation`.
 

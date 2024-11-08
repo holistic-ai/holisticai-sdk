@@ -1,7 +1,7 @@
-:py:mod:`holisticai.bias.mitigation`
+:py:mod:`holistic.bias.mitigation`
 ====================================
 
-.. automodule:: holisticai.bias.mitigation
+.. automodule:: holistic.bias.mitigation
     :no-members:
     :no-inherited-members:
 

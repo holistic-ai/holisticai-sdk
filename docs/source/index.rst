@@ -1,5 +1,5 @@
-Holistic AI documentation
-========================
+Holistic AI library documentation
+=================================
 
 .. image:: https://img.shields.io/pypi/v/holisticai
 .. image:: https://img.shields.io/pypi/dm/holisticai.svg?label=PyPI%20downloads
@@ -38,15 +38,6 @@ Welcome to the Holistic AI library! This is an open-source tool to assess and im
 
         Learn how to install and use the library
 
-    .. grid-item-card:: API Reference
-        :img-top: _static/reference.svg
-        :class-card: intro-card
-        :link: reference/index.html
-        :link-alt: reference
-        :shadow: md
-
-        Detailed documentation of the library
-
     .. grid-item-card:: Example Gallery
         :img-top: _static/gallery.svg
         :class-card: intro-card
@@ -55,6 +46,15 @@ Welcome to the Holistic AI library! This is an open-source tool to assess and im
         :shadow: md
 
         Examples to get you started with the library
+
+    .. grid-item-card:: API Reference
+        :img-top: _static/reference.svg
+        :class-card: intro-card
+        :link: reference/index.html
+        :link-alt: reference
+        :shadow: md
+
+        Detailed documentation of the library
 
     .. grid-item-card:: Contributing Guide
         :img-top: _static/contributor.svg

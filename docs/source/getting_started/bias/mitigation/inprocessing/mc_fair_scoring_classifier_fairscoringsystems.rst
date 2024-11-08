@@ -47,7 +47,7 @@ FAIR Scoring Classifier System extends the Supersparse Linear Integer Model (SLI
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the FAIR Scoring Classifier System method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/multi_classification/demos/inprocessing.html#1.-Fair-Scoring-Classifier>`_.
+You can find an example of using the FAIR Scoring Classifier System method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/multi_classification/demos/inprocessing.html#1.-Fair-Scoring-Classifier>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.FairScoreClassifier`.
 

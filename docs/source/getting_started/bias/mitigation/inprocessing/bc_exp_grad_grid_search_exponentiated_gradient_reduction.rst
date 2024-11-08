@@ -25,7 +25,7 @@ The EG reduction method addresses the problem of fair classification by transfor
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Exponentiated Gradient Reduction method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/inprocessing.html#2.-Exponentiated-Gradient>`_.
+You can find an example of using the Exponentiated Gradient Reduction method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/inprocessing.html#2.-Exponentiated-Gradient>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.ExponentiatedGradientReduction`.
 

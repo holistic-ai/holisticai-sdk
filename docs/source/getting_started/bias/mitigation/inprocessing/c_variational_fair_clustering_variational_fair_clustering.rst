@@ -40,7 +40,7 @@ The problem involves assigning :math:`N` data points to :math:`K` clusters while
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Variational Fair Clustering method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/clustering/demos/inprocessing.html#1.-Variational-Fair-Clustering>`_.
+You can find an example of using the Variational Fair Clustering method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/clustering/demos/inprocessing.html#1.-Variational-Fair-Clustering>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.VariationalFairClustering`.
 

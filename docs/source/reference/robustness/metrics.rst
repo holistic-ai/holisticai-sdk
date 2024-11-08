@@ -1,9 +1,9 @@
 
 
-:py:mod:`holisticai.robustness.metrics`
+:py:mod:`holistic.robustness.metrics`
 =======================================
 
-.. automodule:: holisticai.robustness.metrics
+.. automodule:: holistic.robustness.metrics
     :no-members:
     :no-inherited-members:
 

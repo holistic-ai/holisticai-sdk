@@ -44,7 +44,7 @@ if __name__ == '__main__':
     docs_path = os.path.join(work_dir,'docs','source')
     sys.path.insert(0, src_path)
 
-    verticals = ['bias', 'datasets', 'explainability', 'robustness', 'security']  
+    verticals = ['bias', 'datasets', 'explainability', 'robustness', 'security', 'sdk']  
 
     for vertical in verticals:
         path = os.path.join(tutorials_path, vertical)

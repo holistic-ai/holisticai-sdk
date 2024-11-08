@@ -2,9 +2,9 @@
 API Reference
 =============
 
-This page provides an overview of all public objects, functions, and methods in the ``holisticai`` package. The ``holisticai.*`` namespace includes all publicly exposed classes and functions.
+This page provides an overview of all public objects, functions, and methods in the ``holistic`` package. The ``holistic.*`` namespace includes all publicly exposed classes and functions.
 
-Below is a list of key modules in ``holisticai``:
+Below is a list of key modules in ``holistic``:
 
 Tools
 -----

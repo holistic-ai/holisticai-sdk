@@ -1,7 +1,7 @@
-:py:mod:`holisticai.explainability.metrics`
+:py:mod:`holistic.explainability.metrics`
 ===========================================
 
-.. automodule:: holisticai.explainability.metrics
+.. automodule:: holistic.explainability.metrics
     :no-members:
     :no-inherited-members:
 

@@ -24,7 +24,7 @@ The ρ-Fair method involves reducing the fairness problem to a series of Group-F
 Basic Usage
 ~~~~~~~~~~~~~~
 
-You can find an example of using the Meta Fair Classifier method in the following `demo <https://holisticai.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/inprocessing.html#4.-Meta-Fair-Classifier>`_.
+You can find an example of using the Meta Fair Classifier method in the following `demo <https://holistic.readthedocs.io/en/latest/gallery/tutorials/bias/mitigating_bias/binary_classification/demos/inprocessing.html#4.-Meta-Fair-Classifier>`_.
 
 Read more about the class attributes and methods in the API reference: :class:`~holisticai.bias.mitigation.MetaFairClassifier`.
 
